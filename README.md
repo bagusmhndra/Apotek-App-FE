@@ -17,7 +17,7 @@ npm install react-router-dom
 ```
 import 'bootstrap/dist/css/bootstrap.min.css';
 ```
-4. Cek isi package.json lalu samakan "dependencies" dengan ini:
+4. Cek isi package.json lalu pastikan isi "dependencies" sama dengan ini:
 ```
 {
 "dependencies": {
@@ -25,8 +25,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
     "react-bootstrap-icons": "^1.11.4",
