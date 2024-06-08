@@ -1,0 +1,81 @@
+.detail-product-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 100px;
+}
+
+.breadcrumb {
+  font-size: 16px;
+  color: #888;
+}
+
+.detail-product {
+  display: flex;
+  gap: 20px;
+}
+
+.detail-product-image img {
+  width: 100%;
+  height: auto;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.detail-product-price {
+  font-size: 24px;
+  color: rgba(226,23,70,0.8);
+  margin-bottom: 10px;
+}
+
+.per-strip {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.detail-product-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cart-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-deskripsi {
+  margin-top: 10px;
+}
+
+.product-deskripsi h4 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.product-deskripsi p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.product-deskripsi h5 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+}

@@ -1,0 +1,182 @@
+h5 {
+  text-align: left;
+  padding: 10px;
+}
+
+/* CAROUSEL */
+.carousel-container {
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 570px;
+  object-fit: cover;
+}
+
+/* KATEGORI */
+.category-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.category-box {
+  border-radius: 5px;
+  padding: 10px 5px;
+  display: inline-block;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.category-card {
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+  width: 140px;
+}
+
+.category-card:hover {
+  transform: scale(1.15);
+}
+
+.category-icon {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.category-name {
+  font-size: 14px;
+  color: #333;
+}
+
+/* DIAGNOSIS */
+.diagnosis-container {
+  text-align: center;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 20px;
+}
+
+.diagnosis-box {
+  display: inline-block;
+  background-color: #ffffff;
+}
+
+.diagnosis-card {
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+  width: 145px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+
+}
+
+.diagnosis-card:hover {
+  transform: scale(1.05);
+}
+
+.diagnosis-card-img {
+  width: 100%;
+  height: auto;
+}
+
+.card-img-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.diagnosis-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* CHOOSE */
+.custom-row {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-col {
+  max-width: 37%;
+}
+
+.custom-card {
+  width: 100%;
+   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.btn-choose {
+  padding: 5px 10px;
+  background-color: rgba(226,23,70,0.8);
+  border: 1px solid rgba(226,23,70,0.8);
+  color: #ffffff;
+}
+
+.btn-choose:hover {
+  background-color: #ffffff;
+  color: rgba(226,23,70,0.8);
+  border: 1px solid rgba(226,23,70,0.8);
+}
+
+.see-all-button {
+  padding: 20px;
+  color: primary;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+/* PRODUCT */
+.product-container {
+  text-align: center;
+  padding: 45px;
+}
+
+.product-box {
+  display: inline-block;
+  background-color: #ffffff;
+}
+
+.product-card {
+  text-decoration: none;
+  color: inherit;
+  width: 145px;
+}
+
+.product-name {
+  font-size: 16px;
+  color: #333;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #333;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(226,23,70,0.8);
+}
+
+.custom-btn {
+  background-color: #ffffff;
+  color: rgba(226,23,70,0.8);
+  border: 1px solid rgba(226,23,70,0.8);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.custom-btn:hover {
+  background-color: rgba(226,23,70,0.8);
+  color: #ffffff;
+  border: 1px solid rgba(226,23,70,0.8);
+}

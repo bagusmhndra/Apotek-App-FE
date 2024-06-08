@@ -1,0 +1,12 @@
+button.btn-link {
+  padding: 0;
+  border: none;
+  color: #007bff;
+  text-decoration: none;
+  background: none;
+}
+
+button.btn-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
