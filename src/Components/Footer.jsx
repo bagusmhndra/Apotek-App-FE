@@ -86,7 +86,7 @@ const Footer = () => {
             <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
             <p>
               <House color="white" className="me-3" />
-              Jakarta, JKT, Indonesia
+              Jakarta, Indonesia
             </p>
             <p>
               <Envelope color="white" className="me-3" />
@@ -94,7 +94,7 @@ const Footer = () => {
             </p>
             <p>
               <Telephone color="white" className="me-3" />
-              +62 1234 5678 9101
+              +62 12345678910
             </p>
           </Col>
 

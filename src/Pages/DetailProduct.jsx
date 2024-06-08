@@ -14,25 +14,16 @@ import "../css/DetailProduct.css";
 const DetailProduct = () => {
   const { state } = useLocation();
   const { product } = state || { product: {} };
-  const initialQuantities = new Array(6).fill(0);
-  const [quantities, setQuantities] = useState(initialQuantities);
+  const [quantity, setQuantity] = useState(0);
 
-  const handleAddToCart = (index) => {
-    setQuantities((prevQuantities) => {
-      const newQuantities = [...prevQuantities];
-      newQuantities[index] += 1;
-      return newQuantities;
-    });
+  const handleAddToCart = () => {
+    setQuantity(quantity + 1);
   };
 
-  const handleRemoveFromCart = (index) => {
-    setQuantities((prevQuantities) => {
-      const newQuantities = [...prevQuantities];
-      if (newQuantities[index] > 0) {
-        newQuantities[index] -= 1;
-      }
-      return newQuantities;
-    });
+  const handleRemoveFromCart = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
   };
 
   if (!product || Object.keys(product).length === 0) {
@@ -61,30 +52,21 @@ const DetailProduct = () => {
           </h4>
           <p className="per-strip">Per STRIP</p>
           <div className="detail-product-actions">
-              <Button
-                variant="primary"
-                className="cart-button"
-                onClick={() => handleAddToCart()}
-              >
-                + Tambah ke Keranjang
+          {quantity === 0 ? (
+            <Button variant="primary" onClick={handleAddToCart}>
+              Tambah
+            </Button>
+          ) : (
+            <div className="d-flex justify-content-between align-items-center">
+              <Button variant="light" onClick={handleRemoveFromCart}>
+                <Dash />
               </Button>
-              <div className="d-flex justify-content-between align-items-center">
-                <Button
-                  variant="outline-primary"
-                  className="cart-button"
-                  onClick={() => handleRemoveFromCart()}
-                >
-                  <Dash />
-                </Button>
-                <span>{quantities}</span>
-                <Button
-                  variant="primary"
-                  className="cart-button"
-                  onClick={() => handleAddToCart}
-                >
-                  <Plus />
-                </Button>
-              </div>
+              <h6 className="p-3"><span>{quantity}</span></h6>
+              <Button variant="primary" onClick={handleAddToCart}>
+                <Plus />
+              </Button>
+            </div>
+          )}
           </div>
           <hr />
           <div className="product-deskripsi">
