@@ -4,7 +4,7 @@ import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 function MyProfilePage() {
   const [initialValues] = useState({
-    name: "Dewa Putra",
+    fullName: "Dewa Putra",
     username: "dewaputra",
     email: "dewaputra@gmail.com",
     phoneNumber: "082465478654",
@@ -38,20 +38,20 @@ function MyProfilePage() {
             <Form onSubmit={saveProfile}>
               <Row className="mb-3">
                 <Col md={6} className="mb-3">
-                  <Form.Group controlId="name">
-                    <Form.Label className="fw-semibold">Name</Form.Label>
+                  <Form.Group controlId="fullName">
+                    <Form.Label className="fw-semibold">Full Name</Form.Label>
                     {editMode ? (
                       <Form.Control
                         type="text"
-                        value={formData.name}
+                        value={formData.fullName}
                         onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
+                          setFormData({ ...formData, fullName: e.target.value })
                         }
                         placeholder="Enter name"
                         autoFocus
                       />
                     ) : (
-                      <div>{formData.name}</div>
+                      <div>{formData.fullName}</div>
                     )}
                   </Form.Group>
                 </Col>

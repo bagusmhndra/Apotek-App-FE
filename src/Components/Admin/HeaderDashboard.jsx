@@ -35,6 +35,12 @@ function HeaderDashboard() {
               <Nav.Link as={Link} to="/dashboard">
                 Dashboard
               </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/my-profile">
+                Profile
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/add-admin">
+                Add Admin
+              </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/user-list">
                 User List
               </Nav.Link>
@@ -46,9 +52,6 @@ function HeaderDashboard() {
               </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/customer-chat">
                 Customer Chat
-              </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/my-profile">
-                Profile
               </Nav.Link>
             </Nav>
             <hr />

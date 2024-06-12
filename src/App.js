@@ -21,6 +21,8 @@ import DashboardPage from './Pages/Admin/DashboardPage';
 import MyProfilePage from './Pages/Admin/MyProfilePage';
 import ProductList from './Pages/Admin/ProductList';
 import UserListPage from './Pages/Admin/UserListPage';
+import AddAdmin from './Pages/Admin/AddAdmin';
+
 
 const App = () => {
 
@@ -62,6 +64,12 @@ const App = () => {
             path="/dashboard/user-list"
             element={
               <UserListPage />
+            }
+          />
+          <Route
+            path="/dashboard/add-admin"
+            element={
+              <AddAdmin />
             }
           />
         </Routes>
