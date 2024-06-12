@@ -22,3 +22,15 @@ h1 span {
   display: flex;
   align-items: center;
 }
+
+.offcanvas-animation {
+  transition: transform 0.3s ease-in-out; /* Ubah sesuai kebutuhan Anda */
+}
+
+.offcanvas-animation.show {
+  transform: translateX(0%);
+}
+
+.offcanvas-animation.hide {
+  transform: translateX(100%);
+}

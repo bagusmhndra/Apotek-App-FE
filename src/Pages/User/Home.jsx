@@ -27,8 +27,8 @@ const Home = () => {
   const diagnosis = [
     {
       image: diagnosis01,
-      name: "Anti Nyeri",
-      path: "/anti-nyeri",
+      name: "TBC",
+      path: "https://www.biofarma.co.id/id/announcement/detail/tuberkulosis-tbc-gejala-penyebab-dan-pengobatan",
     },
     {
       image: diagnosis02,
@@ -37,8 +37,8 @@ const Home = () => {
     },
     {
       image: diagnosis03,
-      name: "Hipertensi",
-      path: "/hipertensi",
+      name: "Kanker",
+      path: "https://www.biofarma.co.id/id/announcement/detail/ciri-kanker-pada-anak",
     },
     {
       image: diagnosis04,
@@ -47,8 +47,8 @@ const Home = () => {
     },
     {
       image: diagnosis05,
-      name: "Diet",
-      path: "/diet",
+      name: "HIV AIDS",
+      path: "https://www.biofarma.co.id/id/announcement/detail/hiv-aids-penyebab-gejala-dan-pencegahan",
     },
     {
       image: diagnosis06,
@@ -146,17 +146,6 @@ const Home = () => {
               <Col>
                 <h5>Kategori</h5>
               </Col>
-              <Col xs="auto">
-                <Button
-                  variant="link"
-                  className="see-all-button"
-                  Link
-                  as={Link}
-                  to="/category"
-                >
-                  See All
-                </Button>
-              </Col>
             </Row>
             <Row className="g-3 justify-content-center">
               {categories.map((category) => (
@@ -191,42 +180,23 @@ const Home = () => {
       </Container>
 
       {/* ARTICLES */}
-      <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 article-container">
-        <Row className="justify-content-center article-box">
-          <Col xs={12}>
-            <Row className="align-items-center justify-content-between">
-              <Col xs={12} md={6} className="mb-3 mb-md-0">
-                <Card className="article-card border-0">
-                  <Card.Body>
-                    <Card.Title>Temukan Artikel Anda</Card.Title>
-                    <Card.Text>
-                      Temukan artikel tentang kesehatan yang anda cari lewat
-                      artikel kami.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col xs={12} md="auto" className="ms-3">
-                <Button
-                  as={Link}
-                  to="https://www.biofarma.co.id/id/artikel-kesehatan"
-                  variant="outline-primary"
-                >
-                  Baca Artikel
-                </Button>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-
-      {/* DIAGNOSIS */}
       <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 diagnosis-container">
         <Row className="diagnosis-box justify-content-center">
           <Col xs={12}>
             <Row className="align-items-center justify-content-between">
               <Col>
                 <h5>Artikel Populer</h5>
+              </Col>
+              <Col xs="auto">
+                <Button
+                  variant="link"
+                  className="see-all-button"
+                  Link
+                  as={Link}
+                  to="https://www.biofarma.co.id/id/artikel-kesehatan"
+                >
+                  See All
+                </Button>
               </Col>
             </Row>
 

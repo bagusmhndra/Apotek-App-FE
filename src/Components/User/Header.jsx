@@ -32,6 +32,7 @@ const Header = () => {
             id={`offcanvasNavbarLabel-expand-lg`}
             aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
             placement="end"
+            className="offcanvas-animation" // Tambahkan class offcanvas-animation
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title

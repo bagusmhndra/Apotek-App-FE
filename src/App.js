@@ -12,13 +12,13 @@ import Home from './Pages/User/Home';
 import AboutUs from './Pages/User/AboutUs';
 import Contact from './Pages/User/Contact';
 import Category from './Pages/User/Category';
-import Diagnosis from './Pages/User/Diagnose';
 import DetailProduct from './Pages/User/DetailProduct';
 import Product from './Pages/User/Product';
 import NotFoundPage from './Pages/User/NotFoundPage';
 
 // DASHBOARD
 import DashboardPage from './Pages/Admin/DashboardPage';
+import MyProfilePage from './Pages/Admin/MyProfilePage';
 
 const App = () => {
 
@@ -31,9 +31,8 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/category" element={<Category />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/diagnosis" element={<Diagnosis />} />
           <Route path="/products" element={<Product />} />
-          <Route path="/detail-product" element={<DetailProduct />} />
+          <Route path="/products/detail-product" element={<DetailProduct />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFoundPage />} />
@@ -43,6 +42,12 @@ const App = () => {
             path="/dashboard"
             element={
               <DashboardPage />
+            }
+          />
+          <Route
+            path="/dashboard/my-profile"
+            element={
+              <MyProfilePage />
             }
           />
         </Routes>

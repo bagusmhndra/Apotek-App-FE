@@ -60,7 +60,7 @@ const Product = () => {
   ];
 
   const handleProductClick = (product) => {
-    navigate("/detail-product", { state: { product } });
+    navigate("/products/detail-product", { state: { product } });
   };
 
   return (

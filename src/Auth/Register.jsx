@@ -3,6 +3,7 @@ import { Container, Form, Button, Card, Alert } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "../assets/css/Register.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -57,7 +58,7 @@ const Register = () => {
   };
 
   return (
-    <Container className="login-container">
+    <Container className="register-container">
       <Container as={Link} to="/">
         <h1 className="fw-bold text-center fs-1">
           Pharmora<span>.id</span>
@@ -151,7 +152,7 @@ const Register = () => {
         </Form>
         <div className="mt-3 text-center">
           Sudah punya akun?
-          <Button variant="link" as={Link} to="/register">
+          <Button variant="link" as={Link} to="/login">
             {" "}
             Login
           </Button>
