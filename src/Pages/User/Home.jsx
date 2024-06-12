@@ -18,12 +18,12 @@ const Home = () => {
   const navigate = useNavigate();
 
   const categories = [
-    { name: "Obat", icon: "💊", path: "/obat" },
-    { name: "Suplemen", icon: "🧴", path: "/suplemen" },
-    { name: "Nutrisi", icon: "⚡", path: "/nutrisi" },
-    { name: "Herbal", icon: "🌿", path: "/herbal" },
-    { name: "Produk Bayi", icon: "🍼", path: "/produk-bayi" },
-    { name: "Alat Kesehatan", icon: "🚑", path: "/alat-kesehatan" },
+    { name: "Obat", icon: "💊", path: "/category/obat" },
+    { name: "Suplemen", icon: "🧴", path: "/category/suplemen" },
+    { name: "Nutrisi", icon: "⚡", path: "/category/nutrisi" },
+    { name: "Herbal", icon: "🌿", path: "/category/herbal" },
+    { name: "Produk Bayi", icon: "🍼", path: "/category/produk-bayi" },
+    { name: "Alat Kesehatan", icon: "🚑", path: "/category/alat-kesehatan" },
   ];
 
   const diagnosis = [
@@ -151,6 +151,17 @@ const Home = () => {
             <Row className="align-items-center justify-content-between">
               <Col>
                 <h5>Kategori</h5>
+              </Col>
+              <Col xs="auto">
+                <Button
+                  variant="link"
+                  className="see-all-button"
+                  Link
+                  as={Link}
+                  to="/category"
+                >
+                  See All
+                </Button>
               </Col>
             </Row>
             <Row className="g-3 justify-content-center">
