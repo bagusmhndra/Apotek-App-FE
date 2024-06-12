@@ -30,9 +30,9 @@ function MyProfilePage() {
     <>
       <HeaderDashboard />
       <Container className="mt-5">
-        <Card className="shadow" style={{ border: "none", borderRadius: "0" }}>
+        <Card className="shadow border-0">
           <Card.Body>
-            <h2 className="title-profile" style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>
+            <h2 className="title-profile" style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "30px" }}>
               My Profile
             </h2>
             <Form onSubmit={saveProfile}>

@@ -58,6 +58,9 @@ const Header = () => {
                 <Nav.Link as={Link} to="*">
                   Kategori
                 </Nav.Link>
+                <Nav.Link as={Link} to="/products">
+                  Produk
+                </Nav.Link>
                 <Nav.Link as={Link} to="/contact">
                   Kontak Kami
                 </Nav.Link>

@@ -244,16 +244,6 @@ const Home = () => {
               <Col>
                 <h5>Produk Populer</h5>
               </Col>
-              <Col xs="auto">
-                <Button
-                  variant="link"
-                  className="see-all-button"
-                  as={Link}
-                  to="/products"
-                >
-                  See All
-                </Button>
-              </Col>
             </Row>
 
             <Row className="g-3 justify-content-center">
