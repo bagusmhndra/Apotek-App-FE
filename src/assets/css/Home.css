@@ -4,21 +4,15 @@ h5 {
 }
 
 /* CAROUSEL */
-.carousel-container {
-  margin: 0;
-  padding: 0;
-}
-
 .carousel-item img {
-  width: 100%;
-  height: 570px;
+  height: 800px;
   object-fit: cover;
 }
 
 /* KATEGORI */
 .category-container {
   text-align: center;
-  padding: 50px;
+  padding: 30px;
 }
 
 .category-box {
@@ -26,14 +20,13 @@ h5 {
   padding: 10px 5px;
   display: inline-block;
   background-color: #ffffff;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .category-card {
   transition: transform 0.2s;
   text-decoration: none;
   color: inherit;
-  width: 140px;
+  width: 145px;
 }
 
 .category-card:hover {
@@ -50,15 +43,33 @@ h5 {
   color: #333;
 }
 
+/* ARTICLE */
+.article-container {
+  width: 1040px;
+  padding-right: 40px;
+  padding-left: 35px;
+}
+
+.article-box {
+  border-radius: 5px;
+  padding: 10px 5px;
+  background-color: #ffffff;
+}
+
+.article-card {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* DIAGNOSIS */
 .diagnosis-container {
   text-align: center;
-  padding-right: 30px;
-  padding-left: 30px;
-  padding-top: 20px;
+  padding: 30px;
 }
 
 .diagnosis-box {
+  border-radius: 5px;
+  padding: 10px 5px;
   display: inline-block;
   background-color: #ffffff;
 }
@@ -68,7 +79,6 @@ h5 {
   text-decoration: none;
   color: inherit;
   width: 145px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 
@@ -91,22 +101,6 @@ h5 {
   font-size: 14px;
   font-weight: bold;
   color: #fff;
-}
-
-/* CHOOSE */
-.custom-row {
-  display: flex;
-  justify-content: center;
-}
-
-.custom-col {
-  max-width: 37%;
-}
-
-.custom-card {
-  width: 100%;
-   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-
 }
 
 .btn-choose {
@@ -137,10 +131,12 @@ a:link {
 /* PRODUCT */
 .product-container {
   text-align: center;
-  padding: 45px;
+  padding: 30px;
 }
 
 .product-box {
+  border-radius: 5px;
+  padding: 10px 5px;
   display: inline-block;
   background-color: #ffffff;
 }
@@ -149,6 +145,8 @@ a:link {
   text-decoration: none;
   color: inherit;
   width: 145px;
+  position: relative;
+  overflow: hidden;
 }
 
 .product-name {

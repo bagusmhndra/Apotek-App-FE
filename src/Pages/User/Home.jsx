@@ -1,31 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Carousel, Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Plus, Dash } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import "../css/Home.css";
+import Header from "../../Components/User/Header";
+import Footer from "../../Components/User/Footer";
+import carousel01 from "../../assets/img/carousel01.png";
+import carousel02 from "../../assets/img/carousel02.png";
+import carousel03 from "../../assets/img/carousel03.png";
+import diagnosis01 from "../../assets/img/diagnosis01.png";
+import diagnosis02 from "../../assets/img/diagnosis02.png";
+import diagnosis03 from "../../assets/img/diagnosis03.png";
+import diagnosis04 from "../../assets/img/diagnosis04.png";
+import diagnosis05 from "../../assets/img/diagnosis05.png";
+import diagnosis06 from "../../assets/img/diagnosis06.png";
+import "../../assets/css/Home.css";
 
 const Home = () => {
-  const initialQuantities = new Array(6).fill(0);
-  const [quantities, setQuantities] = useState(initialQuantities);
-
-  const handleAddToCart = (index) => {
-    setQuantities((prevQuantities) => {
-      const newQuantities = [...prevQuantities];
-      newQuantities[index] += 1;
-      return newQuantities;
-    });
-  };
-
-  const handleRemoveFromCart = (index) => {
-    setQuantities((prevQuantities) => {
-      const newQuantities = [...prevQuantities];
-      if (newQuantities[index] > 0) {
-        newQuantities[index] -= 1;
-      }
-      return newQuantities;
-    });
-  };
-
   const categories = [
     { name: "Obat", icon: "💊", path: "/obat" },
     { name: "Suplemen", icon: "🧴", path: "/suplemen" },
@@ -37,34 +26,34 @@ const Home = () => {
 
   const diagnosis = [
     {
-      image: "../../assets/diagnosis01.png",
+      image: diagnosis01,
       name: "Anti Nyeri",
       path: "/anti-nyeri",
     },
     {
-      image: "../../assets/diagnosis02.png",
+      image: diagnosis02,
       name: "Diabetes",
-      path: "/diabetes",
+      path: "https://www.biofarma.co.id/id/announcement/detail/diabetes-gejala-penyebab-dan-pencegahan/diabetes",
     },
     {
-      image: "../../assets/diagnosis03.png",
+      image: diagnosis03,
       name: "Hipertensi",
       path: "/hipertensi",
     },
     {
-      image: "../../assets/diagnosis04.png",
+      image: diagnosis04,
       name: "Jantung",
-      path: "/jantung",
+      path: "https://www.biofarma.co.id/id/announcement/detail/penyakit-jantung-ciri-penyebab-dan-pencegahan",
     },
     {
-      image: "../../assets/diagnosis05.png",
+      image: diagnosis05,
       name: "Diet",
       path: "/diet",
     },
     {
-      image: "../../assets/diagnosis06.png",
+      image: diagnosis06,
       name: "Batuk & Flu",
-      path: "/batuk-flu",
+      path: "https://www.biofarma.co.id/id/announcement/detail/bagaimana-menangani-flu-pada-anak-yuk-simak-artikel-berikut",
     },
   ];
 
@@ -121,57 +110,37 @@ const Home = () => {
 
   return (
     <>
+      <Header />
       {/* CAROUSEL */}
       <div className="carousel-container">
         <Carousel>
-          <Carousel.Item interval={3000}>
+          <Carousel.Item interval={2500}>
             <img
               className="d-block w-100 carousel-image"
-              src="../../assets/carousel01.png"
+              src={carousel02}
               alt="First slide"
             />
-            <Carousel.Caption>
-              <h3>Pharmora.id</h3>
-              <p>
-                Pharmora.id adalah apotek online untuk solusi kesehatan yang
-                modern dan terpercaya.
-              </p>
-            </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item interval={3000}>
+          <Carousel.Item interval={2500}>
             <img
               className="d-block w-100 carousel-image"
-              src="../../assets/carousel02.png"
+              src={carousel01}
               alt="Second slide"
             />
-            <Carousel.Caption>
-              <h3>Pharmora.id</h3>
-              <p>
-                Pharmora.id adalah apotek online untuk solusi kesehatan yang
-                modern dan terpercaya.
-              </p>
-            </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item interval={3000}>
+          <Carousel.Item interval={2500}>
             <img
               className="d-block w-100 carousel-image"
-              src="../../assets/carousel03.png"
+              src={carousel03}
               alt="Third slide"
             />
-            <Carousel.Caption>
-              <h3>Pharmora.id</h3>
-              <p>
-                Pharmora.id adalah apotek online untuk solusi kesehatan yang
-                modern dan terpercaya.
-              </p>
-            </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>
 
       {/* KATEGORI */}
-      <Container className="py-5 category-container">
-        <Row className="justify-content-center category-box">
+      <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 category-container">
+        <Row className="justify-content-center category-box border-0">
           <Col xs={12}>
             <Row className="align-items-center justify-content-between">
               <Col>
@@ -222,58 +191,45 @@ const Home = () => {
       </Container>
 
       {/* ARTICLES */}
-      <Container>
-        <Row className="justify-content-center custom-row">
-          <Col className="custom-col mb-3">
-            <Card className="custom-card border-0">
-              <Card.Body>
-                <Card.Title>Temukan Artikel Anda</Card.Title>
-                <Card.Text>
-                  Temukan artikel tentang kesehatan yang anda cari lewat artikel
-                  kami.
-                </Card.Text>
-                <Button Link as={Link} to="/" variant="primary">
-                  Baca
+      <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 article-container">
+        <Row className="justify-content-center article-box">
+          <Col xs={12}>
+            <Row className="align-items-center justify-content-between">
+              <Col xs={12} md={6} className="mb-3 mb-md-0">
+                <Card className="article-card border-0">
+                  <Card.Body>
+                    <Card.Title>Temukan Artikel Anda</Card.Title>
+                    <Card.Text>
+                      Temukan artikel tentang kesehatan yang anda cari lewat
+                      artikel kami.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col xs={12} md="auto" className="ms-3">
+                <Button
+                  as={Link}
+                  to="https://www.biofarma.co.id/id/artikel-kesehatan"
+                  variant="outline-primary"
+                >
+                  Baca Artikel
                 </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col className="custom-col mb-3">
-            <Card className="custom-card border-0">
-              <Card.Body>
-                <Card.Title>Bingung Pilih Obat?</Card.Title>
-                <Card.Text>
-                  Biarkan apoteker kami membantu menemukan obat yang tepat.
-                </Card.Text>
-                <Button Link as={Link} to="/contact" variant="primary">
-                  Chat
-                </Button>
-              </Card.Body>
-            </Card>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>
 
       {/* DIAGNOSIS */}
-      <Container className="diagnosis-container">
+      <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 diagnosis-container">
         <Row className="diagnosis-box justify-content-center">
-          <Row className="align-items-center justify-content-between">
-            <Col>
-              <h5>Diagnosis</h5>
-            </Col>
-            <Col xs="auto">
-              <Button
-                variant="link"
-                className="see-all-button"
-                Link
-                as={Link}
-                to="/diagnosis"
-              >
-                See All
-              </Button>
-            </Col>
-          </Row>
           <Col xs={12}>
+            <Row className="align-items-center justify-content-between">
+              <Col>
+                <h5>Artikel Populer</h5>
+              </Col>
+            </Row>
+
             <Row className="g-3 justify-content-center">
               {diagnosis.map((item, index) => (
                 <Col
@@ -305,24 +261,25 @@ const Home = () => {
       </Container>
 
       {/* PRODUK */}
-      <Container className="product-container">
+      <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 product-container">
         <Row className="product-box justify-content-center">
-          <Row className="align-items-center justify-content-between">
-            <Col>
-              <h5>Produk Populer</h5>
-            </Col>
-            <Col xs="auto">
-              <Button
-                variant="link"
-                className="see-all-button"
-                as={Link}
-                to="/products"
-              >
-                See All
-              </Button>
-            </Col>
-          </Row>
           <Col xs={12}>
+            <Row className="align-items-center justify-content-between">
+              <Col>
+                <h5>Produk Populer</h5>
+              </Col>
+              <Col xs="auto">
+                <Button
+                  variant="link"
+                  className="see-all-button"
+                  as={Link}
+                  to="/products"
+                >
+                  See All
+                </Button>
+              </Col>
+            </Row>
+
             <Row className="g-3 justify-content-center">
               {products.map((item, index) => (
                 <Col
@@ -351,30 +308,6 @@ const Home = () => {
                       <Card.Text className="product-price">
                         {item.price}
                       </Card.Text>
-                      {quantities[index] === 0 ? (
-                        <Button
-                          variant="primary"
-                          onClick={() => handleAddToCart(index)}
-                        >
-                          Tambah
-                        </Button>
-                      ) : (
-                        <div className="d-flex justify-content-between align-items-center">
-                          <Button
-                            variant="outline-primary"
-                            onClick={() => handleRemoveFromCart(index)}
-                          >
-                            <Dash />
-                          </Button>
-                          <span>{quantities[index]}</span>
-                          <Button
-                            variant="primary"
-                            onClick={() => handleAddToCart(index)}
-                          >
-                            <Plus />
-                          </Button>
-                        </div>
-                      )}
                     </Card.Body>
                   </Card>
                 </Col>
@@ -383,6 +316,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 };

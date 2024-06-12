@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import { Form, Button, Modal, Alert } from "react-bootstrap";
+import { Container, Form, Button, Alert, Card } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import "../css/Login.css";
+import "../assets/css/Login.css";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({
-  show,
-  handleClose,
-  handleShowRegister,
-  handleShowForgotPassword,
-}) => {
-  const [email, setEmail] = useState("");
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -25,27 +19,34 @@ const Login = ({
     e.preventDefault();
     setError("");
     try {
-      const response = await fetch("https://4eba-58-147-190-90.ngrok-free.app/users/login", {
-        method: "POST",
-        body: JSON.stringify({ username, email, password, phone }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(
+        "https://c871-58-147-190-90.ngrok-free.app/users/login",
+        {
+          method: "POST",
+          body: JSON.stringify({ username, password }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Login gagal");
       }
-      navigate("/category");
+      navigate("/");
     } catch (error) {
       setError(error.message || "Login gagal");
     }
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    <Container className="login-container">
+      <Container as={Link} to="/">
+        <h1 className="fw-bold text-center fs-1">
+          Pharmora<span>.id</span>
+        </h1>
+      </Container>
+
+      <Card className="p-4 border-0 shadow">
+        <h3 className="pb-3">Login</h3>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleLogin}>
           <Form.Group controlId="formBasicUsername">
@@ -55,28 +56,6 @@ const Login = ({
               placeholder="Enter username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mb-2"
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="string"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mb-2"
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicPhone">
-            <Form.Label>Phone</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Enter phone number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
               className="mb-2"
               required
             />
@@ -107,20 +86,18 @@ const Login = ({
             <Button variant="primary" type="submit">
               Masuk
             </Button>
-            <Button variant="link" onClick={handleShowForgotPassword}>
-              Lupa Password?
-            </Button>
+            <Button variant="link">Lupa Password?</Button>
           </div>
         </Form>
         <div className="mt-3 text-center">
           Belum punya akun?
-          <Button variant="link" onClick={handleShowRegister} className="ms-2">
+          <Button variant="link" as={Link} to="/register">
             {" "}
             Daftar
           </Button>
         </div>
-      </Modal.Body>
-    </Modal>
+      </Card>
+    </Container>
   );
 };
 

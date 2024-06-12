@@ -5,9 +5,17 @@
   background-color: #ffffff;
 }
 
-.navbar-brand-text {
-  font-size: 24px;
-  font-weight: 600;
+h1 {
+  font-size: 32px;
+  cursor: pointer;
+}
+
+h4 span {
+  color: rgba(226,23,70,0.8);
+}
+
+h1 span {
+  color: rgba(226,23,70,0.8);
 }
 
 .left-container {

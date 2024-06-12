@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Form, Button, Modal, Alert } from "react-bootstrap";
+import { Container, Form, Button, Card, Alert } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Register = ({ show, handleClose }) => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +13,14 @@ const Register = ({ show, handleClose }) => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   //PASSWORD ICON
   const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +39,7 @@ const Register = ({ show, handleClose }) => {
     }
     try {
       const response = await fetch(
-        "https://4eba-58-147-190-90.ngrok-free.app/users/register",
+        "https://c871-58-147-190-90.ngrok-free.app/users/register",
         {
           method: "POST",
           body: JSON.stringify({ username, email, password, phone }),
@@ -39,20 +48,24 @@ const Register = ({ show, handleClose }) => {
       );
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Login gagal");
+        throw new Error(errorData.message || "Register gagal");
       }
       navigate("/");
     } catch (error) {
-      setError(error.message || "Login gagal");
+      setError(error.message || "Register gagal");
     }
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Register</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    <Container className="login-container">
+      <Container as={Link} to="/">
+        <h1 className="fw-bold text-center fs-1">
+          Pharmora<span>.id</span>
+        </h1>
+      </Container>
+
+      <Card className="p-4 border-0 shadow">
+        <h3 className="pb-3">Register</h3>
         {error && <Alert variant="danger">{error}</Alert>}
         {successMessage && <Alert variant="success">{successMessage}</Alert>}
         <Form onSubmit={handleRegister}>
@@ -96,7 +109,7 @@ const Register = ({ show, handleClose }) => {
                 type={showPassword ? "string" : "password"}
                 placeholder="Enter password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 className="mb-2"
                 required
               />
@@ -115,17 +128,19 @@ const Register = ({ show, handleClose }) => {
             <div className="input-group">
               <Form.Control
                 type={showConfirmPassword ? "string" : "password"}
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Enter confirm password"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
                 required
               />
               <Button
                 variant="outline-primary"
                 onClick={toggleConfirmPasswordVisibility}
-                aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                aria-label={
+                  showConfirmPassword ? "Hide password" : "Show password"
+                }
               >
-                {showPassword ? <EyeSlash /> : <Eye />}
+                {showConfirmPassword ? <EyeSlash /> : <Eye />}
               </Button>
             </div>
           </Form.Group>
@@ -134,8 +149,15 @@ const Register = ({ show, handleClose }) => {
             Daftar
           </Button>
         </Form>
-      </Modal.Body>
-    </Modal>
+        <div className="mt-3 text-center">
+          Sudah punya akun?
+          <Button variant="link" as={Link} to="/register">
+            {" "}
+            Login
+          </Button>
+        </div>
+      </Card>
+    </Container>
   );
 };
 
