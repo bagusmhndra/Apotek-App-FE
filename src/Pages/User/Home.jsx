@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel, Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 import carousel01 from "../../assets/img/carousel01.png";
@@ -15,6 +15,8 @@ import diagnosis06 from "../../assets/img/diagnosis06.png";
 import "../../assets/css/Home.css";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const categories = [
     { name: "Obat", icon: "💊", path: "/obat" },
     { name: "Suplemen", icon: "🧴", path: "/suplemen" },
@@ -69,7 +71,7 @@ const Home = () => {
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+      title: "DegiroI 0,35 mg 10 Tablet",
       description: "/Strip",
       price: "Rp16.297",
       freeShipping: true,
@@ -77,7 +79,7 @@ const Home = () => {
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+      title: "DegiroI 0,45 mg 10 Tablet",
       description: "/Strip",
       price: "Rp16.297",
       freeShipping: true,
@@ -85,7 +87,7 @@ const Home = () => {
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+      title: "DegiroI 0,55 mg 10 Tablet",
       description: "/Strip",
       price: "Rp16.297",
       freeShipping: true,
@@ -93,7 +95,7 @@ const Home = () => {
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+      title: "DegiroI 0,65 mg 10 Tablet",
       description: "/Strip",
       price: "Rp16.297",
       freeShipping: true,
@@ -101,12 +103,16 @@ const Home = () => {
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+      title: "DegiroI 0,75 mg 10 Tablet",
       description: "/Strip",
       price: "Rp16.297",
       freeShipping: true,
     },
   ];
+
+  const handleProductClick = (product) => {
+    navigate("/products/detail-product", { state: { product } });
+  };
 
   return (
     <>
@@ -260,7 +266,10 @@ const Home = () => {
                   key={index}
                   className="d-flex justify-content-center"
                 >
-                  <Card className="product-card h-100 border-0">
+                  <Card
+                    className="product-card h-100 border-0"
+                    onClick={() => handleProductClick(item)}
+                  >
                     <Link to={item.path}>
                       <Card.Img
                         variant="top"

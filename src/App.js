@@ -19,6 +19,8 @@ import NotFoundPage from './Pages/User/NotFoundPage';
 // DASHBOARD
 import DashboardPage from './Pages/Admin/DashboardPage';
 import MyProfilePage from './Pages/Admin/MyProfilePage';
+import ProductList from './Pages/Admin/ProductList';
+import UserListPage from './Pages/Admin/UserListPage';
 
 const App = () => {
 
@@ -48,6 +50,18 @@ const App = () => {
             path="/dashboard/my-profile"
             element={
               <MyProfilePage />
+            }
+          />
+          <Route
+            path="/dashboard/product-list"
+            element={
+              <ProductList />
+            }
+          />
+          <Route
+            path="/dashboard/user-list"
+            element={
+              <UserListPage />
             }
           />
         </Routes>
