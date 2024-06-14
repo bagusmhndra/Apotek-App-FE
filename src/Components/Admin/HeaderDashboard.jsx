@@ -11,7 +11,7 @@ import {
 
 function HeaderDashboard() {
   return (
-    <Navbar expand="l" className="mb-3 navbar-container" sticky="top">
+    <Navbar expand="l" className="p-2 navbar-container" sticky="top">
       <Container fluid className="left-container">
         <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-l`} />
         <Navbar.Offcanvas
@@ -57,11 +57,6 @@ function HeaderDashboard() {
             </ButtonGroup>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-          <h1 className="fw-bold">
-            Pharmora<span>.id</span>
-          </h1>
-        </Navbar.Brand>
       </Container>
     </Navbar>
   );
