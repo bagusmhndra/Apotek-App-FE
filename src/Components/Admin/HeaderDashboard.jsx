@@ -50,9 +50,6 @@ function HeaderDashboard() {
               <Nav.Link as={Link} to="/dashboard/order-list">
                 Order List
               </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/customer-chat">
-                Customer Chat
-              </Nav.Link>
             </Nav>
             <hr />
             <ButtonGroup as={Link} to="/logout">

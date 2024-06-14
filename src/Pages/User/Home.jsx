@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Carousel, Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/User/Header";
@@ -15,10 +15,28 @@ import diagnosis06 from "../../assets/img/diagnosis06.png";
 import "../../assets/css/Home.css";
 
 const Home = () => {
+  const crispScriptRef = useRef(null);
+
+  useEffect(() => {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "f600f12a-1169-4a87-a8e8-801e93fcc920";
+    crispScriptRef.current = document.createElement("script");
+    crispScriptRef.current.src = "https://client.crisp.chat/l.js";
+    crispScriptRef.current.async = 1;
+    document.getElementsByTagName("head")[0].appendChild(crispScriptRef.current);
+
+    return () => {
+      if (crispScriptRef.current) {
+        document.getElementsByTagName("head")[0].removeChild(crispScriptRef.current);
+        delete window.$crisp;
+        delete window.CRISP_WEBSITE_ID;
+      }
+    };
+  }, []);
   const navigate = useNavigate();
 
   const categories = [
-    { name: "Obat", icon: "💊", path: "/category/obat" },
+    { name: "Obat", icon: "💊", path: "/vitamin" },
     { name: "Suplemen", icon: "🧴", path: "/category/suplemen" },
     { name: "Nutrisi", icon: "⚡", path: "/category/nutrisi" },
     { name: "Herbal", icon: "🌿", path: "/category/herbal" },

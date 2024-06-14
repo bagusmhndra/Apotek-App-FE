@@ -15,6 +15,7 @@ import Category from './Pages/User/Category';
 import DetailProduct from './Pages/User/DetailProduct';
 import Product from './Pages/User/Product';
 import NotFoundPage from './Pages/User/NotFoundPage';
+import Vitamin from './Pages/User/VitaminC';
 
 // DASHBOARD
 import DashboardPage from './Pages/Admin/DashboardPage';
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/vitamin" element={<Vitamin />} />
 
           {/* DASHBOARD */}
           <Route
