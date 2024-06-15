@@ -70,7 +70,7 @@ function AddAdmin() {
         const errorData = await response.json();
         Swal.fire({
           icon: "error",
-          title: "Register Failed!",
+          title: "Register Gagal!",
           text: errorData.message,
           confirmButtonColor: "#f27474",
         });
@@ -79,8 +79,8 @@ function AddAdmin() {
       console.error("Error:", error);
       Swal.fire({
         icon: "error",
-        title: "Register Failed!",
-        text: "Something went wrong!",
+        title: "Register Gagal!",
+        text: "Sepertinya Terjadi Kesalahan!",
         confirmButtonColor: "#f27474",
       });
     }
