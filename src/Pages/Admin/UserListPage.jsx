@@ -41,7 +41,7 @@ function UserList() {
         icon: "error",
         title: "Oops...",
         text: "Error fetching users!",
-        confirmButtonColor: "#f27474",
+        confirmButtonColor: "#3B71CA",
       });
     }
   };
@@ -96,6 +96,7 @@ function UserList() {
         icon: "success",
         title: modalType === "create" ? "User created!" : "User updated!",
         text: result.message,
+        confirmButtonColor: "#3B71CA",
       });
 
       fetchUsers();
@@ -105,6 +106,7 @@ function UserList() {
         icon: "error",
         title: "Oops...",
         text: `Error ${modalType === "create" ? "creating" : "updating"} user!`,
+        confirmButtonColor: "#3B71CA",
       });
     }
   };
@@ -116,7 +118,7 @@ function UserList() {
         text: "You won't be able to revert this!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: "#3B71CA",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
       });
@@ -139,6 +141,7 @@ function UserList() {
         icon: "error",
         title: "Oops...",
         text: "Error deleting user!",
+        confirmButtonColor: "#3B71CA",
       });
     }
   };

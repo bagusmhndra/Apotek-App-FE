@@ -64,7 +64,7 @@ function AddAdmin() {
           text: data.message,
           icon: "success",
           iconColor: "#01aa5a",
-          confirmButtonColor: "#01aa5a",
+          confirmButtonColor: "#3B71CA",
         });
       } else {
         const errorData = await response.json();
@@ -72,7 +72,7 @@ function AddAdmin() {
           icon: "error",
           title: "Register Gagal!",
           text: errorData.message,
-          confirmButtonColor: "#f27474",
+          confirmButtonColor: "#3B71CA",
         });
       }
     } catch (error) {
@@ -81,7 +81,7 @@ function AddAdmin() {
         icon: "error",
         title: "Register Gagal!",
         text: "Sepertinya Terjadi Kesalahan!",
-        confirmButtonColor: "#f27474",
+        confirmButtonColor: "#3B71CA",
       });
     }
   };

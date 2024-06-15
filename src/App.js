@@ -25,7 +25,6 @@ import MyProfilePage from './Pages/Admin/MyProfilePage';
 import ProductList from './Pages/Admin/ProductList';
 import UserListPage from './Pages/Admin/UserListPage';
 import AddAdmin from './Pages/Admin/AddAdmin';
-import Cart from './Pages/Admin/Cart';
 import OrderListPage from './Pages/Admin/OrderListPage';
 import Settings from './Pages/Admin/Settings';
 
@@ -48,7 +47,6 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/vitamin" element={<Vitamin />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/cart" element={<Cart />} />
 
 
           {/* DASHBOARD */}
@@ -65,7 +63,7 @@ const App = () => {
             }
           />
           <Route
-            path="/dashboard/product-list1"
+            path="/dashboard/product-list"
             element={
               <ProductList />
             }
@@ -83,7 +81,7 @@ const App = () => {
             }
           />
           <Route
-            path="/dashboard/order-list1"
+            path="/dashboard/order-list"
             element={
               <OrderListPage />
             }
