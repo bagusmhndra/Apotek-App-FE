@@ -16,6 +16,8 @@ import DetailProduct from './Pages/User/DetailProduct';
 import Product from './Pages/User/Product';
 import NotFoundPage from './Pages/User/NotFoundPage';
 import Vitamin from './Pages/User/VitaminC';
+import Checkout from './Pages/User/Checkout';
+
 
 // DASHBOARD
 import DashboardPage from './Pages/Admin/DashboardPage';
@@ -23,6 +25,9 @@ import MyProfilePage from './Pages/Admin/MyProfilePage';
 import ProductList from './Pages/Admin/ProductList';
 import UserListPage from './Pages/Admin/UserListPage';
 import AddAdmin from './Pages/Admin/AddAdmin';
+import Cart from './Pages/Admin/Cart';
+import OrderListPage from './Pages/Admin/OrderListPage';
+import Settings from './Pages/Admin/Settings';
 
 
 const App = () => {
@@ -42,6 +47,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/vitamin" element={<Vitamin />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/cart" element={<Cart />} />
+
 
           {/* DASHBOARD */}
           <Route
@@ -57,7 +65,7 @@ const App = () => {
             }
           />
           <Route
-            path="/dashboard/product-list"
+            path="/dashboard/product-list1"
             element={
               <ProductList />
             }
@@ -72,6 +80,18 @@ const App = () => {
             path="/dashboard/add-admin"
             element={
               <AddAdmin />
+            }
+          />
+          <Route
+            path="/dashboard/order-list1"
+            element={
+              <OrderListPage />
+            }
+          />
+          <Route
+            path="/dashboard/settings"
+            element={
+              <Settings />
             }
           />
         </Routes>

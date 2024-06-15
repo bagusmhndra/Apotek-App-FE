@@ -31,7 +31,7 @@ const Login = () => {
         const errorData = await response.json();
         throw new Error(errorData.message || "Login gagal");
       }
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setError(error.message || "Login gagal");
     }

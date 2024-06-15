@@ -1,3 +1,4 @@
+/* Navbar Container */
 .navbar-container {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -5,26 +6,30 @@
   background-color: #ffffff;
 }
 
-h1 {
+/* Navbar Brand */
+.navbar-brand h1 {
   font-size: 32px;
   cursor: pointer;
 }
 
-h4 span {
+.navbar-brand h1 span {
   color: rgba(226,23,70,0.8);
 }
 
-h1 span {
+/* Navbar Links */
+.nav-link {
+  font-size: 16px;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
   color: rgba(226,23,70,0.8);
 }
 
-.left-container {
-  display: flex;
-  align-items: center;
-}
-
+/* Misc */
 .offcanvas-animation {
-  transition: transform 0.3s ease-in-out; /* Ubah sesuai kebutuhan Anda */
+  transition: transform 0.3s ease-in-out;
 }
 
 .offcanvas-animation.show {
@@ -34,3 +39,4 @@ h1 span {
 .offcanvas-animation.hide {
   transform: translateX(100%);
 }
+

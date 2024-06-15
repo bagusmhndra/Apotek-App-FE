@@ -37,11 +37,11 @@ const Home = () => {
 
   const categories = [
     { name: "Obat", icon: "💊", path: "/vitamin" },
-    { name: "Suplemen", icon: "🧴", path: "/category/suplemen" },
-    { name: "Nutrisi", icon: "⚡", path: "/category/nutrisi" },
-    { name: "Herbal", icon: "🌿", path: "/category/herbal" },
-    { name: "Produk Bayi", icon: "🍼", path: "/category/produk-bayi" },
-    { name: "Alat Kesehatan", icon: "🚑", path: "/category/alat-kesehatan" },
+    { name: "Suplemen", icon: "🧴", path: "/vitamin" },
+    { name: "Nutrisi", icon: "⚡", path: "/vitamin" },
+    { name: "Herbal", icon: "🌿", path: "/vitamin" },
+    { name: "Produk Bayi", icon: "🍼", path: "/vitamin" },
+    { name: "Alat Kesehatan", icon: "🚑", path: "/vitamin" },
   ];
 
   const diagnosis = [

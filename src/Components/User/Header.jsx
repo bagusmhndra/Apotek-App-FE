@@ -32,7 +32,7 @@ const Header = () => {
             id={`offcanvasNavbarLabel-expand-lg`}
             aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
             placement="end"
-            className="offcanvas-animation" // Tambahkan class offcanvas-animation
+            className="offcanvas-animation"
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title
@@ -53,7 +53,7 @@ const Header = () => {
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1 pe-3">
                 <Nav.Link as={Link} to="/dashboard">
-                  Home
+                  Home (/dashboard)
                 </Nav.Link>
                 <Nav.Link as={Link} to="/category">
                   Kategori
@@ -66,7 +66,7 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
               <hr />
-              <ButtonGroup as={Link} to="/login" className="me-3">
+              <ButtonGroup as={Link} to="/login" className="me-2">
                 <Button variant="primary">
                   Masuk
                 </Button>

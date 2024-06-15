@@ -1,33 +1,46 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Button, Breadcrumb } from 'react-bootstrap';
-import { Plus, Dash, Cart4 } from "react-bootstrap-icons";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Row, Col, Card, Button, Breadcrumb } from "react-bootstrap";
+import { Plus, Dash, Cart2 } from "react-bootstrap-icons";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 
 const Category = () => {
+  const navigate = useNavigate();
   const initialQuantitiesPopuler = new Array(6).fill(0);
   const initialQuantitiesVitaminC = new Array(6).fill(0);
   const initialQuantitiesObatBatuk = new Array(6).fill(0);
 
-  const [quantitiesPopuler, setQuantitiesPopuler] = useState(initialQuantitiesPopuler);
+  const [quantitiesPopuler, setQuantitiesPopuler] = useState(
+    initialQuantitiesPopuler
+  );
   const [totalQuantityPopuler, setTotalQuantityPopuler] = useState(0);
   const [totalPricePopuler, setTotalPricePopuler] = useState(0);
 
-  const [quantitiesVitaminC, setQuantitiesVitaminC] = useState(initialQuantitiesVitaminC);
+  const [quantitiesVitaminC, setQuantitiesVitaminC] = useState(
+    initialQuantitiesVitaminC
+  );
   const [totalQuantityVitaminC, setTotalQuantityVitaminC] = useState(0);
   const [totalPriceVitaminC, setTotalPriceVitaminC] = useState(0);
 
-  const [quantitiesObatBatuk, setQuantitiesObatBatuk] = useState(initialQuantitiesObatBatuk);
+  const [quantitiesObatBatuk, setQuantitiesObatBatuk] = useState(
+    initialQuantitiesObatBatuk
+  );
   const [totalQuantityObatBatuk, setTotalQuantityObatBatuk] = useState(0);
   const [totalPriceObatBatuk, setTotalPriceObatBatuk] = useState(0);
 
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [cart, setCart] = useState([]);
+
+  const handleCheckout = () => {
+    navigate("/checkout", { state: { cart } });
+  };
 
   const productsPopuler = [
     {
-      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
       title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
       price: 16297,
@@ -35,50 +48,65 @@ const Category = () => {
       path: "/products/detail-product",
     },
     {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
   ];
 
   const productsVitaminC = [
     {
-      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      image:
+        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660122001_60f7f5ba1ef1133130010a40",
+      title: "Sido Muncul Vitamin C ",
+      description: "/Strip",
+      price: 5000,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
       title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
       price: 16297,
@@ -86,50 +114,47 @@ const Category = () => {
       path: "/products/detail-product",
     },
     {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
   ];
 
   const productsObatBatuk = [
     {
-      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
       title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
       price: 16297,
@@ -137,145 +162,177 @@ const Category = () => {
       path: "/products/detail-product",
     },
     {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
-      {
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-        title: "DegiroI 0,25 mg 10 Tablet",
-        description: "/Strip",
-        price: 16297,
-        freeShipping: true,
-        path: "/products/detail-product",
-      },
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
   ];
 
   const categories = [
-    { name: 'Vitamin C', icon: '💊', path: '/Vitamin' },
-    { name: 'Suplemen Daya Tahan', icon: '🧴', path: '/suplemen' },
-    { name: 'Obat batuk', icon: '⚡', path: '/nutrisi' },
-    { name: 'Obat Demam', icon: '🌿', path: '/herbal' },
-    { name: 'Vitamin Anak', icon: '🍼', path: '/produk-bayi' },
-    { name: 'Obat Kulit', icon: '🚑', path: '/alat-kesehatan' },
-  
+    { name: "Vitamin C", icon: "💊", path: "/Vitamin" },
+    { name: "Suplemen Daya Tahan", icon: "🧴", path: "/vitamin" },
+    { name: "Obat batuk", icon: "⚡", path: "/vitamin" },
+    { name: "Obat Demam", icon: "🌿", path: "/vitamin" },
+    { name: "Vitamin Anak", icon: "🍼", path: "/vitamin" },
+    { name: "Obat Kulit", icon: "🚑", path: "/vitamin" },
   ];
 
   const formatRupiah = (number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
     }).format(number);
   };
 
   const handleAddToCart = (index, category) => {
-    if (category === 'populer') {
+    let product;
+    if (category === "populer") {
+      product = productsPopuler[index];
       setQuantitiesPopuler((prevQuantities) => {
         const newQuantities = [...prevQuantities];
         newQuantities[index] += 1;
         setTotalQuantityPopuler(totalQuantityPopuler + 1);
-        setTotalPricePopuler(totalPricePopuler + productsPopuler[index].price);
+        setTotalPricePopuler(totalPricePopuler + product.price);
         setTotalQuantity(totalQuantity + 1);
-        setTotalPrice(totalPrice + productsPopuler[index].price);
+        setTotalPrice(totalPrice + product.price);
         return newQuantities;
       });
-    } else if (category === 'vitaminC') {
+    } else if (category === "vitaminC") {
+      product = productsVitaminC[index];
       setQuantitiesVitaminC((prevQuantities) => {
         const newQuantities = [...prevQuantities];
         newQuantities[index] += 1;
         setTotalQuantityVitaminC(totalQuantityVitaminC + 1);
-        setTotalPriceVitaminC(totalPriceVitaminC + productsVitaminC[index].price);
+        setTotalPriceVitaminC(totalPriceVitaminC + product.price);
         setTotalQuantity(totalQuantity + 1);
-        setTotalPrice(totalPrice + productsVitaminC[index].price);
+        setTotalPrice(totalPrice + product.price);
         return newQuantities;
       });
-    } else if (category === 'obatBatuk') {
+    } else if (category === "obatBatuk") {
+      product = productsObatBatuk[index];
       setQuantitiesObatBatuk((prevQuantities) => {
         const newQuantities = [...prevQuantities];
         newQuantities[index] += 1;
         setTotalQuantityObatBatuk(totalQuantityObatBatuk + 1);
-        setTotalPriceObatBatuk(totalPriceObatBatuk + productsObatBatuk[index].price);
+        setTotalPriceObatBatuk(totalPriceObatBatuk + product.price);
         setTotalQuantity(totalQuantity + 1);
-        setTotalPrice(totalPrice + productsObatBatuk[index].price);
+        setTotalPrice(totalPrice + product.price);
         return newQuantities;
       });
+    }
+
+    const existingCartItem = cart.find(
+      (item) => item.product.title === product.title
+    );
+    if (existingCartItem) {
+      existingCartItem.quantity += 1;
+    } else {
+      setCart([...cart, { product, quantity: 1 }]);
     }
   };
 
   const handleRemoveFromCart = (index, category) => {
-    if (category === 'populer') {
+    let product;
+    if (category === "populer") {
+      product = productsPopuler[index];
       setQuantitiesPopuler((prevQuantities) => {
         const newQuantities = [...prevQuantities];
         if (newQuantities[index] > 0) {
           newQuantities[index] -= 1;
           setTotalQuantityPopuler(totalQuantityPopuler - 1);
-          setTotalPricePopuler(totalPricePopuler - productsPopuler[index].price);
+          setTotalPricePopuler(totalPricePopuler - product.price);
           setTotalQuantity(totalQuantity - 1);
-          setTotalPrice(totalPrice - productsPopuler[index].price);
+          setTotalPrice(totalPrice - product.price);
         }
         return newQuantities;
       });
-    } else if (category === 'vitaminC') {
+    } else if (category === "vitaminC") {
+      product = productsVitaminC[index];
       setQuantitiesVitaminC((prevQuantities) => {
         const newQuantities = [...prevQuantities];
         if (newQuantities[index] > 0) {
           newQuantities[index] -= 1;
           setTotalQuantityVitaminC(totalQuantityVitaminC - 1);
-          setTotalPriceVitaminC(totalPriceVitaminC - productsVitaminC[index].price);
+          setTotalPriceVitaminC(totalPriceVitaminC - product.price);
           setTotalQuantity(totalQuantity - 1);
-          setTotalPrice(totalPrice - productsVitaminC[index].price);
+          setTotalPrice(totalPrice - product.price);
         }
         return newQuantities;
       });
-    } else if (category === 'obatBatuk') {
+    } else if (category === "obatBatuk") {
+      product = productsObatBatuk[index];
       setQuantitiesObatBatuk((prevQuantities) => {
         const newQuantities = [...prevQuantities];
         if (newQuantities[index] > 0) {
           newQuantities[index] -= 1;
           setTotalQuantityObatBatuk(totalQuantityObatBatuk - 1);
-          setTotalPriceObatBatuk(totalPriceObatBatuk - productsObatBatuk[index].price);
+          setTotalPriceObatBatuk(totalPriceObatBatuk - product.price);
           setTotalQuantity(totalQuantity - 1);
-          setTotalPrice(totalPrice - productsObatBatuk[index].price);
+          setTotalPrice(totalPrice - product.price);
         }
         return newQuantities;
       });
+    }
+
+    const existingCartItem = cart.find(
+      (item) => item.product.title === product.title
+    );
+    if (existingCartItem && existingCartItem.quantity > 1) {
+      existingCartItem.quantity -= 1;
+    } else {
+      setCart(cart.filter((item) => item.product.title !== product.title));
     }
   };
 
   return (
     <>
-     <Header />
+      <Header />
       <Container className="shop">
         <Breadcrumb>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+            Home
+          </Breadcrumb.Item>
           <Breadcrumb.Item active>Kategori</Breadcrumb.Item>
         </Breadcrumb>
 
@@ -374,7 +431,7 @@ const Category = () => {
                       {quantitiesPopuler[index] === 0 ? (
                         <Button
                           variant="primary"
-                          onClick={() => handleAddToCart(index, 'populer')}
+                          onClick={() => handleAddToCart(index, "populer")}
                         >
                           Tambah
                         </Button>
@@ -382,14 +439,16 @@ const Category = () => {
                         <div className="d-flex justify-content-between align-items-center">
                           <Button
                             variant="outline-primary"
-                            onClick={() => handleRemoveFromCart(index, 'populer')}
+                            onClick={() =>
+                              handleRemoveFromCart(index, "populer")
+                            }
                           >
                             <Dash />
                           </Button>
                           <span>{quantitiesPopuler[index]}</span>
                           <Button
                             variant="primary"
-                            onClick={() => handleAddToCart(index, 'populer')}
+                            onClick={() => handleAddToCart(index, "populer")}
                           >
                             <Plus />
                           </Button>
@@ -453,7 +512,7 @@ const Category = () => {
                       {quantitiesVitaminC[index] === 0 ? (
                         <Button
                           variant="primary"
-                          onClick={() => handleAddToCart(index, 'vitaminC')}
+                          onClick={() => handleAddToCart(index, "vitaminC")}
                         >
                           Tambah
                         </Button>
@@ -461,14 +520,16 @@ const Category = () => {
                         <div className="d-flex justify-content-between align-items-center">
                           <Button
                             variant="outline-primary"
-                            onClick={() => handleRemoveFromCart(index, 'vitaminC')}
+                            onClick={() =>
+                              handleRemoveFromCart(index, "vitaminC")
+                            }
                           >
                             <Dash />
                           </Button>
                           <span>{quantitiesVitaminC[index]}</span>
                           <Button
                             variant="primary"
-                            onClick={() => handleAddToCart(index, 'vitaminC')}
+                            onClick={() => handleAddToCart(index, "vitaminC")}
                           >
                             <Plus />
                           </Button>
@@ -532,7 +593,7 @@ const Category = () => {
                       {quantitiesObatBatuk[index] === 0 ? (
                         <Button
                           variant="primary"
-                          onClick={() => handleAddToCart(index, 'obatBatuk')}
+                          onClick={() => handleAddToCart(index, "obatBatuk")}
                         >
                           Tambah
                         </Button>
@@ -540,14 +601,16 @@ const Category = () => {
                         <div className="d-flex justify-content-between align-items-center">
                           <Button
                             variant="outline-primary"
-                            onClick={() => handleRemoveFromCart(index, 'obatBatuk')}
+                            onClick={() =>
+                              handleRemoveFromCart(index, "obatBatuk")
+                            }
                           >
                             <Dash />
                           </Button>
                           <span>{quantitiesObatBatuk[index]}</span>
                           <Button
                             variant="primary"
-                            onClick={() => handleAddToCart(index, 'obatBatuk')}
+                            onClick={() => handleAddToCart(index, "obatBatuk")}
                           >
                             <Plus />
                           </Button>
@@ -562,19 +625,24 @@ const Category = () => {
         </Row>
       </Container>
 
-      <div className="cart-icon">
-        <Cart4 size={50} />
+      <div
+        className="cart-icon text-white bg-primary"
+        onClick={handleCheckout}
+      >
+        <Cart2 size={40} />
         {totalQuantity > 0 && (
           <>
-            <span className="cart-count">{totalQuantity}</span>
-            <span className="cart-price">{formatRupiah(totalPrice)}</span>
+            <span className="cart-count text-white">{totalQuantity}</span>
+            <span className="cart-price text-white">
+              {formatRupiah(totalPrice)}
+            </span>
           </>
         )}
       </div>
+
       <Footer />
     </>
   );
 };
 
 export default Category;
-

@@ -1,12 +1,14 @@
-import React from "react";
-import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
+import React from 'react';
+import HeaderDashboard from '../../Components/Admin/HeaderDashboard';
 
-function OrderListPage() {
+const OrderListPage = () => {
+
   return (
     <>
       <HeaderDashboard />
-      <h2 className="text-center p-5 m-5">Order List Belum ya...</h2>
+      
     </>
   );
-}
+};
+
 export default OrderListPage;
