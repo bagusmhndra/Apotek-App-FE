@@ -146,8 +146,8 @@ const Footer = () => {
       </Container>
 
       <div className="text-center p-4 border-top">
-        © 2024 Copyright:
-        <Link as={Link} to="/" className="text-reset fw-bold ms-2">
+        © {new Date().getFullYear()} Copyright:
+        <Link as={Link} to="/" className="text-reset fw-semibold ms-2">
           Pharmora.id
         </Link>
       </div>

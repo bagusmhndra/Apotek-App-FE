@@ -121,7 +121,7 @@ function ForgotPassword() {
           </div>
         </Form>
         <div className="mt-3 text-center">
-          Kembali ke Login
+          Kembali ke
           <Button variant="link" as={Link} to="/login">
             {" "}
             Login

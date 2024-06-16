@@ -24,11 +24,15 @@ const Home = () => {
     crispScriptRef.current = document.createElement("script");
     crispScriptRef.current.src = "https://client.crisp.chat/l.js";
     crispScriptRef.current.async = 1;
-    document.getElementsByTagName("head")[0].appendChild(crispScriptRef.current);
+    document
+      .getElementsByTagName("head")[0]
+      .appendChild(crispScriptRef.current);
 
     return () => {
       if (crispScriptRef.current) {
-        document.getElementsByTagName("head")[0].removeChild(crispScriptRef.current);
+        document
+          .getElementsByTagName("head")[0]
+          .removeChild(crispScriptRef.current);
         delete window.$crisp;
         delete window.CRISP_WEBSITE_ID;
       }
@@ -36,12 +40,12 @@ const Home = () => {
   }, []);
 
   const categories = [
-    { name: "Obat", icon: "💊", path: "/vitamin" },
-    { name: "Suplemen", icon: "🧴", path: "/vitamin" },
-    { name: "Nutrisi", icon: "⚡", path: "/vitamin" },
-    { name: "Herbal", icon: "🌿", path: "/vitamin" },
-    { name: "Produk Bayi", icon: "🍼", path: "/vitamin" },
-    { name: "Alat Kesehatan", icon: "🚑", path: "/vitamin" },
+    { name: "Vitamin C", icon: "💊", path: "/products/vitamin-c" },
+    { name: "Suplemen Daya Tahan", icon: "💉", path: "/products/suplemen" },
+    { name: "Obat batuk", icon: "🦠", path: "/products/obat-batuk" },
+    { name: "Obat Demam", icon: "🌡", path: "/products/obat-demam" },
+    { name: "Vitamin Anak", icon: "🩸", path: "/products/vitamin-anak" },
+    { name: "Obat Kulit", icon: "🩹", path: "/products/obat-kulit" },
   ];
 
   const diagnosis = [
@@ -170,17 +174,6 @@ const Home = () => {
               <Col>
                 <h5>Kategori</h5>
               </Col>
-              <Col xs="auto">
-                <Button
-                  variant="link"
-                  className="see-all-button"
-                  Link
-                  as={Link}
-                  to="/category"
-                >
-                  See All
-                </Button>
-              </Col>
             </Row>
             <Row className="g-3 justify-content-center">
               {categories.map((category) => (
@@ -272,6 +265,17 @@ const Home = () => {
             <Row className="align-items-center justify-content-between">
               <Col>
                 <h5>Produk Populer</h5>
+              </Col>
+              <Col xs="auto">
+                <Button
+                  variant="link"
+                  className="see-all-button"
+                  Link
+                  as={Link}
+                  to="/products"
+                >
+                  See All
+                </Button>
               </Col>
             </Row>
 

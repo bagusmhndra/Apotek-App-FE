@@ -31,7 +31,19 @@ const Login = () => {
         const errorData = await response.json();
         throw new Error(errorData.message || "Login gagal");
       }
-      navigate("/dashboard");
+      const data = await response.json();
+      const { token, role } = data;
+
+      // Simpan token dan peran di localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+
+      // Arahkan berdasarkan role
+      if (role === "user") {
+        navigate("/");
+      } else if (role === "admin" || role === "superadmin") {
+        navigate("/dashboard");
+      }
     } catch (error) {
       setError(error.message || "Login gagal");
     }
@@ -86,7 +98,9 @@ const Login = () => {
             <Button variant="primary" type="submit">
               Masuk
             </Button>
-            <Button variant="link" as={Link} to="/forgot-password">Lupa Password?</Button>
+            <Button variant="link" as={Link} to="/forgot-password">
+              Lupa Password?
+            </Button>
           </div>
         </Form>
         <div className="mt-3 text-center">

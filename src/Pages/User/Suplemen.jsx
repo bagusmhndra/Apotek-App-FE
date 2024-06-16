@@ -327,12 +327,12 @@ const Category = () => {
           <Breadcrumb.Item>
             <Link to="/products">Produk</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>Vitamin C</Breadcrumb.Item>
+          <Breadcrumb.Item active>Suplemen Daya Tahan</Breadcrumb.Item>
         </Breadcrumb>
         <Row className="product-box justify-content-center">
           <Row className="align-items-center justify-content-between">
             <Col>
-              <h5>Vitamin C</h5>
+              <h5>Suplemen Daya Tahan</h5>
             </Col>
           </Row>
           <Col xs={12}>

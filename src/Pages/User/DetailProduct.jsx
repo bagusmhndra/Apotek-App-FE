@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Plus, Dash, Cart4 } from "react-bootstrap-icons";
+import { Plus, Dash, Cart2 } from "react-bootstrap-icons";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 import {
   Container,
-  Row, Col, Breadcrumb, Image, Button,
+  Row,
+  Col,
+  Breadcrumb,
+  Image,
+  Button,
 } from "react-bootstrap";
 import "../../assets/css/DetailProduct.css";
 
@@ -13,10 +17,11 @@ const DetailProduct = () => {
   const { state } = useLocation();
   const { product } = state || {
     product: {
-      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp", // Placeholder image
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp", // Placeholder image
       title: "DegiroI 0,25 mg 10 Tablet",
-      price: "16297" 
-    }
+      price: "16297",
+    },
   };
   const navigate = useNavigate();
 
@@ -25,26 +30,28 @@ const DetailProduct = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const formatRupiah = (number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
     }).format(number);
   };
 
   const handleAddToCart = () => {
     const newCart = [...cart];
-    const existingProductIndex = newCart.findIndex(item => item.product.title === product.title);
-    
+    const existingProductIndex = newCart.findIndex(
+      (item) => item.product.title === product.title
+    );
+
     if (existingProductIndex !== -1) {
       newCart[existingProductIndex].quantity += itemCount;
     } else {
       newCart.push({ product, quantity: itemCount });
     }
-    
+
     setCart(newCart);
-    setTotalPrice(totalPrice + (itemCount * parseFloat(product.price)));
-    setItemCount(0);  // Reset itemCount after adding to cart
+    setTotalPrice(totalPrice + itemCount * parseFloat(product.price));
+    setItemCount(0); // Reset itemCount after adding to cart
   };
 
   const handleIncrement = () => {
@@ -58,7 +65,7 @@ const DetailProduct = () => {
   };
 
   const goToCart = () => {
-    navigate('/checkout', { state: { cart } });
+    navigate("/checkout", { state: { cart } });
   };
 
   return (
@@ -66,11 +73,11 @@ const DetailProduct = () => {
       <Header />
       <Container className="detail-product-container">
         <Breadcrumb className="breadcrumb">
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
-            Beranda
+          <Breadcrumb.Item>
+            <Link to="/">Beranda</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/category" }}>
-            Kategori
+          <Breadcrumb.Item>
+            <Link to="/products">Produk</Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item active>{product.title}</Breadcrumb.Item>
         </Breadcrumb>
@@ -90,20 +97,20 @@ const DetailProduct = () => {
                 className="cart-button"
                 onClick={handleAddToCart}
               >
-                + Tambah ke Keranjang
+                + Tambah
               </Button>
-              <div className="d-flex justify-content-between align-items-center mt-2">
+              <div className="d-flex justify-content-between align-items-center">
                 <Button
                   variant="outline-primary"
-                  className="cart-button"
+                  className="me-3"
                   onClick={handleDecrement}
                 >
                   <Dash />
                 </Button>
                 <span>{itemCount}</span>
                 <Button
-                  variant="primary"
-                  className="cart-button"
+                  variant="outline-primary"
+                  className="ms-3"
                   onClick={handleIncrement}
                 >
                   <Plus />
@@ -146,12 +153,17 @@ const DetailProduct = () => {
             </div>
           </Col>
         </Row>
-        <div className="cart-icon" onClick={goToCart}>
-          <Cart4 size={50} />
+        <div
+          className="cart-icon text-white bg-primary shadow"
+          onClick={goToCart}
+        >
+          <Cart2 size={40} />
           {cart.length > 0 && (
             <>
-              <span className="cart-count">{cart.length}</span>
-              <span className="cart-price">{formatRupiah(totalPrice)}</span>
+              <span className="cart-count text-white">{cart.length}</span>
+              <span className="cart-price text-white">
+                {formatRupiah(totalPrice)}
+              </span>
             </>
           )}
         </div>

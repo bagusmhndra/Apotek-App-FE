@@ -12,11 +12,12 @@ import ForgotPassword from './Auth/ForgotPassword';
 import Home from './Pages/User/Home';
 import AboutUs from './Pages/User/AboutUs';
 import Contact from './Pages/User/Contact';
-import Category from './Pages/User/Category';
 import DetailProduct from './Pages/User/DetailProduct';
 import Product from './Pages/User/Product';
 import NotFoundPage from './Pages/User/NotFoundPage';
 import Vitamin from './Pages/User/VitaminC';
+import Suplemen from './Pages/User/Suplemen';
+import ObatBatuk from './Pages/User/ObatBatuk';
 import Checkout from './Pages/User/Checkout';
 
 
@@ -39,7 +40,6 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/category" element={<Category />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/products" element={<Product />} />
           <Route path="/products/detail-product" element={<DetailProduct />} />
@@ -47,7 +47,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/vitamin" element={<Vitamin />} />
+          <Route path="/products/vitamin-c" element={<Vitamin />} />
+          <Route path="/products/suplemen" element={<Suplemen />} />
+          <Route path="/products/obat-batuk" element={<ObatBatuk />} />
           <Route path="/checkout" element={<Checkout />} />
 
 

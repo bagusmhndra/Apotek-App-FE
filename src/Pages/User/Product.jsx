@@ -1,80 +1,342 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Row, Col, Card, Button, Breadcrumb } from "react-bootstrap";
+import { Plus, Dash, Cart2 } from "react-bootstrap-icons";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 
 const Product = () => {
   const navigate = useNavigate();
+  const initialQuantitiesPopuler = new Array(6).fill(0);
+  const initialQuantitiesVitaminC = new Array(6).fill(0);
+  const initialQuantitiesObatBatuk = new Array(6).fill(0);
 
-  const products = [
+  const [quantitiesPopuler, setQuantitiesPopuler] = useState(
+    initialQuantitiesPopuler
+  );
+  const [totalQuantityPopuler, setTotalQuantityPopuler] = useState(0);
+  const [totalPricePopuler, setTotalPricePopuler] = useState(0);
+
+  const [quantitiesVitaminC, setQuantitiesVitaminC] = useState(
+    initialQuantitiesVitaminC
+  );
+  const [totalQuantityVitaminC, setTotalQuantityVitaminC] = useState(0);
+  const [totalPriceVitaminC, setTotalPriceVitaminC] = useState(0);
+
+  const [quantitiesObatBatuk, setQuantitiesObatBatuk] = useState(
+    initialQuantitiesObatBatuk
+  );
+  const [totalQuantityObatBatuk, setTotalQuantityObatBatuk] = useState(0);
+  const [totalPriceObatBatuk, setTotalPriceObatBatuk] = useState(0);
+
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [cart, setCart] = useState([]);
+
+  const handleCheckout = () => {
+    navigate("/checkout", { state: { cart } });
+  };
+
+  const productsPopuler = [
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
       title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,35 mg 10 Tablet",
+      title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,45 mg 10 Tablet",
+      title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,55 mg 10 Tablet",
+      title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,65 mg 10 Tablet",
+      title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,75 mg 10 Tablet",
+      title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
   ];
 
-  const handleProductClick = (product) => {
-    navigate("/products/detail-product", { state: { product } });
+  const productsVitaminC = [
+    {
+      image:
+        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660122001_60f7f5ba1ef1133130010a40",
+      title: "Sido Muncul Vitamin C ",
+      description: "/Strip",
+      price: 5000,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+  ];
+
+  const productsObatBatuk = [
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+    {
+      image:
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+      title: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      freeShipping: true,
+      path: "/products/detail-product",
+    },
+  ];
+
+  const formatRupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(number);
+  };
+
+  const handleAddToCart = (index, category) => {
+    let product;
+    if (category === "populer") {
+      product = productsPopuler[index];
+      setQuantitiesPopuler((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        newQuantities[index] += 1;
+        setTotalQuantityPopuler(totalQuantityPopuler + 1);
+        setTotalPricePopuler(totalPricePopuler + product.price);
+        setTotalQuantity(totalQuantity + 1);
+        setTotalPrice(totalPrice + product.price);
+        return newQuantities;
+      });
+    } else if (category === "vitaminC") {
+      product = productsVitaminC[index];
+      setQuantitiesVitaminC((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        newQuantities[index] += 1;
+        setTotalQuantityVitaminC(totalQuantityVitaminC + 1);
+        setTotalPriceVitaminC(totalPriceVitaminC + product.price);
+        setTotalQuantity(totalQuantity + 1);
+        setTotalPrice(totalPrice + product.price);
+        return newQuantities;
+      });
+    } else if (category === "obatBatuk") {
+      product = productsObatBatuk[index];
+      setQuantitiesObatBatuk((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        newQuantities[index] += 1;
+        setTotalQuantityObatBatuk(totalQuantityObatBatuk + 1);
+        setTotalPriceObatBatuk(totalPriceObatBatuk + product.price);
+        setTotalQuantity(totalQuantity + 1);
+        setTotalPrice(totalPrice + product.price);
+        return newQuantities;
+      });
+    }
+
+    const existingCartItem = cart.find(
+      (item) => item.product.title === product.title
+    );
+    if (existingCartItem) {
+      existingCartItem.quantity += 1;
+    } else {
+      setCart([...cart, { product, quantity: 1 }]);
+    }
+  };
+
+  const handleRemoveFromCart = (index, category) => {
+    let product;
+    if (category === "populer") {
+      product = productsPopuler[index];
+      setQuantitiesPopuler((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        if (newQuantities[index] > 0) {
+          newQuantities[index] -= 1;
+          setTotalQuantityPopuler(totalQuantityPopuler - 1);
+          setTotalPricePopuler(totalPricePopuler - product.price);
+          setTotalQuantity(totalQuantity - 1);
+          setTotalPrice(totalPrice - product.price);
+        }
+        return newQuantities;
+      });
+    } else if (category === "vitaminC") {
+      product = productsVitaminC[index];
+      setQuantitiesVitaminC((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        if (newQuantities[index] > 0) {
+          newQuantities[index] -= 1;
+          setTotalQuantityVitaminC(totalQuantityVitaminC - 1);
+          setTotalPriceVitaminC(totalPriceVitaminC - product.price);
+          setTotalQuantity(totalQuantity - 1);
+          setTotalPrice(totalPrice - product.price);
+        }
+        return newQuantities;
+      });
+    } else if (category === "obatBatuk") {
+      product = productsObatBatuk[index];
+      setQuantitiesObatBatuk((prevQuantities) => {
+        const newQuantities = [...prevQuantities];
+        if (newQuantities[index] > 0) {
+          newQuantities[index] -= 1;
+          setTotalQuantityObatBatuk(totalQuantityObatBatuk - 1);
+          setTotalPriceObatBatuk(totalPriceObatBatuk - product.price);
+          setTotalQuantity(totalQuantity - 1);
+          setTotalPrice(totalPrice - product.price);
+        }
+        return newQuantities;
+      });
+    }
+
+    const existingCartItem = cart.find(
+      (item) => item.product.title === product.title
+    );
+    if (existingCartItem && existingCartItem.quantity > 1) {
+      existingCartItem.quantity -= 1;
+    } else {
+      setCart(cart.filter((item) => item.product.title !== product.title));
+    }
   };
 
   return (
     <>
       <Header />
       <Container className="product-container">
-        <Row className="product-box justify-content-center mb-3">
+        <Breadcrumb>
+          <Breadcrumb.Item>
+            <Link to="/">Beranda</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>Produk</Breadcrumb.Item>
+        </Breadcrumb>
+
+        {/* POPULER */}
+        <Row className="product-box justify-content-center">
           <Row className="align-items-center justify-content-between">
             <Col>
-              <h5>Populer</h5>
+              <h5>Produk Populer</h5>
             </Col>
           </Row>
           <Col xs={12}>
             <Row className="g-3 justify-content-center">
-              {products.map((item, index) => (
+              {productsPopuler.map((item, index) => (
                 <Col
                   xs={12}
                   sm={6}
@@ -83,15 +345,14 @@ const Product = () => {
                   key={index}
                   className="d-flex justify-content-center"
                 >
-                  <Card
-                    className="product-card h-100 border-0 shadow"
-                    onClick={() => handleProductClick(item)}
-                  >
-                    <Card.Img
-                      variant="top"
-                      src={item.image}
-                      className="product-card-img"
-                    />
+                  <Card className="product-card h-100 border-0">
+                    <Link to={item.path}>
+                      <Card.Img
+                        variant="top"
+                        src={item.image}
+                        className="product-card-img"
+                      />
+                    </Link>
                     <Card.Body>
                       <Card.Title className="product-name">
                         {item.title}
@@ -100,156 +361,34 @@ const Product = () => {
                         {item.description}
                       </Card.Text>
                       <Card.Text className="product-price">
-                        {item.price}
+                        {formatRupiah(item.price)}
                       </Card.Text>
-
-                      <Button variant="outline-primary" className="pe-3 ps-3">
-                        + Tambah
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-
-        <Row className="product-box justify-content-center mb-3">
-          <Row className="align-items-center justify-content-between">
-            <Col>
-              <h5>Vitamin C</h5>
-            </Col>
-          </Row>
-          <Col xs={12}>
-            <Row className="g-3 justify-content-center">
-              {products.map((item, index) => (
-                <Col
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={2}
-                  key={index}
-                  className="d-flex justify-content-center"
-                >
-                  <Card
-                    className="product-card h-100 border-0 shadow"
-                    onClick={() => handleProductClick(item)}
-                  >
-                    <Card.Img
-                      variant="top"
-                      src={item.image}
-                      className="product-card-img"
-                    />
-                    <Card.Body>
-                      <Card.Title className="product-name">
-                        {item.title}
-                      </Card.Title>
-                      <Card.Text className="product-description">
-                        {item.description}
-                      </Card.Text>
-                      <Card.Text className="product-price">
-                        {item.price}
-                      </Card.Text>
-
-                      <Button variant="outline-primary" className="pe-3 ps-3">
-                        + Tambah
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-
-        <Row className="product-box justify-content-center mb-3">
-          <Row className="align-items-center justify-content-between">
-            <Col>
-              <h5>Suplemen Daya Tahan Tubuh</h5>
-            </Col>
-          </Row>
-          <Col xs={12}>
-            <Row className="g-3 justify-content-center">
-              {products.map((item, index) => (
-                <Col
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={2}
-                  key={index}
-                  className="d-flex justify-content-center"
-                >
-                  <Card
-                    className="product-card h-100 border-0 shadow"
-                    onClick={() => handleProductClick(item)}
-                  >
-                    <Card.Img
-                      variant="top"
-                      src={item.image}
-                      className="product-card-img"
-                    />
-                    <Card.Body>
-                      <Card.Title className="product-name">
-                        {item.title}
-                      </Card.Title>
-                      <Card.Text className="product-description">
-                        {item.description}
-                      </Card.Text>
-                      <Card.Text className="product-price">
-                        {item.price}
-                      </Card.Text>
-
-                      <Button variant="outline-primary" className="pe-3 ps-3">
-                        + Tambah
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-
-        <Row className="product-box justify-content-center mb-3">
-          <Row className="align-items-center justify-content-between">
-            <Col>
-              <h5>Obat Demam</h5>
-            </Col>
-          </Row>
-          <Col xs={12}>
-            <Row className="g-3 justify-content-center">
-              {products.map((item, index) => (
-                <Col
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={2}
-                  key={index}
-                  className="d-flex justify-content-center"
-                >
-                  <Card
-                    className="product-card h-100 border-0 shadow"
-                    onClick={() => handleProductClick(item)}
-                  >
-                    <Card.Img
-                      variant="top"
-                      src={item.image}
-                      className="product-card-img"
-                    />
-                    <Card.Body>
-                      <Card.Title className="product-name">
-                        {item.title}
-                      </Card.Title>
-                      <Card.Text className="product-description">
-                        {item.description}
-                      </Card.Text>
-                      <Card.Text className="product-price">
-                        {item.price}
-                      </Card.Text>
-
-                      <Button variant="outline-primary" className="pe-3 ps-3">
-                        + Tambah
-                      </Button>
+                      {quantitiesPopuler[index] === 0 ? (
+                        <Button
+                          variant="primary"
+                          onClick={() => handleAddToCart(index, "populer")}
+                        >
+                          + Tambah
+                        </Button>
+                      ) : (
+                        <div className="d-flex justify-content-between align-items-center">
+                          <Button
+                            variant="outline-primary"
+                            onClick={() =>
+                              handleRemoveFromCart(index, "populer")
+                            }
+                          >
+                            <Dash />
+                          </Button>
+                          <span>{quantitiesPopuler[index]}</span>
+                          <Button
+                            variant="primary"
+                            onClick={() => handleAddToCart(index, "populer")}
+                          >
+                            <Plus />
+                          </Button>
+                        </div>
+                      )}
                     </Card.Body>
                   </Card>
                 </Col>
@@ -258,6 +397,268 @@ const Product = () => {
           </Col>
         </Row>
       </Container>
+
+      {/* VITAMIN C */}
+      <Container className="product-container">
+        <Row className="product-box justify-content-center">
+          <Row className="align-items-center justify-content-between">
+            <Col>
+              <h5>Vitamin C</h5>
+            </Col>
+            <Col xs="auto">
+              <Button
+                variant="link"
+                className="see-all-button"
+                as={Link}
+                to="/products/vitamin-c"
+              >
+                See All
+              </Button>
+            </Col>
+          </Row>
+          <Col xs={12}>
+            <Row className="g-3 justify-content-center">
+              {productsVitaminC.map((item, index) => (
+                <Col
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={2}
+                  key={index}
+                  className="d-flex justify-content-center"
+                >
+                  <Card className="product-card h-100 border-0">
+                    <Link to={item.path}>
+                      <Card.Img
+                        variant="top"
+                        src={item.image}
+                        className="product-card-img"
+                      />
+                    </Link>
+                    <Card.Body>
+                      <Card.Title className="product-name">
+                        {item.title}
+                      </Card.Title>
+                      <Card.Text className="product-description">
+                        {item.description}
+                      </Card.Text>
+                      <Card.Text className="product-price">
+                        {formatRupiah(item.price)}
+                      </Card.Text>
+                      {quantitiesVitaminC[index] === 0 ? (
+                        <Button
+                          variant="primary"
+                          onClick={() => handleAddToCart(index, "vitaminC")}
+                        >
+                          + Tambah
+                        </Button>
+                      ) : (
+                        <div className="d-flex justify-content-between align-items-center">
+                          <Button
+                            variant="outline-primary"
+                            onClick={() =>
+                              handleRemoveFromCart(index, "vitaminC")
+                            }
+                          >
+                            <Dash />
+                          </Button>
+                          <span>{quantitiesVitaminC[index]}</span>
+                          <Button
+                            variant="primary"
+                            onClick={() => handleAddToCart(index, "vitaminC")}
+                          >
+                            <Plus />
+                          </Button>
+                        </div>
+                      )}
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* SUPLEMEN DAYA TAHAN */}
+      <Container className="product-container">
+        <Row className="product-box justify-content-center">
+          <Row className="align-items-center justify-content-between">
+            <Col>
+              <h5>Suplemen Daya Tahan</h5>
+            </Col>
+            <Col xs="auto">
+              <Button
+                variant="link"
+                className="see-all-button"
+                as={Link}
+                to="/products/suplemen"
+              >
+                See All
+              </Button>
+            </Col>
+          </Row>
+          <Col xs={12}>
+            <Row className="g-3 justify-content-center">
+              {productsObatBatuk.map((item, index) => (
+                <Col
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={2}
+                  key={index}
+                  className="d-flex justify-content-center"
+                >
+                  <Card className="product-card h-100 border-0">
+                    <Link to={item.path}>
+                      <Card.Img
+                        variant="top"
+                        src={item.image}
+                        className="product-card-img"
+                      />
+                    </Link>
+                    <Card.Body>
+                      <Card.Title className="product-name">
+                        {item.title}
+                      </Card.Title>
+                      <Card.Text className="product-description">
+                        {item.description}
+                      </Card.Text>
+                      <Card.Text className="product-price">
+                        {formatRupiah(item.price)}
+                      </Card.Text>
+                      {quantitiesObatBatuk[index] === 0 ? (
+                        <Button
+                          variant="primary"
+                          onClick={() => handleAddToCart(index, "obatBatuk")}
+                        >
+                          + Tambah
+                        </Button>
+                      ) : (
+                        <div className="d-flex justify-content-between align-items-center">
+                          <Button
+                            variant="outline-primary"
+                            onClick={() =>
+                              handleRemoveFromCart(index, "obatBatuk")
+                            }
+                          >
+                            <Dash />
+                          </Button>
+                          <span>{quantitiesObatBatuk[index]}</span>
+                          <Button
+                            variant="primary"
+                            onClick={() => handleAddToCart(index, "obatBatuk")}
+                          >
+                            <Plus />
+                          </Button>
+                        </div>
+                      )}
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* OBAT BATUK */}
+      <Container className="product-container">
+        <Row className="product-box justify-content-center">
+          <Row className="align-items-center justify-content-between">
+            <Col>
+              <h5>Obat Batuk</h5>
+            </Col>
+            <Col xs="auto">
+              <Button
+                variant="link"
+                className="see-all-button"
+                as={Link}
+                to="/products/obat-batuk"
+              >
+                See All
+              </Button>
+            </Col>
+          </Row>
+          <Col xs={12}>
+            <Row className="g-3 justify-content-center">
+              {productsObatBatuk.map((item, index) => (
+                <Col
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={2}
+                  key={index}
+                  className="d-flex justify-content-center"
+                >
+                  <Card className="product-card h-100 border-0">
+                    <Link to={item.path}>
+                      <Card.Img
+                        variant="top"
+                        src={item.image}
+                        className="product-card-img"
+                      />
+                    </Link>
+                    <Card.Body>
+                      <Card.Title className="product-name">
+                        {item.title}
+                      </Card.Title>
+                      <Card.Text className="product-description">
+                        {item.description}
+                      </Card.Text>
+                      <Card.Text className="product-price">
+                        {formatRupiah(item.price)}
+                      </Card.Text>
+                      {quantitiesObatBatuk[index] === 0 ? (
+                        <Button
+                          variant="primary"
+                          onClick={() => handleAddToCart(index, "obatBatuk")}
+                        >
+                          + Tambah
+                        </Button>
+                      ) : (
+                        <div className="d-flex justify-content-between align-items-center">
+                          <Button
+                            variant="outline-primary"
+                            onClick={() =>
+                              handleRemoveFromCart(index, "obatBatuk")
+                            }
+                          >
+                            <Dash />
+                          </Button>
+                          <span>{quantitiesObatBatuk[index]}</span>
+                          <Button
+                            variant="primary"
+                            onClick={() => handleAddToCart(index, "obatBatuk")}
+                          >
+                            <Plus />
+                          </Button>
+                        </div>
+                      )}
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+
+      <div
+        className="cart-icon text-white bg-primary shadow"
+        onClick={handleCheckout}
+      >
+        <Cart2 size={40} />
+        {totalQuantity > 0 && (
+          <>
+            <span className="cart-count text-white">{totalQuantity}</span>
+            <span className="cart-price text-white">
+              {formatRupiah(totalPrice)}
+            </span>
+          </>
+        )}
+      </div>
+
       <Footer />
     </>
   );
