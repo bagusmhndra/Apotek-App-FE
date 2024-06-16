@@ -40,7 +40,7 @@ const Register = () => {
     }
     try {
       const response = await fetch(
-        "https://c871-58-147-190-90.ngrok-free.app/users/register",
+        "https://e8c1-2a09-bac5-3a02-18be-00-277-1.ngrok-free.app/users/register",
         {
           method: "POST",
           body: JSON.stringify({ username, email, password, phone }),

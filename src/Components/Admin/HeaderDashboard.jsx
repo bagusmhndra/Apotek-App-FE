@@ -1,5 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Container,
@@ -8,8 +7,10 @@ import {
   ButtonGroup,
   Offcanvas,
 } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import "../../assets/css/Header.css";
 
-function HeaderDashboard() {
+const HeaderDashboard = () => {
   const [userRole, setUserRole] = useState("");
   const navigate = useNavigate();
 
@@ -52,18 +53,18 @@ function HeaderDashboard() {
   };
 
   return (
-    <Navbar expand="l" className="mb-3 navbar-container" sticky="top">
+    <Navbar expand="lg" className="mb-3 navbar-container" sticky="top">
       <Container fluid className="left-container">
-        <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-l`} />
+        <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-lg`} />
         <Navbar.Offcanvas
-          id={`offcanvasNavbarLabel-expand-l`}
-          aria-labelledby={`offcanvasNavbarLabel-expand-l`}
+          id={`offcanvasNavbarLabel-expand-lg`}
+          aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
           placement="start"
           className="offcanvas-animation"
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title
-              id={`offcanvasNavbarLabel-expand-l`}
+              id={`offcanvasNavbarLabel-expand-lg`}
               className="d-flex align-items-center"
             >
               <h3 className="fw-bold">
@@ -74,7 +75,7 @@ function HeaderDashboard() {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-center flex-grow-1 pe-3 fs-5">
-              {userRole === "user" && (
+              {userRole === "User" && (
                 <>
                   <Nav.Link as={Link} to="/dashboard">
                     Dashboard
@@ -84,7 +85,7 @@ function HeaderDashboard() {
                   </Nav.Link>
                 </>
               )}
-              {userRole === "admin" && (
+              {userRole === "Admin" && (
                 <>
                   <Nav.Link as={Link} to="/dashboard">
                     Dashboard
@@ -103,7 +104,7 @@ function HeaderDashboard() {
                   </Nav.Link>
                 </>
               )}
-              {userRole === "superadmin" && (
+              {userRole === "Superadmin" && (
                 <>
                   <Nav.Link as={Link} to="/dashboard">
                     Dashboard
@@ -145,6 +146,6 @@ function HeaderDashboard() {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default HeaderDashboard;

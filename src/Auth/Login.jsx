@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Alert, Card } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import "../assets/css/Login.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,40 +10,44 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  //PASSWORD ICON
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+    console.log("Login button clicked");
+
     try {
       const response = await fetch(
-        "https://c871-58-147-190-90.ngrok-free.app/users/login",
+        "https://e8c1-2a09-bac5-3a02-18be-00-277-1.ngrok-free.app/users/login",
         {
           method: "POST",
           body: JSON.stringify({ username, password }),
           headers: { "Content-Type": "application/json" },
         }
       );
+      console.log("Response received");
+
       if (!response.ok) {
         const errorData = await response.json();
+        console.error("Login failed:", errorData.message);
         throw new Error(errorData.message || "Login gagal");
       }
-      const data = await response.json();
-      const { token, role } = data;
 
-      // Simpan token dan peran di localStorage
+      const data = await response.json();
+      console.log("Login successful:", data);
+
+      const { token, role } = data;
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
 
-      // Arahkan berdasarkan role
-      if (role === "user") {
-        navigate("/");
-      } else if (role === "admin" || role === "superadmin") {
-        navigate("/dashboard");
-      }
+      window.dispatchEvent(new Event("storage"));
+
+      console.log("Navigating to /");
+      navigate("/");
     } catch (error) {
+      console.error("Error during login:", error);
       setError(error.message || "Login gagal");
     }
   };
@@ -64,7 +67,7 @@ const Login = () => {
           <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
-              type="string"
+              type="text"
               placeholder="Enter username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -76,7 +79,7 @@ const Login = () => {
             <Form.Label>Password</Form.Label>
             <div className="input-group">
               <Form.Control
-                type={showPassword ? "string" : "password"}
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -106,7 +109,6 @@ const Login = () => {
         <div className="mt-3 text-center">
           Belum punya akun?
           <Button variant="link" as={Link} to="/register">
-            {" "}
             Daftar
           </Button>
         </div>

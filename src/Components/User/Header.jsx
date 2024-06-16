@@ -20,10 +20,21 @@ const Header = () => {
     setIsLoggedIn(!!token);
   }, []);
 
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     setIsLoggedIn(false);
+    console.log("Logout sukses!");
     navigate("/");
   };
 
@@ -83,7 +94,7 @@ const Header = () => {
               <hr />
               {isLoggedIn ? (
                 <ButtonGroup>
-                  <Button variant="danger" onClick={handleLogout}>
+                  <Button variant="outline-danger" onClick={handleLogout}>
                     Logout
                   </Button>
                 </ButtonGroup>
