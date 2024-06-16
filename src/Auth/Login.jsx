@@ -38,14 +38,23 @@ const Login = () => {
       const data = await response.json();
       console.log("Login successful:", data);
 
-      const { token, role } = data;
-      localStorage.setItem("token", token);
-      localStorage.setItem("role", role);
+      // Pastikan respons mengandung properti "role"
+      //if (!data.role) {
+      //  throw new Error("Role information missing in response.");
+      //}
 
-      window.dispatchEvent(new Event("storage"));
+      // Simpan token dan role di localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
 
-      console.log("Navigating to /");
-      navigate("/");
+      // Arahkan berdasarkan role pengguna
+      // (data.role === "User") {
+        console.log("Navigating to /");
+        navigate("/dashboard");
+      //} else if (data.role === "Admin" || data.role === "Superadmin") {
+      //  console.log("Navigating to /dashboard");
+      //  navigate("/dashboard");
+      //}
     } catch (error) {
       console.error("Error during login:", error);
       setError(error.message || "Login gagal");

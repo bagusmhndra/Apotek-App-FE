@@ -75,24 +75,14 @@ const HeaderDashboard = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-center flex-grow-1 pe-3 fs-5">
-              {userRole === "User" && (
-                <>
-                  <Nav.Link as={Link} to="/dashboard">
-                    Dashboard
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/my-profile">
-                    Profile
-                  </Nav.Link>
-                </>
-              )}
+              <Nav.Link as={Link} to="/dashboard">
+                Dashboard
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/my-profile">
+                Profile
+              </Nav.Link>
               {userRole === "Admin" && (
                 <>
-                  <Nav.Link as={Link} to="/dashboard">
-                    Dashboard
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/my-profile">
-                    Profile
-                  </Nav.Link>
                   <Nav.Link as={Link} to="/dashboard/user-list">
                     User List
                   </Nav.Link>
@@ -106,12 +96,6 @@ const HeaderDashboard = () => {
               )}
               {userRole === "Superadmin" && (
                 <>
-                  <Nav.Link as={Link} to="/dashboard">
-                    Dashboard
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/my-profile">
-                    Profile
-                  </Nav.Link>
                   <Nav.Link as={Link} to="/dashboard/user-list">
                     User List
                   </Nav.Link>

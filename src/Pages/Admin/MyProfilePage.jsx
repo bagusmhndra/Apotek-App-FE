@@ -9,7 +9,6 @@ function MyProfilePage() {
     username: "dewaputra",
     email: "dewaputra@gmail.com",
     phoneNumber: "082465478654",
-    address: "Semarang",
   });
 
   const [formData, setFormData] = useState({ ...initialValues });
@@ -91,7 +90,7 @@ function MyProfilePage() {
                 <Form.Label className="fw-semibold">Phone Number</Form.Label>
                 {editMode ? (
                   <Form.Control
-                    type="tel"
+                    type="number"
                     value={formData.phoneNumber}
                     onChange={(e) =>
                       setFormData({
@@ -103,21 +102,6 @@ function MyProfilePage() {
                   />
                 ) : (
                   <div>{formData.phoneNumber}</div>
-                )}
-              </Form.Group>
-              <Form.Group controlId="address" className="mb-3">
-                <Form.Label className="fw-semibold">Address</Form.Label>
-                {editMode ? (
-                  <Form.Control
-                    type="text"
-                    value={formData.address}
-                    onChange={(e) =>
-                      setFormData({ ...formData, address: e.target.value })
-                    }
-                    placeholder="Enter address"
-                  />
-                ) : (
-                  <div>{formData.address}</div>
                 )}
               </Form.Group>
             </div>
