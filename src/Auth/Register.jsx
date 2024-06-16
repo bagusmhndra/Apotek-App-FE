@@ -73,7 +73,7 @@ const Register = () => {
           <Form.Group controlId="formBasicUser">
             <Form.Label>Username</Form.Label>
             <Form.Control
-              type="text"
+              type="string"
               placeholder="Enter username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}

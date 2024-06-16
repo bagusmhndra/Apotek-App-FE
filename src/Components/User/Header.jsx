@@ -67,8 +67,8 @@ const Header = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1 pe-3">
-                <Nav.Link as={Link} to="/dashboard">
-                  Home (/dashboard)
+                <Nav.Link as={Link} to="/">
+                  Beranda
                 </Nav.Link>
                 <Nav.Link as={Link} to="/products">
                   Produk
