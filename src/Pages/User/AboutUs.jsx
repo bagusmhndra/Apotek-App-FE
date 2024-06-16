@@ -79,7 +79,7 @@ const About = () => {
                   </p>
                   <p className="mb-5">
                     Kami adalah perusahaan yang berkembang pesat, namun kami
-                    tidak pernah melupakannya nilai-nilai inti kami. Kami
+                    tidak pernah melupakan nilai-nilai inti kami. Kami
                     percaya pada kolaborasi, inovasi, dan kepuasan pelanggan.
                     Kami selalu mencari cara baru untuk melakukannya
                     meningkatkan produk dan layanan kami.
@@ -105,8 +105,7 @@ const About = () => {
                           <div>
                             <h4 className="h4 mb-3">Misi</h4>
                             <p className="text-secondary mb-0">
-                              Memberikan layanan pelanggan yang ramah,
-                              responsif, dan profesional untuk memastikan
+                              Memberikan layanan pelanggan yang ramah dan profesional untuk memastikan
                               pengalaman berbelanja yang menyenangkan dan
                               memuaskan.
                             </p>

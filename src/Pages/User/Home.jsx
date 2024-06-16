@@ -15,11 +15,12 @@ import diagnosis06 from "../../assets/img/diagnosis06.png";
 import "../../assets/css/Home.css";
 
 const Home = () => {
+  const navigate = useNavigate();
   const crispScriptRef = useRef(null);
 
   useEffect(() => {
     window.$crisp = [];
-    window.CRISP_WEBSITE_ID = "f600f12a-1169-4a87-a8e8-801e93fcc920";
+    window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
     crispScriptRef.current = document.createElement("script");
     crispScriptRef.current.src = "https://client.crisp.chat/l.js";
     crispScriptRef.current.async = 1;
@@ -33,7 +34,6 @@ const Home = () => {
       }
     };
   }, []);
-  const navigate = useNavigate();
 
   const categories = [
     { name: "Obat", icon: "💊", path: "/vitamin" },

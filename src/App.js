@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // AUTH
 import Login from './Auth/Login';
 import Register from './Auth/Register';
+import ForgotPassword from './Auth/ForgotPassword';
 
 // PAGES
 import Home from './Pages/User/Home';
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/products/detail-product" element={<DetailProduct />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/vitamin" element={<Vitamin />} />
           <Route path="/checkout" element={<Checkout />} />

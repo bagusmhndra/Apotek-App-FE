@@ -86,7 +86,7 @@ const Login = () => {
             <Button variant="primary" type="submit">
               Masuk
             </Button>
-            <Button variant="link">Lupa Password?</Button>
+            <Button variant="link" as={Link} to="/forgot-password">Lupa Password?</Button>
           </div>
         </Form>
         <div className="mt-3 text-center">
