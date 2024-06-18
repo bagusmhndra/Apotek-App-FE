@@ -1,33 +1,95 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container, Breadcrumb, Table, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
+const staticOrders = [
+  {
+    id: 1,
+    customerName: "Budi Santoso",
+    email: "budi.santoso@example.co.id",
+    phoneNumber: "0812-3456-7890",
+    address: "Jl. Merdeka No. 123, Jakarta",
+    totalPrice: "250000",
+    status: "Pending",
+  },
+  {
+    id: 2,
+    customerName: "Citra Ramadhani",
+    email: "citra.ramadhani@example.co.id",
+    phoneNumber: "0877-9876-5432",
+    address: "Jl. Pahlawan No. 45, Bandung",
+    totalPrice: "350000",
+    status: "Delivered",
+  },
+  {
+    id: 3,
+    customerName: "Dewi Sari",
+    email: "dewi.sari@example.co.id",
+    phoneNumber: "0856-1234-5678",
+    address: "Jl. Diponegoro No. 78, Yogyakarta",
+    totalPrice: "150000",
+    status: "Shipped",
+  },
+  {
+    id: 4,
+    customerName: "Eka Prasetyo",
+    email: "eka.prasetyo@example.co.id",
+    phoneNumber: "0813-8765-4321",
+    address: "Jl. Kencana No. 9, Surabaya",
+    totalPrice: "500000",
+    status: "Pending",
+  },
+  {
+    id: 5,
+    customerName: "Fitriani Putri",
+    email: "fitriani.putri@example.co.id",
+    phoneNumber: "0899-2345-6789",
+    address: "Jl. Merah No. 12, Medan",
+    totalPrice: "180000",
+    status: "Cancelled",
+  },
+  {
+    id: 6,
+    customerName: "Hendri Susanto",
+    email: "hendri.susanto@example.co.id",
+    phoneNumber: "0812-3456-7890",
+    address: "Jl. Cendana No. 7, Jakarta",
+    totalPrice: "300000",
+    status: "Delivered",
+  },
+  {
+    id: 7,
+    customerName: "Ines Amelia",
+    email: "ines.amelia@example.co.id",
+    phoneNumber: "0877-9876-5432",
+    address: "Jl. Kartini No. 15, Bandung",
+    totalPrice: "280000",
+    status: "Shipped",
+  },
+  {
+    id: 8,
+    customerName: "Joko Santoso",
+    email: "joko.santoso@example.co.id",
+    phoneNumber: "0856-1234-5678",
+    address: "Jl. Darmo No. 3, Surabaya",
+    totalPrice: "200000",
+    status: "Pending",
+  },
+  {
+    id: 9,
+    customerName: "Kartika Putri",
+    email: "kartika.putri@example.co.id",
+    phoneNumber: "0813-8765-4321",
+    address: "Jl. Majapahit No. 21, Semarang",
+    totalPrice: "150000",
+    status: "Cancelled",
+  }
+];
+
 function OrderListPage() {
-  const [orders, setOrders] = useState([]);
-
-  useEffect(() => {
-    fetchOrders();
-  }, []);
-
-  const fetchOrders = async () => {
-    try {
-      const response = await fetch("https://api.example.com/orders");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setOrders(data);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error fetching orders!",
-        confirmButtonColor: "#3B71CA",
-      });
-    }
-  };
+  const [orders, setOrders] = useState(staticOrders);
 
   const handleDelete = async (orderId) => {
     try {
@@ -42,17 +104,8 @@ function OrderListPage() {
       });
 
       if (result.isConfirmed) {
-        const response = await fetch(
-          `https://api.example.com/orders/${orderId}`,
-          {
-            method: "DELETE",
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        setOrders(orders.filter((order) => order.id !== orderId));
         Swal.fire("Deleted!", "Order has been deleted.", "success");
-        fetchOrders(); // Re-fetch orders after deletion
       }
     } catch (error) {
       Swal.fire({
@@ -67,7 +120,7 @@ function OrderListPage() {
   return (
     <>
       <HeaderDashboard />
-      <Container className="mt-5">
+      <Container>
         <Form className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
@@ -82,11 +135,11 @@ function OrderListPage() {
                 <tr>
                   <th>#</th>
                   <th>Order ID</th>
-                  <th>Customer Name</th>
+                  <th>Nama Pelanggan</th>
                   <th>Email</th>
-                  <th>Phone Number</th>
-                  <th>Address</th>
-                  <th>Total Price</th>
+                  <th>No Handphone</th>
+                  <th>Alamat</th>
+                  <th>Total Harga</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>

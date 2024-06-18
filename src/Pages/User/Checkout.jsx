@@ -20,11 +20,11 @@ const Cart = () => {
   };
 
   const totalPesanan = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const ongkosKirim = 10000; // contoh ongkos kirim tetap
+  const ongkosKirim = 10000;
   const totalBayar = totalPesanan + ongkosKirim;
 
   const handlePayment = () => {
-    const waNumber = "6281292573422"; // Ganti dengan nomor WA tujuan
+    const waNumber = "6281292573422";
     let message = `Halo, saya ingin melakukan pembelian dengan rincian sebagai berikut:\n\n`;
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.product.title}\nJumlah: ${item.quantity}\nTotal: ${formatRupiah(item.product.price * item.quantity)}\n\n`;
@@ -47,7 +47,7 @@ const Cart = () => {
       <Container className="mt-5">
       <Row>
           <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/category" }}>Kembali</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/products" }}>Kembali</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
         <Row>

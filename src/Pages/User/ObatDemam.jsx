@@ -44,37 +44,37 @@ const Category = () => {
   const productsPopuler = [
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1708913638_bronkris-removebg-preview",
-      title: "Bronkris 8 mg 10 Tablet",
-      description: "/Strip",
-      price: 15000,
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1661014004_5fb389c041ab59059e86a549",
+      title: "Bodrex Lapis Dua 20 Tablet",
+      description: "/PACK",
+      price: 12198,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1694420470_guaifenesin_nova-removebg-preview",
-      title: "Guaifenesin 100 mg ",
-      description: "/Strip",
-      price: 9995,
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1692088489_panadol_biru",
+      title: "Panadol 500 mg 10 Kaplet",
+      description: "/ BLISTER",
+      price: 19036,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1687518753_bronkipect",
-      title: "Bronkipect 30 Mg 10 Tablet",
+        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1708674387_pct_500_berno",
+      title: "Paracetamol 500 Mg",
       description: "/Strip",
-      price: 22170,
+      price: 7520,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1687518748_roverton",
-      title: "Roverton 30 Mg 10 Tablet",
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1708572940_colchicin_combi",
+      title: "Colchicine 0,5 Mg 10",
       description: "/Strip",
-      price: 15000,
+      price: 40880,
       freeShipping: true,
       path: "/products/detail-product",
     },
@@ -89,10 +89,10 @@ const Category = () => {
     },
     {
       image:
-        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660375153_62a190d5f15ee840f565fe81",
-      title: "Bromifar Plus 10 Kaplet",
-      description: "/Strip",
-      price: 9447,
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660023651_61de6a3df2c0e80587f7b880",
+      title: "Hufagripp TMP Sirup 60 Ml",
+      description: "/Bottle",
+      price: 25400,
       freeShipping: true,
       path: "/products/detail-product",
     },
@@ -331,12 +331,12 @@ const Category = () => {
           <Breadcrumb.Item>
             <Link to="/products">Produk</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>Obat Batuk</Breadcrumb.Item>
+          <Breadcrumb.Item active>Obat Demam</Breadcrumb.Item>
         </Breadcrumb>
         <Row className="product-box justify-content-center">
           <Row className="align-items-center justify-content-between">
             <Col>
-              <h5>Obat Batuk</h5>
+              <h5>Obat Demam</h5>
             </Col>
           </Row>
           <Col xs={12}>

@@ -1,18 +1,54 @@
-import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Breadcrumb,
-  Button,
-  Table,
-  Form,
-  Modal,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Breadcrumb, Button, Table, Form, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
+const staticUsers = [
+  {
+    id: 1,
+    username: "ani.puspita",
+    fullname: "Ani Puspita",
+    phone: "0812-3456-7890",
+    email: "ani.puspita@example.co.id",
+    address: "Jl. Merdeka No. 123, Jakarta"
+  },
+  {
+    id: 2,
+    username: "budi.jaya",
+    fullname: "Budi Jaya",
+    phone: "0877-9876-5432",
+    email: "budi.jaya@example.co.id",
+    address: "Jl. Pahlawan No. 45, Bandung"
+  },
+  {
+    id: 3,
+    username: "citra.ramdhani",
+    fullname: "Citra Ramdhani",
+    phone: "0856-1234-5678",
+    email: "citra.ramdhani@example.co.id",
+    address: "Jl. Diponegoro No. 78, Yogyakarta"
+  },
+  {
+    id: 4,
+    username: "dewi.sari",
+    fullname: "Dewi Sari",
+    phone: "0813-8765-4321",
+    email: "dewi.sari@example.co.id",
+    address: "Jl. Kencana No. 9, Surabaya"
+  },
+  {
+    id: 5,
+    username: "erwin.putra",
+    fullname: "Erwin Putra",
+    phone: "0899-2345-6789",
+    email: "erwin.putra@example.co.id",
+    address: "Jl. Merah No. 12, Medan"
+  }
+];
+
 function UserList() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(staticUsers);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
   const [userData, setUserData] = useState({
@@ -23,28 +59,6 @@ function UserList() {
     email: "",
     address: "",
   });
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch("https://api.example.com/users");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setUsers(data);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error fetching users!",
-        confirmButtonColor: "#3B71CA",
-      });
-    }
-  };
 
   const handleShowModal = (type, user) => {
     setModalType(type);
@@ -70,86 +84,49 @@ function UserList() {
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const method = modalType === "create" ? "POST" : "PUT";
-      const url =
-        modalType === "create"
-          ? "https://api.example.com/users"
-          : `https://api.example.com/users/${userData.id}`;
-
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const result = await response.json();
-      Swal.fire({
-        icon: "success",
-        title: modalType === "create" ? "User created!" : "User updated!",
-        text: result.message,
-        confirmButtonColor: "#3B71CA",
-      });
-
-      fetchUsers();
-      handleCloseModal();
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `Error ${modalType === "create" ? "creating" : "updating"} user!`,
-        confirmButtonColor: "#3B71CA",
-      });
+    if (modalType === "create") {
+      setUsers([
+        ...users,
+        { ...userData, id: users.length + 1 },
+      ]);
+    } else {
+      setUsers(
+        users.map((usr) =>
+          usr.id === userData.id ? userData : usr
+        )
+      );
     }
+    Swal.fire({
+      icon: "success",
+      title: modalType === "create" ? "User created!" : "User updated!",
+      confirmButtonColor: "#3B71CA",
+    });
+    handleCloseModal();
   };
 
-  const deleteUser = async (userId) => {
-    try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3B71CA",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-
+  const deleteUser = (userId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3B71CA",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
       if (result.isConfirmed) {
-        const response = await fetch(
-          `https://api.example.com/users/${userId}`,
-          {
-            method: "DELETE",
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        setUsers(users.filter((user) => user.id !== userId));
         Swal.fire("Deleted!", "User has been deleted.", "success");
-        fetchUsers(); // Re-fetch users after deletion
       }
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error deleting user!",
-        confirmButtonColor: "#3B71CA",
-      });
-    }
+    });
   };
 
   return (
     <>
       <HeaderDashboard />
-      <Container className="mt-5">
+      <Container>
         <Form className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
@@ -167,10 +144,10 @@ function UserList() {
                 <tr>
                   <th>#</th>
                   <th>Username</th>
-                  <th>Fullname</th>
-                  <th>Phone Number</th>
+                  <th>Nama Lengkap</th>
+                  <th>No Handphone</th>
                   <th>Email</th>
-                  <th>Address</th>
+                  <th>Alamat</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -227,7 +204,7 @@ function UserList() {
             </Form.Group>
             <Form.Group controlId="formFullname" className="mb-3">
               <Form.Label>
-                Fullname<span className="text-danger"> *</span>
+                Nama Lengkap<span className="text-danger"> *</span>
               </Form.Label>
               <Form.Control
                 type="text"
@@ -239,7 +216,7 @@ function UserList() {
             </Form.Group>
             <Form.Group controlId="formPhone" className="mb-3">
               <Form.Label>
-                Phone Number<span className="text-danger"> *</span>
+              No Handphone<span className="text-danger"> *</span>
               </Form.Label>
               <Form.Control
                 type="text"
@@ -263,7 +240,7 @@ function UserList() {
             </Form.Group>
             <Form.Group controlId="formAddress" className="mb-3">
               <Form.Label>
-                Address<span className="text-danger"> *</span>
+                Alamat<span className="text-danger"> *</span>
               </Form.Label>
               <Form.Control
                 type="text"

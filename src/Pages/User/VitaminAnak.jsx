@@ -44,61 +44,61 @@ const Category = () => {
   const productsPopuler = [
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1708913638_bronkris-removebg-preview",
-      title: "Bronkris 8 mg 10 Tablet",
-      description: "/Strip",
-      price: 15000,
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1690965657_vidoran_vit_c",
+      title: "Vidoran Gummy ",
+      description: "/sachet",
+      price: 22772,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1694420470_guaifenesin_nova-removebg-preview",
-      title: "Guaifenesin 100 mg ",
-      description: "/Strip",
-      price: 9995,
+        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1661161732_62a18f86f15ee840f565f2ae",
+      title: "Youvit Gummy Anak ",
+      description: "/sachet",
+      price: 21756,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1687518753_bronkipect",
-      title: "Bronkipect 30 Mg 10 Tablet",
-      description: "/Strip",
-      price: 22170,
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660796981_62a19171f15ee840f56603b4",
+      title: "Vitamin B1 45 Tablet IPI",
+      description: "/Bottle",
+      price: 13210,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1687518748_roverton",
-      title: "Roverton 30 Mg 10 Tablet",
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1691024664_fitkom_c_zinc-removebg-preview",
+      title: "Fitkom Gummy Vitamin C",
       description: "/Strip",
-      price: 15000,
+      price: 18073,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660302785_62a19039f15ee840f565f8fc",
-      title: "Longatin 25 mg 4 Kapsul",
-      description: "/Strip",
-      price: 24465,
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1691023925_biolysin_kids_ungu",
+      title: "Biolysin Kids Blackcurrant ",
+      description: "/Bottle",
+      price: 26688,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660375153_62a190d5f15ee840f565fe81",
-      title: "Bromifar Plus 10 Kaplet",
-      description: "/Strip",
-      price: 9447,
+        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1713336539_fitkom",
+      title: "Fitkom Gummy Multivitamin",
+      description: "/PACK",
+      price: 53306,
       freeShipping: true,
       path: "/products/detail-product",
     },
   ];
 
-  const productsVitaminC = [
+  const productsVitaminC= [
     {
       image:
         "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660122001_60f7f5ba1ef1133130010a40",
@@ -331,12 +331,12 @@ const Category = () => {
           <Breadcrumb.Item>
             <Link to="/products">Produk</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>Obat Batuk</Breadcrumb.Item>
+          <Breadcrumb.Item active>Vitamin Anak</Breadcrumb.Item>
         </Breadcrumb>
         <Row className="product-box justify-content-center">
           <Row className="align-items-center justify-content-between">
             <Col>
-              <h5>Obat Batuk</h5>
+              <h5>Vitamin Anak</h5>
             </Col>
           </Row>
           <Col xs={12}>

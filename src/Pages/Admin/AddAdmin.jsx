@@ -89,7 +89,7 @@ function AddAdmin() {
   return (
     <>
       <HeaderDashboard />
-      <Container className="justify-content-center mt-5">
+      <Container>
         <Form className="p-5 flex-column gap-3 shadow" onSubmit={handleSubmit}>
           <Breadcrumb>
             <Breadcrumb.Item>

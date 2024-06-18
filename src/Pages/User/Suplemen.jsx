@@ -17,13 +17,13 @@ const Category = () => {
   const [totalQuantityPopuler, setTotalQuantityPopuler] = useState(0);
   const [totalPricePopuler, setTotalPricePopuler] = useState(0);
 
-  const [quantitiesVitaminC, setQuantitiesVitaminC] = useState(
+  const [setQuantitiesVitaminC] = useState(
     initialQuantitiesVitaminC
   );
   const [totalQuantityVitaminC, setTotalQuantityVitaminC] = useState(0);
   const [totalPriceVitaminC, setTotalPriceVitaminC] = useState(0);
 
-  const [quantitiesObatBatuk, setQuantitiesObatBatuk] = useState(
+  const [setQuantitiesObatBatuk] = useState(
     initialQuantitiesObatBatuk
   );
   const [totalQuantityObatBatuk, setTotalQuantityObatBatuk] = useState(0);
@@ -37,61 +37,66 @@ const Category = () => {
     navigate("/checkout", { state: { cart } });
   };
 
+  const handleProductClick = (product) => {
+    navigate("/products/detail-product", { state: { product } });
+  };
+
   const productsPopuler = [
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
+        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_300,w_300/v1/production/pharmacy/products/1713752963_bm_daily_immune-removebg-preview",
+      title: "Blackmores Daily ImmuneC ",
+      description: "/Bottle",
+      price: 108900,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1706855368_redoxon_20-removebg-preview",
+      title: "Redoxon Double Action ",
+      description: "/Per-tube",
+      price: 105490,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1713407406_cool_vita_blue",
+      title: "Cool-Vita Blueberry",
       description: "/Strip",
-      price: 16297,
+      price: 34500,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1706691745_sangobion_baby-removebg-preview",
+      title: "Sangobion Baby Drop",
+      description: "/bottle",
+      price: 84920,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1701365212_mevrabal-removebg-preview",
+      title: "Mevrabal 500 Mg 20 Kapsul",
       description: "/Strip",
-      price: 16297,
+      price: 27800,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1694422994_holizinc-removebg-preview",
+      title: "Holizinc Sirup 60 Ml",
+      description: "/Bottle",
+      price: 13200,
       freeShipping: true,
       path: "/products/detail-product",
     },
+  
   ];
 
   const productsVitaminC = [
@@ -355,13 +360,13 @@ const Category = () => {
                       />
                     </Link>
                     <Card.Body>
-                      <Card.Title className="product-name">
+                      <Card.Title className="product-name" onClick={() => handleProductClick(item)}>
                         {item.title}
                       </Card.Title>
-                      <Card.Text className="product-description">
+                      <Card.Text className="product-description" onClick={() => handleProductClick(item)}>
                         {item.description}
                       </Card.Text>
-                      <Card.Text className="product-price">
+                      <Card.Text className="product-price" onClick={() => handleProductClick(item)}>
                         {formatRupiah(item.price)}
                       </Card.Text>
                       {quantitiesPopuler[index] === 0 ? (

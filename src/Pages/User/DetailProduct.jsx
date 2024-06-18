@@ -18,7 +18,7 @@ const DetailProduct = () => {
   const { product } = state || {
     product: {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp", // Placeholder image
+        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
       title: "DegiroI 0,25 mg 10 Tablet",
       price: "16297",
     },
@@ -28,6 +28,7 @@ const DetailProduct = () => {
   const [itemCount, setItemCount] = useState(0);
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   const formatRupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -51,7 +52,8 @@ const DetailProduct = () => {
 
     setCart(newCart);
     setTotalPrice(totalPrice + itemCount * parseFloat(product.price));
-    setItemCount(0); // Reset itemCount after adding to cart
+    setTotalItems(totalItems + itemCount);
+    setItemCount(0);
   };
 
   const handleIncrement = () => {
@@ -158,9 +160,9 @@ const DetailProduct = () => {
           onClick={goToCart}
         >
           <Cart2 size={40} />
-          {cart.length > 0 && (
+          {totalItems > 0 && (
             <>
-              <span className="cart-count text-white">{cart.length}</span>
+              <span className="cart-count text-white">{totalItems}</span>
               <span className="cart-price text-white">
                 {formatRupiah(totalPrice)}
               </span>

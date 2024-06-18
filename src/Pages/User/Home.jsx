@@ -87,50 +87,64 @@ const Home = () => {
         "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
       title: "DegiroI 0,25 mg 10 Tablet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,35 mg 10 Tablet",
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659931609_5fb3880f41ab59059e86a0ff",
+      title: "Becom Zet 10 Kaplet",
       description: "/Strip",
-      price: "Rp16.297",
+      price: 34032,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,45 mg 10 Tablet",
-      description: "/Strip",
-      price: "Rp16.297",
+        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659933112_5fb3899241ab59059e86a4d1",
+      title: "Tempra Drop 15 ml",
+      description: "/Botol",
+      price: 64196,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,55 mg 10 Tablet",
-      description: "/Strip",
-      price: "Rp16.297",
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930406_5fb37b0841ab59059e8681ba",
+      title: "Silex Sirup 100 ml",
+      description: "/Botol",
+      price: 101853,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,65 mg 10 Tablet",
-      description: "/Strip",
-      price: "Rp16.297",
+        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1701133331_untitled_design",
+      title: "Shampo Sebamed",
+      description: "/Botol",
+      price: 236170,
       freeShipping: true,
+      path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,75 mg 10 Tablet",
-      description: "/Strip",
-      price: "Rp16.297",
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930651_5fb37f7041ab59059e868c57",
+      title: "Lacto B Sachet 1 gr",
+      description: "/Sachet",
+      price: 16297,
       freeShipping: true,
+      path: "/products/detail-product",
     },
   ];
+
+  const formatRupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(number);
+  };
 
   const handleProductClick = (product) => {
     navigate("/products/detail-product", { state: { product } });
@@ -308,7 +322,7 @@ const Home = () => {
                         {item.description}
                       </Card.Text>
                       <Card.Text className="product-price">
-                        {item.price}
+                        {formatRupiah(item.price)}
                       </Card.Text>
                     </Card.Body>
                   </Card>

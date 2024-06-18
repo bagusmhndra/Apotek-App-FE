@@ -17,13 +17,13 @@ const Category = () => {
   const [totalQuantityPopuler, setTotalQuantityPopuler] = useState(0);
   const [totalPricePopuler, setTotalPricePopuler] = useState(0);
 
-  const [quantitiesVitaminC, setQuantitiesVitaminC] = useState(
+  const [setQuantitiesVitaminC] = useState(
     initialQuantitiesVitaminC
   );
   const [totalQuantityVitaminC, setTotalQuantityVitaminC] = useState(0);
   const [totalPriceVitaminC, setTotalPriceVitaminC] = useState(0);
 
-  const [quantitiesObatBatuk, setQuantitiesObatBatuk] = useState(
+  const [setQuantitiesObatBatuk] = useState(
     initialQuantitiesObatBatuk
   );
   const [totalQuantityObatBatuk, setTotalQuantityObatBatuk] = useState(0);
@@ -37,58 +37,62 @@ const Category = () => {
     navigate("/checkout", { state: { cart } });
   };
 
+  const handleProductClick = (product) => {
+    navigate("/products/detail-product", { state: { product } });
+  };
+
   const productsPopuler = [
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1644051589_mywell_vitamin_c_%2B_zn_5_kaplet",
+      title: "Mywell Vitamin C + Zn 5 Kaplet Kaplet",
       description: "/Strip",
-      price: 16297,
+      price: 14300,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660293304_62a19009f15ee840f565f71c",
+      title: "Vitamin C 500 mg 10 Tablet Promed",
       description: "/Strip",
-      price: 16297,
+      price: 14088,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1709089906_vit_c_250-removebg-preview",
+      title: "Vitamin C 250 mg Tablet Imfarmind",
       description: "/Strip",
-      price: 16297,
+      price: 19462,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
+        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1713421494_ultra_vitamin_c_500_mg_tablet",
+      title: "Ultra Vitamin C 500 mg Tablet Tablet",
       description: "/Strip",
-      price: 16297,
+      price: 37341,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1710662389_pyfa_vit_c",
+      title: "Pyfahealth Vitamin C-1000 30 Tablet",
+      description: "/Bottle",
+      price: 70000,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
+        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659929254_5fb37b0441ab59059e8681ac",
+      title: "Blackmores Vitamin C 500 60 Tablet",
+      description: "/Bottle",
+      price: 175615,
       freeShipping: true,
       path: "/products/detail-product",
     },
@@ -355,13 +359,13 @@ const Category = () => {
                       />
                     </Link>
                     <Card.Body>
-                      <Card.Title className="product-name">
+                      <Card.Title className="product-name" onClick={() => handleProductClick(item)}>
                         {item.title}
                       </Card.Title>
-                      <Card.Text className="product-description">
+                      <Card.Text className="product-description" onClick={() => handleProductClick(item)}>
                         {item.description}
                       </Card.Text>
-                      <Card.Text className="product-price">
+                      <Card.Text className="product-price" onClick={() => handleProductClick(item)}>
                         {formatRupiah(item.price)}
                       </Card.Text>
                       {quantitiesPopuler[index] === 0 ? (

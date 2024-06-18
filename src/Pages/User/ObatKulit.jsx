@@ -44,55 +44,55 @@ const Category = () => {
   const productsPopuler = [
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1708913638_bronkris-removebg-preview",
-      title: "Bronkris 8 mg 10 Tablet",
-      description: "/Strip",
-      price: 15000,
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660061903_5fb3833b41ab59059e869548",
+      title: "Herocyn Bedak Kulit 150 gr",
+      description: "/Bottle",
+      price: 29565,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1694420470_guaifenesin_nova-removebg-preview",
-      title: "Guaifenesin 100 mg ",
-      description: "/Strip",
-      price: 9995,
+        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660579957_tresnojoyo_telon_herbal_plus_kulit_jeruk_60_ml",
+      title: "Tresnojoyo Telon Herbal",
+      description: "/ Bottle",
+      price: 26166,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1687518753_bronkipect",
-      title: "Bronkipect 30 Mg 10 Tablet",
-      description: "/Strip",
-      price: 22170,
+        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660914955_62a18ea3f15ee840f565eb16",
+      title: "Gentamicin 0,1% ",
+      description: "/TUBE",
+      price:15000,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1687518748_roverton",
-      title: "Roverton 30 Mg 10 Tablet",
-      description: "/Strip",
-      price: 15000,
+        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1717637811_soffel_jeruk-removebg-preview",
+      title: "Soffel Kulit Jeruk Lotion",
+      description: "/Bottle",
+      price: 20060,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660302785_62a19039f15ee840f565f8fc",
-      title: "Longatin 25 mg 4 Kapsul",
-      description: "/Strip",
-      price: 24465,
+        "https://res-4.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660635391_5fb3866d41ab59059e869c8d",
+      title: "Callusol Cairan Obat Luar",
+      description: "/Bottle",
+      price: 44043,
       freeShipping: true,
       path: "/products/detail-product",
     },
     {
       image:
-        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1660375153_62a190d5f15ee840f565fe81",
-      title: "Bromifar Plus 10 Kaplet",
-      description: "/Strip",
-      price: 9447,
+        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1661099708_5fb38ad141ab59059e86a7da",
+      title: "Salep Kulit 88 6 gr",
+      description: "/POT",
+      price: 22652,
       freeShipping: true,
       path: "/products/detail-product",
     },
@@ -331,12 +331,12 @@ const Category = () => {
           <Breadcrumb.Item>
             <Link to="/products">Produk</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>Obat Batuk</Breadcrumb.Item>
+          <Breadcrumb.Item active>Obat Kulit</Breadcrumb.Item>
         </Breadcrumb>
         <Row className="product-box justify-content-center">
           <Row className="align-items-center justify-content-between">
             <Col>
-              <h5>Obat Batuk</h5>
+              <h5>Obat Kulit</h5>
             </Col>
           </Row>
           <Col xs={12}>

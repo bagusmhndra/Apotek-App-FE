@@ -141,12 +141,18 @@ a:link {
   background-color: #ffffff;
 }
 
+.product-card:hover {
+  transform: scale(1.05);
+
+}
+
 .product-card {
   text-decoration: none;
   color: inherit;
   width: 145px;
   position: relative;
   overflow: hidden;
+  transition: transform 0.2s;
 }
 
 .product-name {

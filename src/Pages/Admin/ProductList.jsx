@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Breadcrumb,
@@ -12,7 +12,58 @@ import Swal from "sweetalert2";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 function ProductList() {
-  const [products, setProducts] = useState([]);
+  const initialProducts = [
+    {
+      id: 1,
+      name: "DegiroI 0,25 mg 10 Tablet",
+      description: "/Strip",
+      price: 16297,
+      stock: 100,
+      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
+    },
+    {
+      id: 2,
+      name: "Becom Zet 10 Kaplet",
+      description: "/Strip",
+      price: 34032,
+      stock: 200,
+      image: "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659931609_5fb3880f41ab59059e86a0ff ",
+    },
+    {
+      id: 3,
+      name: "Tempra Drop 15 ml",
+      description: "/Botol",
+      price: 64196,
+      stock: 200,
+      image: "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659933112_5fb3899241ab59059e86a4d1",
+    },
+    {
+      id: 4,
+      name: "Silex Sirup 100 ml",
+      description: "/Botol",
+      price: 101853,
+      stock: 200,
+      image: "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930406_5fb37b0841ab59059e8681ba",
+    },
+    {
+      id: 5,
+      name: "Shampo Sebamed",
+      description: "/Botol",
+      price: 236170,
+      stock: 200,
+      image: "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1701133331_untitled_design",
+    },
+    {
+      id: 6,
+      name: "Lacto B Sachet 1 gr",
+      description: "/Sachet",
+      price: 16297,
+      stock: 200,
+      image: "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930651_5fb37f7041ab59059e868c57",
+    },
+  ];
+
+  const [products, setProducts] = useState(initialProducts);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("");
   const [productData, setProductData] = useState({
@@ -23,28 +74,6 @@ function ProductList() {
     stock: "",
     image: null,
   });
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch("https://api.example.com/products");
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error fetching products!",
-        confirmButtonColor: "#3B71CA",
-      });
-    }
-  };
 
   const handleShowModal = (type, product) => {
     setModalType(type);
@@ -74,100 +103,75 @@ function ProductList() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append("name", productData.name);
-      formData.append("description", productData.description);
-      formData.append("price", productData.price);
-      formData.append("stock", productData.stock);
-      if (productData.image) {
-        formData.append("image", productData.image);
-      }
-
-      const method = modalType === "create" ? "POST" : "PUT";
-      const url =
-        modalType === "create"
-          ? "https://api.example.com/products"
-          : `https://api.example.com/products/${productData.id}`;
-
-      const response = await fetch(url, {
-        method: method,
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const result = await response.json();
+    if (modalType === "create") {
+      const newProduct = {
+        ...productData,
+        id: products.length + 1,
+        image: productData.image
+          ? URL.createObjectURL(productData.image)
+          : null,
+      };
+      setProducts([...products, newProduct]);
       Swal.fire({
         icon: "success",
-        title: modalType === "create" ? "Product created!" : "Product updated!",
-        text: result.message,
+        title: "Product created!",
+        text: "Product has been created successfully.",
         confirmButtonColor: "#3B71CA",
       });
-
-      fetchProducts();
-      handleCloseModal();
-    } catch (error) {
+    } else if (modalType === "edit") {
+      const updatedProducts = products.map((product) =>
+        product.id === productData.id
+          ? {
+              ...productData,
+              image: productData.image
+                ? URL.createObjectURL(productData.image)
+                : product.image,
+            }
+          : product
+      );
+      setProducts(updatedProducts);
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `Error ${
-          modalType === "create" ? "creating" : "updating"
-        } product!`,
+        icon: "success",
+        title: "Product updated!",
+        text: "Product has been updated successfully.",
         confirmButtonColor: "#3B71CA",
       });
     }
+    handleCloseModal();
   };
 
-  const deleteProduct = async (productId) => {
-    try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3B71CA",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-
+  const deleteProduct = (productId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3B71CA",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
       if (result.isConfirmed) {
-        const response = await fetch(
-          `https://api.example.com/products/${productId}`,
-          {
-            method: "DELETE",
-          }
+        const updatedProducts = products.filter(
+          (product) => product.id !== productId
         );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        setProducts(updatedProducts);
         Swal.fire("Deleted!", "Product has been deleted.", "success");
-        fetchProducts(); // Re-fetch products after deletion
       }
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error deleting product!",
-        confirmButtonColor: "#3B71CA",
-      });
-    }
+    });
   };
 
   return (
     <>
       <HeaderDashboard />
-      <Container className="mt-5">
+      <Container>
         <Form className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>Product List</Breadcrumb.Item>
+            <Breadcrumb.Item active>Produk List</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className="productlist-title mt-4 mb-4">Product List</h2>
           <Button className="mb-3" onClick={() => handleShowModal("create")}>
@@ -178,11 +182,11 @@ function ProductList() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Stock</th>
-                  <th>Image</th>
+                  <th>Nama</th>
+                  <th>Deskripsi</th>
+                  <th>Harga</th>
+                  <th>Stok</th>
+                  <th>Gambar</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -195,11 +199,15 @@ function ProductList() {
                     <td>{product.price}</td>
                     <td>{product.stock}</td>
                     <td>
-                      <img
-                        src={`https://api.example.com/images/${product.image}`}
-                        alt={product.name}
-                        width="100"
-                      />
+                      {product.image ? (
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          width="100"
+                        />
+                      ) : (
+                        "No Image"
+                      )}
                     </td>
                     <td>
                       <Button
@@ -232,7 +240,7 @@ function ProductList() {
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formName" className="mb-3">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Nama</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -242,7 +250,7 @@ function ProductList() {
               />
             </Form.Group>
             <Form.Group controlId="formDescription" className="mb-3">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Deskripsi</Form.Label>
               <Form.Control
                 type="text"
                 name="description"
@@ -252,7 +260,7 @@ function ProductList() {
               />
             </Form.Group>
             <Form.Group controlId="formPrice" className="mb-3">
-              <Form.Label>Price</Form.Label>
+              <Form.Label>Harga</Form.Label>
               <Form.Control
                 type="number"
                 name="price"
@@ -262,7 +270,7 @@ function ProductList() {
               />
             </Form.Group>
             <Form.Group controlId="formStock" className="mb-3">
-              <Form.Label>Stock</Form.Label>
+              <Form.Label>Stok</Form.Label>
               <Form.Control
                 type="number"
                 name="stock"
@@ -272,7 +280,7 @@ function ProductList() {
               />
             </Form.Group>
             <Form.Group controlId="formImage" className="mb-3">
-              <Form.Label>Image</Form.Label>
+              <Form.Label>Gambar</Form.Label>
               <Form.Control type="file" name="image" onChange={handleChange} />
             </Form.Group>
             <Modal.Footer>

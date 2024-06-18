@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Navbar,
   Container,
@@ -7,10 +7,11 @@ import {
   ButtonGroup,
   Offcanvas,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../assets/css/Header.css";
 
 const HeaderDashboard = () => {
+  /*
   const [userRole, setUserRole] = useState("");
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const HeaderDashboard = () => {
       navigate("/login");
     }
   }, [navigate]);
-
+*/
   // Fungsi untuk menangani logout
   const handleLogout = async () => {
     try {
@@ -51,20 +52,22 @@ const HeaderDashboard = () => {
       window.location.href = "/";
     }
   };
+  
+  
 
   return (
-    <Navbar expand="lg" className="mb-3 navbar-container" sticky="top">
+    <Navbar expand="l" className="mb-3 navbar-container" sticky="top">
       <Container fluid className="left-container">
-        <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-lg`} />
+        <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-l`} />
         <Navbar.Offcanvas
-          id={`offcanvasNavbarLabel-expand-lg`}
-          aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+          id={`offcanvasNavbarLabel-expand-l`}
+          aria-labelledby={`offcanvasNavbarLabel-expand-l`}
           placement="start"
           className="offcanvas-animation"
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title
-              id={`offcanvasNavbarLabel-expand-lg`}
+              id={`offcanvasNavbarLabel-expand-l`}
               className="d-flex align-items-center"
             >
               <h3 className="fw-bold">
@@ -81,35 +84,19 @@ const HeaderDashboard = () => {
               <Nav.Link as={Link} to="/dashboard/my-profile">
                 Profile
               </Nav.Link>
-              {userRole === "Admin" && (
-                <>
-                  <Nav.Link as={Link} to="/dashboard/user-list">
-                    User List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/order-list">
-                    Order List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/product-list">
-                    Product List
-                  </Nav.Link>
-                </>
-              )}
-              {userRole === "Superadmin" && (
-                <>
-                  <Nav.Link as={Link} to="/dashboard/user-list">
-                    User List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/add-admin">
-                    Add Admin
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/order-list">
-                    Order List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/product-list">
-                    Product List
-                  </Nav.Link>
-                </>
-              )}
+              <Nav.Link as={Link} to="/dashboard/order-list">
+                Order List
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/product-list">
+                Product List
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/user-list">
+                User List
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/add-admin">
+                Add Admin
+              </Nav.Link>
+
               <Nav.Link as={Link} to="/dashboard/settings">
                 Settings
               </Nav.Link>

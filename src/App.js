@@ -18,6 +18,9 @@ import NotFoundPage from './Pages/User/NotFoundPage';
 import Vitamin from './Pages/User/VitaminC';
 import Suplemen from './Pages/User/Suplemen';
 import ObatBatuk from './Pages/User/ObatBatuk';
+import ObatDemam from './Pages/User/ObatDemam';
+import VitaminAnak from './Pages/User/VitaminAnak';
+import ObatKulit from './Pages/User/ObatKulit';
 import Checkout from './Pages/User/Checkout';
 
 
@@ -50,6 +53,9 @@ const App = () => {
           <Route path="/products/vitamin-c" element={<Vitamin />} />
           <Route path="/products/suplemen" element={<Suplemen />} />
           <Route path="/products/obat-batuk" element={<ObatBatuk />} />
+          <Route path="/products/obat-demam" element={<ObatDemam />} />
+          <Route path="/products/vitamin-anak" element={<VitaminAnak />} />
+          <Route path="/products/obat-kulit" element={<ObatKulit />} />
           <Route path="/checkout" element={<Checkout />} />
 
 

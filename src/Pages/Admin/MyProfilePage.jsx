@@ -29,7 +29,7 @@ function MyProfilePage() {
   return (
     <>
       <HeaderDashboard />
-      <Container className="justify-content-center mt-5">
+      <Container>
         <Form className="p-5 flex-column gap-3 shadow" onSubmit={saveProfile}>
           <Breadcrumb>
             <Breadcrumb.Item>
@@ -41,7 +41,7 @@ function MyProfilePage() {
           <div className="flex-column flex-sm-row gap-3 gap-sm-5 rounded-2 mb-3 mt-3">
             <div className="flex-column gap-2">
               <Form.Group controlId="fullName" className="mb-3">
-                <Form.Label className="fw-semibold">Full Name</Form.Label>
+                <Form.Label className="fw-semibold">Nama Lengkap</Form.Label>
                 {editMode ? (
                   <Form.Control
                     type="text"
@@ -72,7 +72,7 @@ function MyProfilePage() {
                 )}
               </Form.Group>
               <Form.Group controlId="email" className="mb-3">
-                <Form.Label className="fw-semibold">Email Address</Form.Label>
+                <Form.Label className="fw-semibold">Email</Form.Label>
                 {editMode ? (
                   <Form.Control
                     type="email"
@@ -87,7 +87,7 @@ function MyProfilePage() {
                 )}
               </Form.Group>
               <Form.Group controlId="phoneNumber" className="mb-3">
-                <Form.Label className="fw-semibold">Phone Number</Form.Label>
+                <Form.Label className="fw-semibold">No Handphone</Form.Label>
                 {editMode ? (
                   <Form.Control
                     type="number"
