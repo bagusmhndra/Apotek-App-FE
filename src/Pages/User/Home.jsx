@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Carousel, Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/User/Header";
@@ -13,10 +13,40 @@ import diagnosis04 from "../../assets/img/diagnosis04.png";
 import diagnosis05 from "../../assets/img/diagnosis05.png";
 import diagnosis06 from "../../assets/img/diagnosis06.png";
 import "../../assets/css/Home.css";
+import api from "../../api";
 
 const Home = () => {
   const navigate = useNavigate();
   const crispScriptRef = useRef(null);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get('/products');
+        setProducts(response.data.products);
+      } catch (error) {
+        console.error("There was an error fetching the products!", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get('/category');
+        setCategories(response.data.category);
+        console.log(setCategories)
+      } catch (error) {
+        console.error("There was an error fetching the categories!", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     window.$crisp = [];
@@ -38,15 +68,6 @@ const Home = () => {
       }
     };
   }, []);
-
-  const categories = [
-    { name: "Vitamin C", icon: "💊", path: "/products/vitamin-c" },
-    { name: "Suplemen Daya Tahan", icon: "💉", path: "/products/suplemen" },
-    { name: "Obat batuk", icon: "🦠", path: "/products/obat-batuk" },
-    { name: "Obat Demam", icon: "🌡", path: "/products/obat-demam" },
-    { name: "Vitamin Anak", icon: "🩸", path: "/products/vitamin-anak" },
-    { name: "Obat Kulit", icon: "🩹", path: "/products/obat-kulit" },
-  ];
 
   const diagnosis = [
     {
@@ -78,63 +99,6 @@ const Home = () => {
       image: diagnosis06,
       name: "Batuk & Flu",
       path: "https://www.biofarma.co.id/id/announcement/detail/bagaimana-menangani-flu-pada-anak-yuk-simak-artikel-berikut",
-    },
-  ];
-
-  const products = [
-    {
-      image:
-        "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-      title: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
-      freeShipping: true,
-      path: "/products/detail-product",
-    },
-    {
-      image:
-        "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659931609_5fb3880f41ab59059e86a0ff",
-      title: "Becom Zet 10 Kaplet",
-      description: "/Strip",
-      price: 34032,
-      freeShipping: true,
-      path: "/products/detail-product",
-    },
-    {
-      image:
-        "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659933112_5fb3899241ab59059e86a4d1",
-      title: "Tempra Drop 15 ml",
-      description: "/Botol",
-      price: 64196,
-      freeShipping: true,
-      path: "/products/detail-product",
-    },
-    {
-      image:
-        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930406_5fb37b0841ab59059e8681ba",
-      title: "Silex Sirup 100 ml",
-      description: "/Botol",
-      price: 101853,
-      freeShipping: true,
-      path: "/products/detail-product",
-    },
-    {
-      image:
-        "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1701133331_untitled_design",
-      title: "Shampo Sebamed",
-      description: "/Botol",
-      price: 236170,
-      freeShipping: true,
-      path: "/products/detail-product",
-    },
-    {
-      image:
-        "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930651_5fb37f7041ab59059e868c57",
-      title: "Lacto B Sachet 1 gr",
-      description: "/Sachet",
-      price: 16297,
-      freeShipping: true,
-      path: "/products/detail-product",
     },
   ];
 
@@ -196,20 +160,20 @@ const Home = () => {
                   sm={6}
                   md={4}
                   lg={2}
-                  key={category.name}
+                  key={category.id_category}
                   className="d-flex justify-content-center"
                 >
                   <Card className="h-100 category-card border-0">
                     <Link
-                      to={category.path}
+                      to={`/products/${category.id_category}`}
                       className="text-decoration-none text-dark"
                     >
                       <Card.Body className="d-flex flex-column align-items-center">
                         <div className="display-6 category-icon">
-                          {category.icon}
+                          {category.icon || "📦"} {/* Placeholder icon */}
                         </div>
                         <Card.Title className="mt-3 category-name">
-                          {category.name}
+                          {category.name_category}
                         </Card.Title>
                       </Card.Body>
                     </Link>
@@ -294,35 +258,30 @@ const Home = () => {
             </Row>
 
             <Row className="g-3 justify-content-center">
-              {products.map((item, index) => (
+              {products.slice(0, 6).map((product, index) => (
                 <Col
                   xs={12}
                   sm={6}
                   md={4}
                   lg={2}
-                  key={index}
+                  key={product.id}
                   className="d-flex justify-content-center"
                 >
                   <Card
                     className="product-card h-100 border-0"
-                    onClick={() => handleProductClick(item)}
+                    onClick={() => handleProductClick(product)}
                   >
-                    <Link to={item.path}>
-                      <Card.Img
-                        variant="top"
-                        src={item.image}
-                        className="product-card-img"
-                      />
-                    </Link>
-                    <Card.Body>
+                    <Card.Img
+                      variant="top"
+                      src={`${product.image}`}
+                      className="product-card-img"
+                    />
+                    <Card.Body className="d-flex flex-column justify-content-between">
                       <Card.Title className="product-name">
-                        {item.title}
+                        {product.productName}
                       </Card.Title>
-                      <Card.Text className="product-description">
-                        {item.description}
-                      </Card.Text>
                       <Card.Text className="product-price">
-                        {formatRupiah(item.price)}
+                        {formatRupiah(product.price)}
                       </Card.Text>
                     </Card.Body>
                   </Card>
@@ -332,6 +291,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
+
       <Footer />
     </>
   );

@@ -1,113 +1,79 @@
-import React, { useState } from "react";
-import { Container, Breadcrumb, Table, Button, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Table, Button, Modal, Form, Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import api from "../../api";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
-
-const staticOrders = [
-  {
-    id: 1,
-    customerName: "Budi Santoso",
-    phoneNumber: "0812-3456-7890",
-    address: "Jl. Merdeka No. 123, Jakarta",
-    totalPrice: "250000",
-    status: "Pending",
-  },
-  {
-    id: 2,
-    customerName: "Citra Ramadhani",
-    phoneNumber: "0877-9876-5432",
-    address: "Jl. Pahlawan No. 45, Bandung",
-    totalPrice: "350000",
-    status: "Delivered",
-  },
-  {
-    id: 3,
-    customerName: "Dewi Sari",
-    phoneNumber: "0856-1234-5678",
-    address: "Jl. Diponegoro No. 78, Yogyakarta",
-    totalPrice: "150000",
-    status: "Shipped",
-  },
-  {
-    id: 4,
-    customerName: "Eka Prasetyo",
-    phoneNumber: "0813-8765-4321",
-    address: "Jl. Kencana No. 9, Surabaya",
-    totalPrice: "500000",
-    status: "Pending",
-  },
-  {
-    id: 5,
-    customerName: "Fitriani Putri",
-    phoneNumber: "0899-2345-6789",
-    address: "Jl. Merah No. 12, Medan",
-    totalPrice: "180000",
-    status: "Cancelled",
-  },
-  {
-    id: 6,
-    customerName: "Hendri Susanto",
-    phoneNumber: "0812-3456-7890",
-    address: "Jl. Cendana No. 7, Jakarta",
-    totalPrice: "300000",
-    status: "Delivered",
-  },
-  {
-    id: 7,
-    customerName: "Ines Amelia",
-    phoneNumber: "0877-9876-5432",
-    address: "Jl. Kartini No. 15, Bandung",
-    totalPrice: "280000",
-    status: "Shipped",
-  },
-  {
-    id: 8,
-    customerName: "Joko Santoso",
-    phoneNumber: "0856-1234-5678",
-    address: "Jl. Darmo No. 3, Surabaya",
-    totalPrice: "200000",
-    status: "Pending",
-  },
-  {
-    id: 9,
-    customerName: "Kartika Putri",
-    phoneNumber: "0813-8765-4321",
-    address: "Jl. Majapahit No. 21, Semarang",
-    totalPrice: "150000",
-    status: "Cancelled",
-  }
-];
+import Swal from "sweetalert2";
 
 function OrderListPage() {
-  const [orders, setOrders] = useState(staticOrders);
+  const [orders, setOrders] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleDelete = async (orderId) => {
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = async () => {
     try {
-      const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3B71CA",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-
-      if (result.isConfirmed) {
-        setOrders(orders.filter((order) => order.id !== orderId));
-        Swal.fire({
-          title: "Deleted!",
-          text: "Order berhasil di hapus!",
-          icon: "success",
-          confirmButtonColor: "#3B71CA",
-        });
-      }
+      const response = await api.get("/order/all");
+      setOrders(response.data);
     } catch (error) {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error deleting order!",
+        icon: 'error',
+        title: 'Failed to fetch orders',
+        text: error.message,
+        confirmButtonColor: "#3B71CA",
+      });
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedOrder(null);
+  };
+
+  const handleShowModal = (order) => {
+    setSelectedOrder(order);
+    setShowModal(true);
+  };
+
+  const handlePrintOrder = (orderId) => {
+    // Implement print logic here
+    console.log("Printing order:", orderId);
+    Swal.fire({
+      icon: 'success',
+      title: 'Order is being printed',
+      text: `Order ID: ${orderId}`,
+      confirmButtonColor: "#3B71CA",
+    });
+  };
+
+  const handleUpdateStatus = async () => {
+    try {
+      const token = localStorage.getItem("authToken"); // Assuming token is stored in localStorage
+      const response = await api.put(
+        "/order/updateStatus",
+        { orderId: selectedOrder._id, status: "Successful" },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      Swal.fire({
+        icon: 'success',
+        title: 'Order status updated successfully',
+        text: response.data.message,
+        confirmButtonColor: "#3B71CA",
+      });
+      fetchOrders(); // Refresh the orders list
+      handleCloseModal(); // Close the modal
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to update order status',
+        text: error.message,
         confirmButtonColor: "#3B71CA",
       });
     }
@@ -126,44 +92,122 @@ function OrderListPage() {
           </Breadcrumb>
           <h2 className="orderlist-title mt-4 mb-4">Order List</h2>
           <div className="table-responsive">
-            <Table striped bordered hover className="table-order shadow">
+            <Table striped bordered hover className="mt-3">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Order ID</th>
-                  <th>Nama Pelanggan</th>
-                  <th>No Handphone</th>
-                  <th>Alamat</th>
-                  <th>Total Harga</th>
+                  <th>Order Date</th>
+                  <th>Total Amount (IDR)</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {orders.map((order, index) => (
-                  <tr key={order.id}>
-                    <td>{index + 1}</td>
-                    <td>{order.id}</td>
-                    <td>{order.customerName}</td>
-                    <td>{order.phoneNumber}</td>
-                    <td>{order.address}</td>
-                    <td>{order.totalPrice}</td>
-                    <td>{order.status}</td>
-                    <td>
-                      <Button
-                        variant="danger"
-                        onClick={() => handleDelete(order.id)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+                {Array.isArray(orders) &&
+                  orders.map((order, index) => (
+                    <tr key={order._id}>
+                      <td>{index + 1}</td>
+                      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                      <td>
+                        {new Intl.NumberFormat("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                        }).format(order.total)}
+                      </td>
+                      <td>{order.status}</td>
+                      <td>
+                        <Button
+                          variant="info"
+                          size="sm"
+                          onClick={() => handleShowModal(order)}
+                        >
+                          View Order
+                        </Button>{" "}
+                        <Button
+                          variant="success"
+                          size="sm"
+                          onClick={() => handlePrintOrder(order._id)}
+                        >
+                          Print Order
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </div>
         </Form>
       </Container>
+
+      {/* Modal for viewing order details */}
+      <Modal show={showModal} onHide={handleCloseModal} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Order Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedOrder && (
+            <>
+              <h5>
+                Order Date:{" "}
+                {new Date(selectedOrder.createdAt).toLocaleDateString()}
+              </h5>
+              <h5>
+                Total Amount:{" "}
+                {new Intl.NumberFormat("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                }).format(selectedOrder.total)}
+              </h5>
+              <h5>Status: {selectedOrder.status}</h5>
+              <hr />
+              <h5>Order Items:</h5>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price (IDR)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedOrder.items.map((item, idx) => (
+                    <tr key={idx}>
+                      <td>{idx + 1}</td>
+                      <td>
+                        {item.product
+                          ? item.product.productName
+                          : "Product Not Available"}
+                      </td>
+                      <td>{item.quantity}</td>
+                      <td>
+                        {item.product
+                          ? new Intl.NumberFormat("id-ID", {
+                              style: "currency",
+                              currency: "IDR",
+                            }).format(item.product.price)
+                          : "-"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={handleUpdateStatus}
+            disabled={selectedOrder?.status === "Successful"}
+          >
+            Update Payment Status to Successful
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

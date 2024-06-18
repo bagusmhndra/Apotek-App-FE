@@ -1,96 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Form, Button, Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../assets/css/AddAdmin.css";
-import Swal from "sweetalert2";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 function AddAdmin() {
-  const [fullname, setFullname] = useState("");
-  const [username, setUsername] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleFullnameChange = (e) => {
-    setFullname(e.target.value);
-  };
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const adminData = {
-      fullname,
-      username,
-      phone,
-      address,
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch("/api/auth/registerAdmin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(adminData),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        Swal.fire({
-          title: "Good job!",
-          text: data.message,
-          icon: "success",
-          iconColor: "#01aa5a",
-          confirmButtonColor: "#3B71CA",
-        });
-      } else {
-        const errorData = await response.json();
-        Swal.fire({
-          icon: "error",
-          title: "Register Gagal!",
-          text: errorData.message,
-          confirmButtonColor: "#3B71CA",
-        });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Register Gagal!",
-        text: "Sepertinya Terjadi Kesalahan!",
-        confirmButtonColor: "#3B71CA",
-      });
-    }
-  };
-
   return (
     <>
       <HeaderDashboard />
       <Container>
-        <Form className="p-5 flex-column gap-3 shadow" onSubmit={handleSubmit}>
+        <Form className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
@@ -107,8 +26,6 @@ function AddAdmin() {
                 <Form.Control
                   type="text"
                   placeholder="Fullname"
-                  value={fullname}
-                  onChange={handleFullnameChange}
                   required
                   autoFocus
                 />
@@ -120,8 +37,6 @@ function AddAdmin() {
                 <Form.Control
                   type="text"
                   placeholder="Username"
-                  value={username}
-                  onChange={handleUsernameChange}
                   required
                 />
               </Form.Group>
@@ -132,8 +47,6 @@ function AddAdmin() {
                 <Form.Control
                   type="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={handlePasswordChange}
                   required
                 />
               </Form.Group>
@@ -146,8 +59,6 @@ function AddAdmin() {
                 <Form.Control
                   type="number"
                   placeholder="Your Phone"
-                  value={phone}
-                  onChange={handlePhoneChange}
                   required
                 />
               </Form.Group>
@@ -158,8 +69,6 @@ function AddAdmin() {
                 <Form.Control
                   type="email"
                   placeholder="Email Address"
-                  value={email}
-                  onChange={handleEmailChange}
                   required
                 />
               </Form.Group>
@@ -171,8 +80,6 @@ function AddAdmin() {
                   as="textarea"
                   rows={1}
                   placeholder="Your Address"
-                  value={address}
-                  onChange={handleAddressChange}
                   required
                 />
               </Form.Group>

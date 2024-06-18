@@ -3,8 +3,7 @@ import {
   Navbar,
   Container,
   Nav,
-  Button,
-  ButtonGroup,
+  Dropdown,
   Offcanvas,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,33 +11,20 @@ import "../../assets/css/Header.css";
 
 const HeaderDashboard = () => {
   const navigate = useNavigate();
-  /*
-  const [userRole, setUserRole] = useState("");
 
-  useEffect(() => {
-    // Mengambil peran pengguna dari localStorage
-    const role = localStorage.getItem("role");
-    if (role) {
-      setUserRole(role);
-    } else {
-      navigate("/login");
-    }
-  }, [navigate]);
-*/
-  // Fungsi untuk menangani logout
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    console.log("Logout successful!");
-    navigate("/");
+    navigate('/logout');
   };
-  
-  
 
   return (
     <Navbar expand="l" className="mb-3 navbar-container" sticky="top">
-      <Container fluid className="left-container">
+      <Container fluid>
         <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-l`} />
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+          <h1 className="fw-bold">
+            Pharmora<span>.id</span>
+          </h1>
+        </Navbar.Brand>
         <Navbar.Offcanvas
           id={`offcanvasNavbarLabel-expand-l`}
           aria-labelledby={`offcanvasNavbarLabel-expand-l`}
@@ -51,49 +37,42 @@ const HeaderDashboard = () => {
               className="d-flex align-items-center"
             >
               <h3 className="fw-bold">
-                Pharmora
-                <span style={{ color: "rgba(226,23,70,0.8)" }}>.id</span>
+                Pharmora<span style={{ color: "rgba(226,23,70,0.8)" }}>.id</span>
               </h3>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="justify-content-center flex-grow-1 pe-3 fs-5">
+            <Nav className="justify-content-center w-100 fs-5">
               <Nav.Link as={Link} to="/dashboard">
                 Dashboard
-              </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/my-profile">
-                Profile
-              </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/order-list">
-                Order List
-              </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/product-list">
-                Product List
               </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/user-list">
                 User List
               </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/add-admin">
-                Add Admin
+              <Nav.Link as={Link} to="/dashboard/product-list">
+                Product List
               </Nav.Link>
-
-              <Nav.Link as={Link} to="/dashboard/settings">
-                Settings
+              <Nav.Link as={Link} to="/dashboard/category-list">
+                Category List
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/order-list">
+                Order List
               </Nav.Link>
             </Nav>
-            <hr />
-            <ButtonGroup>
-              <Button variant="outline-danger" onClick={handleLogout}>
-                Logout
-              </Button>
-            </ButtonGroup>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-          <h1 className="fw-bold">
-            Pharmora<span>.id</span>
-          </h1>
-        </Navbar.Brand>
+        <Nav className="ms-auto">
+          <Dropdown align="end">
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+              Profile
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/dashboard/my-profile">My Profile</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Nav>
       </Container>
     </Navbar>
   );

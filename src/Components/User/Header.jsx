@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Navbar,
   Container,
@@ -11,31 +11,13 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import "../../assets/css/Header.css";
 
-const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Header = ({
+  isAuthenticated
+}) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const token = localStorage.getItem("token");
-      setIsLoggedIn(!!token);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    setIsLoggedIn(false);
-    console.log("Logout sukses!");
-    navigate("/");
+    navigate('/logout');
   };
 
   return (
@@ -92,7 +74,7 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
               <hr />
-              {isLoggedIn ? (
+              {isAuthenticated ? (
                 <ButtonGroup>
                   <Button variant="outline-danger" onClick={handleLogout}>
                     Logout

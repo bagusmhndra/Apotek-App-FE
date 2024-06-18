@@ -1,170 +1,252 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
-  Breadcrumb,
-  Button,
   Table,
+  Button,
   Modal,
   Form,
+  Row,
+  Col,
+  Breadcrumb,
 } from "react-bootstrap";
+import api from "../../api";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 function ProductList() {
-  const initialProducts = [
-    {
-      id: 1,
-      name: "DegiroI 0,25 mg 10 Tablet",
-      description: "/Strip",
-      price: 16297,
-      stock: 100,
-      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp",
-    },
-    {
-      id: 2,
-      name: "Becom Zet 10 Kaplet",
-      description: "/Strip",
-      price: 34032,
-      stock: 200,
-      image: "https://res-1.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659931609_5fb3880f41ab59059e86a0ff ",
-    },
-    {
-      id: 3,
-      name: "Tempra Drop 15 ml",
-      description: "/Botol",
-      price: 64196,
-      stock: 200,
-      image: "https://res-2.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659933112_5fb3899241ab59059e86a4d1",
-    },
-    {
-      id: 4,
-      name: "Silex Sirup 100 ml",
-      description: "/Botol",
-      price: 101853,
-      stock: 200,
-      image: "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930406_5fb37b0841ab59059e8681ba",
-    },
-    {
-      id: 5,
-      name: "Shampo Sebamed",
-      description: "/Botol",
-      price: 236170,
-      stock: 200,
-      image: "https://res-3.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1701133331_untitled_design",
-    },
-    {
-      id: 6,
-      name: "Lacto B Sachet 1 gr",
-      description: "/Sachet",
-      price: 16297,
-      stock: 200,
-      image: "https://res-5.cloudinary.com/dk0z4ums3/image/upload/c_scale,h_500,w_500/v1/production/pharmacy/products/1659930651_5fb37f7041ab59059e868c57",
-    },
-  ];
-
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState("");
-  const [productData, setProductData] = useState({
-    id: "",
-    name: "",
-    description: "",
-    price: "",
-    stock: "",
+  const [newProduct, setNewProduct] = useState({
+    productName: "",
+    id_category: "",
     image: null,
+    desc: "",
+    indication: "",
+    composition: "",
+    dose: "",
+    howtouse: "",
+    effect: "-",
+    group: "",
+    nie: "",
+    price: 0,
   });
+  const [categories, setCategories] = useState([]);
 
-  const handleShowModal = (type, product) => {
-    setModalType(type);
-    if (type === "edit" && product) {
-      setProductData({ ...product, image: null });
+  useEffect(() => {
+    fetchProducts();
+    fetchCategories();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await api.get("/products");
+      setProducts(response.data.products);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to fetch products',
+        text: error.message,
+        confirmButtonColor: "#3B71CA",
+      });
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await api.get("/category");
+      setCategories(response.data.category);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to fetch categories',
+        text: error.message,
+        confirmButtonColor: "#3B71CA",
+      });
+    }
+  };
+
+  // Function to format price to IDR
+  const formatIDR = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(price);
+  };
+
+  // Modal handlers
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProduct(null); // Reset selected product after modal close
+    setNewProduct({
+      productName: "",
+      id_category: "",
+      image: null,
+      desc: "",
+      indication: "",
+      composition: "",
+      dose: "",
+      howtouse: "",
+      effect: "-",
+      group: "",
+      nie: "",
+      price: 0,
+    });
+  };
+
+  const handleShowModal = (product) => {
+    if (product) {
+      setSelectedProduct(product);
+      setNewProduct({ ...product }); // Set newProduct state for editing existing product
     } else {
-      setProductData({
-        id: "",
-        name: "",
-        description: "",
-        price: "",
-        stock: "",
+      setNewProduct({
+        productName: "",
+        id_category: "",
         image: null,
+        desc: "",
+        indication: "",
+        composition: "",
+        dose: "",
+        howtouse: "",
+        effect: "-",
+        group: "",
+        nie: "",
+        price: 0,
       });
     }
     setShowModal(true);
   };
 
-  const handleCloseModal = () => setShowModal(false);
-
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
+  // Form input change handler for new product
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
     if (name === "image") {
-      setProductData({ ...productData, image: files[0] });
+      setNewProduct({ ...newProduct, [name]: e.target.files[0] });
     } else {
-      setProductData({ ...productData, [name]: value });
+      setNewProduct({ ...newProduct, [name]: value });
     }
   };
 
-  const handleSubmit = (e) => {
+  // Handle submission of new product
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (modalType === "create") {
-      const newProduct = {
-        ...productData,
-        id: products.length + 1,
-        image: productData.image
-          ? URL.createObjectURL(productData.image)
-          : null,
-      };
-      setProducts([...products, newProduct]);
+    const formData = new FormData();
+    formData.append("productName", newProduct.productName);
+    formData.append("id_category", newProduct.id_category);
+    formData.append("image", newProduct.image);
+    formData.append("desc", newProduct.desc);
+    formData.append("indication", newProduct.indication);
+    formData.append("composition", newProduct.composition);
+    formData.append("dose", newProduct.dose);
+    formData.append("howtouse", newProduct.howtouse);
+    formData.append("effect", newProduct.effect);
+    formData.append("group", newProduct.group);
+    formData.append("nie", newProduct.nie);
+    formData.append("price", newProduct.price);
+
+    try {
+      const response = await api.post("/products", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       Swal.fire({
-        icon: "success",
-        title: "Product created!",
-        text: "Product has been created successfully.",
+        icon: 'success',
+        title: 'New product added successfully',
+        text: response.data.message,
         confirmButtonColor: "#3B71CA",
       });
-    } else if (modalType === "edit") {
-      const updatedProducts = products.map((product) =>
-        product.id === productData.id
-          ? {
-              ...productData,
-              image: productData.image
-                ? URL.createObjectURL(productData.image)
-                : product.image,
-            }
-          : product
-      );
-      setProducts(updatedProducts);
+      fetchProducts(); // Fetch products again to update the list
+      handleCloseModal(); // Close the modal after successful submission
+    } catch (error) {
       Swal.fire({
-        icon: "success",
-        title: "Product updated!",
-        text: "Product has been updated successfully.",
+        icon: 'error',
+        title: 'Failed to add new product',
+        text: error.message,
         confirmButtonColor: "#3B71CA",
       });
     }
-    handleCloseModal();
   };
 
-  const deleteProduct = (productId) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3B71CA",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+  // Handle editing of product
+  const handleEditProduct = async () => {
+    const formData = new FormData();
+    formData.append("productName", newProduct.productName);
+    formData.append("id_category", newProduct.id_category);
+    if (newProduct.image) {
+      formData.append("image", newProduct.image);
+    }
+    formData.append("desc", newProduct.desc);
+    formData.append("indication", newProduct.indication);
+    formData.append("composition", newProduct.composition);
+    formData.append("dose", newProduct.dose);
+    formData.append("howtouse", newProduct.howtouse);
+    formData.append("effect", newProduct.effect);
+    formData.append("group", newProduct.group);
+    formData.append("nie", newProduct.nie);
+    formData.append("price", newProduct.price);
+
+    try {
+      const response = await api.put(
+        `/products/${selectedProduct._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      Swal.fire({
+        icon: 'success',
+        title: 'Product updated successfully',
+        text: response.data.message,
+        confirmButtonColor: "#3B71CA",
+      });
+      fetchProducts(); // Fetch products again to update the list
+      handleCloseModal(); // Close the modal after successful update
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to update product',
+        text: error.message,
+        confirmButtonColor: "#3B71CA",
+      });
+    }
+  };
+
+  // Handle deletion of product
+  const handleDeleteProduct = async () => {
+    try {
+      const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        confirmButtonColor: "#3B71CA",
+      });
+
       if (result.isConfirmed) {
-        const updatedProducts = products.filter(
-          (product) => product.id !== productId
-        );
-        setProducts(updatedProducts);
+        const response = await api.delete(`/products/${selectedProduct._id}`);
         Swal.fire({
-          title: "Deleted!",
-          text: "Order berhasil di hapus!",
-          icon: "success",
+          icon: 'success',
+          title: 'Product deleted successfully',
+          text: response.data.message,
           confirmButtonColor: "#3B71CA",
         });
+        fetchProducts(); // Fetch products again to update the list
+        handleCloseModal(); // Close the modal after successful deletion
       }
-    });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to delete product',
+        text: error.message,
+        confirmButtonColor: "#3B71CA",
+      });
+    }
   };
 
   return (
@@ -179,123 +261,223 @@ function ProductList() {
             <Breadcrumb.Item active>Produk List</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className="productlist-title mt-4 mb-4">Product List</h2>
-          <Button className="mb-3" onClick={() => handleShowModal("create")}>
-            Add Product
+          <Button variant="primary" onClick={() => handleShowModal(null)}>
+            Tambah Produk
           </Button>
           <div className="table-responsive">
             <Table striped bordered hover className="table-product shadow">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Nama</th>
-                  <th>Deskripsi</th>
-                  <th>Harga</th>
-                  <th>Stok</th>
-                  <th>Gambar</th>
-                  <th>Action</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price (IDR)</th>
+                  <th>Nomor Ijin Edar</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {products.map((product, index) => (
-                  <tr key={product.id}>
-                    <td>{index + 1}</td>
-                    <td>{product.name}</td>
-                    <td>{product.description}</td>
-                    <td>{product.price}</td>
-                    <td>{product.stock}</td>
-                    <td>
-                      {product.image ? (
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          width="100"
-                        />
-                      ) : (
-                        "No Image"
-                      )}
-                    </td>
-                    <td>
-                      <Button
-                        variant="warning"
-                        onClick={() => handleShowModal("edit", product)}
-                      >
-                        Edit
-                      </Button>{" "}
-                      <Button
-                        variant="danger"
-                        onClick={() => deleteProduct(product.id)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+                {Array.isArray(products) &&
+                  products.map((product, index) => (
+                    <tr key={product._id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        {product.image ? (
+                          <img
+                            src={product.image}
+                            alt={product.productName}
+                            style={{ maxWidth: "100px" }}
+                          />
+                        ) : (
+                          "No Image"
+                        )}
+                      </td>
+                      <td>{product.productName}</td>
+                      <td>{product.id_category}</td>
+                      <td>{formatIDR(product.price)}</td>
+                      <td>{product.nie || "N/A"}</td>
+                      <td>
+                        <Button
+                          variant="info"
+                          size="sm"
+                          onClick={() => handleShowModal(product)}
+                        >
+                          View Detail
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </div>
         </Form>
       </Container>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+      {/* Modal for viewing and editing product */}
+      <Modal show={showModal} onHide={handleCloseModal} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>
-            {modalType === "create" ? "Add Product" : "Edit Product"}
-          </Modal.Title>
+          <Modal.Title>{selectedProduct ? 'Edit Product' : 'Add New Product'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formName" className="mb-3">
-              <Form.Label>Nama</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={productData.name}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="formDescription" className="mb-3">
-              <Form.Label>Deskripsi</Form.Label>
-              <Form.Control
-                type="text"
-                name="description"
-                value={productData.description}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="formPrice" className="mb-3">
-              <Form.Label>Harga</Form.Label>
-              <Form.Control
-                type="number"
-                name="price"
-                value={productData.price}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="formStock" className="mb-3">
-              <Form.Label>Stok</Form.Label>
-              <Form.Control
-                type="number"
-                name="stock"
-                value={productData.stock}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="formImage" className="mb-3">
-              <Form.Label>Gambar</Form.Label>
-              <Form.Control type="file" name="image" onChange={handleChange} />
-            </Form.Group>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseModal}>
-                Close
+          <Form onSubmit={selectedProduct ? handleEditProduct : handleSubmit}>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="formProductName">
+                  <Form.Label>Product Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter product name"
+                    name="productName"
+                    value={newProduct.productName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formCategory">
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="id_category"
+                    value={newProduct.id_category}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="">Select Category</option>
+                    {categories.map((category) => (
+                      <option key={category.id_category} value={category.id_category}>
+                        {category.name_category}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formPrice">
+                  <Form.Label>Price (IDR)</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Enter price"
+                    name="price"
+                    value={newProduct.price}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formImage">
+                  <Form.Label>Product Image</Form.Label>
+                  {newProduct.image && newProduct.image instanceof File ? (
+                    <div>
+                      <img src={URL.createObjectURL(newProduct.image)} alt="Product" style={{ maxWidth: '200px' }} />
+                    </div>
+                  ) : newProduct.image ? (
+                    <div>
+                      <img src={newProduct.image} alt="Product" style={{ maxWidth: '200px' }} />
+                    </div>
+                  ) : (
+                    <div>No Image</div>
+                  )}
+                  <Form.Control
+                    type="file"
+                    accept="image/jpeg, image/png"
+                    name="image"
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formIndication">
+                  <Form.Label>Indication</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter indication"
+                    name="indication"
+                    value={newProduct.indication}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formComposition">
+                  <Form.Label>Composition</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter composition"
+                    name="composition"
+                    value={newProduct.composition}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formDose">
+                  <Form.Label>Dose</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter dose"
+                    name="dose"
+                    value={newProduct.dose}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="formHowToUse">
+                  <Form.Label>How to Use</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter how to use"
+                    name="howtouse"
+                    value={newProduct.howtouse}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formEffect">
+                  <Form.Label>Effect</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter effect"
+                    name="effect"
+                    value={newProduct.effect}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formGroup">
+                  <Form.Label>Group</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter group"
+                    name="group"
+                    value={newProduct.group}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formNie">
+                  <Form.Label>Nomor Ijin Edar (NIE)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter NIE"
+                    name="nie"
+                    value={newProduct.nie}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Close
+            </Button>
+            <Button variant="primary" type="submit">
+              {selectedProduct ? 'Save Changes' : 'Add Product'}
+            </Button>
+            {selectedProduct && (
+              <Button variant="danger" onClick={handleDeleteProduct}>
+                Delete
               </Button>
-              <Button variant="primary" type="submit">
-                {modalType === "create" ? "Add Product" : "Save Changes"}
-              </Button>
-            </Modal.Footer>
+            )}
           </Form>
         </Modal.Body>
       </Modal>

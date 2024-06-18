@@ -1,24 +1,82 @@
-import React, { useState } from "react";
-import { Button, Container, Breadcrumb, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Container,
+  Breadcrumb,
+  Row,
+  Col,
+  Form,
+  Card,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import api from "../../api";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 function MyProfilePage() {
-  const [initialValues] = useState({
-    fullName: "Dewa Putra",
-    username: "dewaputra",
-    email: "dewaputra@gmail.com",
-    phoneNumber: "082465478654",
+  const [initialValues, setInitialValues] = useState({
+    fullName: "",
+    username: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
   });
 
   const [formData, setFormData] = useState({ ...initialValues });
-
   const [editMode, setEditMode] = useState(false);
 
-  const saveProfile = (event) => {
+  useEffect(() => {
+    // Fetch user data from the server
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get("/users/me");
+        const userData = response.data;
+        setInitialValues({
+          fullName: userData.fullName || "",
+          username: userData.username || "",
+          email: userData.email || "",
+          phoneNumber: userData.phone || "",
+          address: userData.address || "",
+        });
+        setFormData({
+          fullName: userData.fullName || "",
+          username: userData.username || "",
+          email: userData.email || "",
+          phoneNumber: userData.phone || "",
+          address: userData.address || "",
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed to fetch user data',
+          text: error.message,
+          confirmButtonColor: "#3B71CA",
+        });
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const saveProfile = async (event) => {
     event.preventDefault();
-    console.log("Profile updated:", formData);
-    setEditMode(false);
+    try {
+      await api.put("/users/updateUser", formData);
+      Swal.fire({
+        icon: 'success',
+        title: 'Profile updated successfully',
+        text: 'Your profile information has been updated.',
+        confirmButtonColor: "#3B71CA",
+      });
+      setEditMode(false);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to update profile',
+        text: error.message,
+        confirmButtonColor: "#3B71CA",
+      });
+    }
   };
 
   const cancelEdit = () => {
@@ -38,88 +96,119 @@ function MyProfilePage() {
             <Breadcrumb.Item active>My Profile</Breadcrumb.Item>
           </Breadcrumb>
           <h2 className="title-profile fw-bold">My Profile</h2>
-          <div className="flex-column flex-sm-row gap-3 gap-sm-5 rounded-2 mb-3 mt-3">
-            <div className="flex-column gap-2">
-              <Form.Group controlId="fullName" className="mb-3">
-                <Form.Label className="fw-semibold">Nama Lengkap</Form.Label>
+          <Card className="shadow border-0">
+            <Card.Body>
+              <h2
+                className="title-profile"
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "bold",
+                  marginBottom: "30px",
+                }}
+              >
+                My Profile
+              </h2>
+              <Form onSubmit={saveProfile}>
+                <Row className="mb-3">
+                  <Col md={6} className="mb-3">
+                    <Form.Group controlId="username">
+                      <Form.Label className="fw-semibold">Username</Form.Label>
+                      {editMode ? (
+                        <Form.Control
+                          type="text"
+                          value={formData.username}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              username: e.target.value,
+                            })
+                          }
+                          placeholder="Enter username"
+                        />
+                      ) : (
+                        <div>{formData.username}</div>
+                      )}
+                    </Form.Group>
+                  </Col>
+                  <Col md={6} className="mb-3">
+                    <Form.Group controlId="email">
+                      <Form.Label className="fw-semibold">
+                        Email Address
+                      </Form.Label>
+                      {editMode ? (
+                        <Form.Control
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
+                          placeholder="Enter email address"
+                        />
+                      ) : (
+                        <div>{formData.email}</div>
+                      )}
+                    </Form.Group>
+                  </Col>
+                  <Col md={6} className="mb-3">
+                    <Form.Group controlId="phoneNumber">
+                      <Form.Label className="fw-semibold">
+                        Phone Number
+                      </Form.Label>
+                      {editMode ? (
+                        <Form.Control
+                          type="tel"
+                          value={formData.phoneNumber}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              phoneNumber: e.target.value,
+                            })
+                          }
+                          placeholder="Enter phone number"
+                        />
+                      ) : (
+                        <div>{formData.phoneNumber}</div>
+                      )}
+                    </Form.Group>
+                  </Col>
+                  <Col md={6} className="mb-3">
+                    <Form.Group controlId="address">
+                      <Form.Label className="fw-semibold">Address</Form.Label>
+                      {editMode ? (
+                        <Form.Control
+                          type="text"
+                          value={formData.address}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              address: e.target.value,
+                            })
+                          }
+                          placeholder="Enter address"
+                        />
+                      ) : (
+                        <div>{formData.address}</div>
+                      )}
+                    </Form.Group>
+                  </Col>
+                </Row>
                 {editMode ? (
-                  <Form.Control
-                    type="text"
-                    value={formData.fullName}
-                    onChange={(e) =>
-                      setFormData({ ...formData, fullName: e.target.value })
-                    }
-                    placeholder="Enter name"
-                    autoFocus
-                  />
+                  <div className="d-flex justify-content-left text-center">
+                    <Button type="submit" variant="primary" className="me-3">
+                      Update
+                    </Button>
+                    <Button variant="secondary" onClick={cancelEdit}>
+                      Cancel
+                    </Button>
+                  </div>
                 ) : (
-                  <div>{formData.fullName}</div>
+                  <Button variant="primary" onClick={() => setEditMode(true)}>
+                    Edit
+                  </Button>
                 )}
-              </Form.Group>
-              <Form.Group controlId="username" className="mb-3">
-                <Form.Label className="fw-semibold">Username</Form.Label>
-                {editMode ? (
-                  <Form.Control
-                    type="text"
-                    value={formData.username}
-                    onChange={(e) =>
-                      setFormData({ ...formData, username: e.target.value })
-                    }
-                    placeholder="Enter username"
-                  />
-                ) : (
-                  <div>{formData.username}</div>
-                )}
-              </Form.Group>
-              <Form.Group controlId="email" className="mb-3">
-                <Form.Label className="fw-semibold">Email</Form.Label>
-                {editMode ? (
-                  <Form.Control
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    placeholder="Enter email address"
-                  />
-                ) : (
-                  <div>{formData.email}</div>
-                )}
-              </Form.Group>
-              <Form.Group controlId="phoneNumber" className="mb-3">
-                <Form.Label className="fw-semibold">No Handphone</Form.Label>
-                {editMode ? (
-                  <Form.Control
-                    type="number"
-                    value={formData.phoneNumber}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        phoneNumber: e.target.value,
-                      })
-                    }
-                    placeholder="Enter phone number"
-                  />
-                ) : (
-                  <div>{formData.phoneNumber}</div>
-                )}
-              </Form.Group>
-            </div>
-          </div>
-          {editMode ? (
-            <div className="d-flex justify-content-left text-center">
-              <Button type="submit" variant="primary" className="me-3">
-                Update
-              </Button>
-              <Button variant="secondary" onClick={cancelEdit}>
-                Cancel
-              </Button>
-            </div>
-          ) : (
-            <Button variant="primary" onClick={() => setEditMode(true)}>
-              Edit
-            </Button>
-          )}
+              </Form>
+            </Card.Body>
+          </Card>
         </Form>
       </Container>
     </>

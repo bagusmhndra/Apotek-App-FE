@@ -1,115 +1,80 @@
 import React, { useState } from 'react';
-import { useLocation,Link } from 'react-router-dom';
-import { Container, Row, Col, Card, Button, Form, ListGroup,Breadcrumb } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Card, Button, Form, ListGroup, Breadcrumb } from 'react-bootstrap';
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 
 const Cart = () => {
-  const location = useLocation();
-  const cart = location.state.cart || [];
   const [address, setAddress] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  
+  const products = [
+    {
+      id: 1,
+      name: "DegiroI 0,25 mg 10 Tablet",
+      price: 10000,
+      quantity: 1,
+      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp"
+    },
+    {
+        id: 1,
+        name: "DegiroI 0,25 mg 10 Tablet",
+        price: 10000,
+        quantity: 1,
+        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp"
+      },
+  ];
 
-  const formatRupiah = (number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
-    }).format(number);
-  };
-
-  const totalPesanan = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-  const ongkosKirim = 10000;
-  const totalBayar = totalPesanan + ongkosKirim;
-
-  const handlePayment = () => {
-    const waNumber = "6281292573422";
-    let message = `Halo, saya ingin melakukan pembelian dengan rincian sebagai berikut:\n\n`;
-    cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.product.title}\nJumlah: ${item.quantity}\nTotal: ${formatRupiah(item.product.price * item.quantity)}\n\n`;
-    });
-    message += `Total Pesanan: ${formatRupiah(totalPesanan)}\n`;
-    message += `Ongkos Kirim: ${formatRupiah(ongkosKirim)}\n`;
-    message += `Total Bayar: ${formatRupiah(totalBayar)}\n\n`;
-    message += `Dengan \n`;
-    message += `Nama: ${name}\n`;
-    message += `Nomor Telepon: ${phone}\n`;
-    message += `Alamat Pengiriman: ${address}\n`;
-
-    const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
-    window.open(waLink, '_blank');
-  };
+  const totalOrder = products.reduce((acc, product) => acc + product.price * product.quantity, 0);
+  const shippingCost = 10000;
+  const totalPayment = totalOrder + shippingCost;
 
   return (
     <>
       <Header />
       <Container className="mt-5">
-      <Row>
+        <Row>
           <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/products" }}>Kembali</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/category" }}>Kembali</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
-        <Row>
+        <Row className="mt-3">
           <Col md={8}>
-            <Card className="mb-4">
+            <Card>
               <Card.Body>
-                <Card.Title>Informasi Pengiriman</Card.Title>
+                <Card.Title>Keranjang</Card.Title>
                 <Form>
-                  <Form.Group controlId="formName">
-                    <Form.Label className="mt-3">Nama Penerima</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Tambahkan Nama"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formPhone">
-                    <Form.Label className="mt-3">Nomor Telepon</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Tambahkan Nomor Telepon"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </Form.Group>
                   <Form.Group controlId="formAddress">
                     <Form.Label className="mt-3">Alamat Pengiriman</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Tambahkan Alamat"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
+                    <Form.Control 
+                      type="text" 
+                      placeholder="Tambahkan Alamat" 
+                      value={address} 
+                      onChange={(e) => setAddress(e.target.value)} 
                     />
                   </Form.Group>
                 </Form>
-              </Card.Body>
-            </Card>
-
-            <Card>
-              <Card.Body>
-                <Card.Title>Produk</Card.Title>
-                {cart.length === 0 ? (
-                  <p>Keranjang belanja Anda kosong.</p>
-                ) : (
-                  cart.map((item, index) => (
-                    <Row key={index} className="mb-3">
-                      <Col md={2}>
-                        <img src={item.product.image} className="img-fluid" alt={item.product.title} />
-                      </Col>
-                      <Col xs={8}>
-                        <Card.Title>{item.product.title}</Card.Title>
-                        <Card.Text>Jumlah: {item.quantity}</Card.Text>
-                        <Card.Text>Total: {formatRupiah(item.product.price * item.quantity)}</Card.Text>
-                      </Col>
-                    </Row>
-                  ))
-                )}
+                <Card className="mt-4">
+                  <Card.Body>
+                    <Card.Title>Produk</Card.Title>
+                    <ListGroup variant="flush">
+                      {products.map(product => (
+                        <ListGroup.Item key={product.id}>
+                          <Row>
+                            <Col md={2}>
+                              <img src={product.image} className="img-fluid" alt={product.name} />
+                            </Col>
+                            <Col md={6}>{product.name}</Col>
+                            <Col md={2}>Rp {product.price.toLocaleString()}</Col>
+                            <Col md={2}>x {product.quantity}</Col>
+                          </Row>
+                        </ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  </Card.Body>
+                </Card>
               </Card.Body>
             </Card>
           </Col>
-
           <Col md={4}>
             <Card>
               <Card.Body>
@@ -118,23 +83,23 @@ const Cart = () => {
                   <ListGroup.Item>
                     <Row>
                       <Col>Total Pesanan</Col>
-                      <Col>{formatRupiah(totalPesanan)}</Col>
+                      <Col>Rp {totalOrder.toLocaleString()}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
                       <Col>Ongkos Kirim</Col>
-                      <Col>{formatRupiah(ongkosKirim)}</Col>
+                      <Col>Rp {shippingCost.toLocaleString()}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
                       <Col>Total Bayar</Col>
-                      <Col>{formatRupiah(totalBayar)}</Col>
+                      <Col>Rp {totalPayment.toLocaleString()}</Col>
                     </Row>
                   </ListGroup.Item>
                 </ListGroup>
-                <Button variant="primary" className="w-100 mt-3" onClick={handlePayment}>
+                <Button variant="primary" className="w-100 mt-3" block>
                   Lanjutkan Pembayaran
                 </Button>
               </Card.Body>

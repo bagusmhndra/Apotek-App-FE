@@ -4,13 +4,15 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
+import api from '../api';
 
 const Register = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
@@ -39,21 +41,14 @@ const Register = () => {
       return;
     }
     try {
-      const response = await fetch(
-        "https://a76e-2a09-bac5-3a04-1d05-00-2e4-15.ngrok-free.app/users/register",
-        {
-          method: "POST",
-          body: JSON.stringify({ username, email, password, phone }),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Akun sudah terdaftar");
+      const response = await api.post('/users/register', { username, email, password, phone, address }); // Include address
+      if (response.status === 201) {
+        navigate('/login');
+      } else {
+        throw new Error('Registration failed');
       }
-      navigate("/");
     } catch (error) {
-      setError(error.message || "Register gagal");
+      setError(error.response?.data?.message || 'Registration failed');
     }
   };
 
@@ -73,7 +68,7 @@ const Register = () => {
           <Form.Group controlId="formBasicUser">
             <Form.Label>Username</Form.Label>
             <Form.Control
-              type="string"
+              type="text"
               placeholder="Enter username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -95,10 +90,21 @@ const Register = () => {
           <Form.Group controlId="formBasicPhone">
             <Form.Label>Phone</Form.Label>
             <Form.Control
-              type="number"
+              type="tel"
               placeholder="Enter phone number"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="mb-2"
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicAddress">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
               className="mb-2"
               required
             />

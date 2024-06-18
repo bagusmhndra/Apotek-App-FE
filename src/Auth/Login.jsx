@@ -3,6 +3,7 @@ import { Container, Form, Button, Alert, Card } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import "../assets/css/Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../api";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -16,48 +17,27 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    console.log("Login button clicked");
-
     try {
-      const response = await fetch(
-        "https://a76e-2a09-bac5-3a04-1d05-00-2e4-15.ngrok-free.app/users/login",
-        {
-          method: "POST",
-          body: JSON.stringify({ username, password }),
-          headers: { "Content-Type": "application/json" },
+      const response = await api.post("/users/login", { username, password });
+      if (response.status === 200) {
+        const userData = response.data; // Assuming API returns user data with role and token
+        const token = userData.token;
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("userData", JSON.stringify(userData.user));
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        if (
+          userData.user.role === "Admin" ||
+          userData.user.role === "Superadmin"
+        ) {
+          navigate("/dashboard");
+        } else {
+          navigate("/");
         }
-      );
-      console.log("Response received");
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Login failed:", errorData.message);
-        throw new Error(errorData.message || "Username atau Password salah");
+      } else {
+        throw new Error("Username atau Password salah");
       }
-
-      const data = await response.json();
-      console.log("Login successful:", data);
-
-      // Pastikan respons mengandung properti "role"
-      //if (!data.role) {
-      //  throw new Error("Role information missing in response.");
-      //}
-
-      // Simpan token dan role di localStorage
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.role);
-
-      // Arahkan berdasarkan role pengguna
-      //if (data.role === "User") {
-        console.log("Navigating to /");
-        navigate("/");
-      //} else if (data.role === "Admin" || data.role === "Superadmin") {
-      //  console.log("Navigating to /dashboard");
-      //  navigate("/dashboard");
-      //}
     } catch (error) {
-      console.error("Error during login:", error);
-      setError(error.message || "Login gagal");
+      setError(error.response?.data?.message || "Login failed");
     }
   };
 
