@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import {
   Facebook,
@@ -12,6 +12,14 @@ import {
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+    window.location.href = gmailUrl;
+  };
+
   return (
     <footer className="bg-primary text-center text-lg-start text-light">
       <Container className="text-center text-md-start mt-5 ">
@@ -67,17 +75,21 @@ const Footer = () => {
             </p>
             <p>
               <Link as={Link} to="/contact" className="text-reset">
-                Chat Kami
+                Kontak Kami
               </Link>
             </p>
             <p>
-              <Link as={Link} to="/category" className="text-reset">
-                Kategori
+              <Link as={Link} to="/products" className="text-reset">
+                Produk
               </Link>
             </p>
             <p>
-              <Link as={Link} to="/diagnosis" className="text-reset">
-                Diagnosis
+              <Link
+                as={Link}
+                to="https://www.biofarma.co.id/id/artikel-kesehatan"
+                className="text-reset"
+              >
+                Artikel
               </Link>
             </p>
           </Col>
@@ -105,7 +117,7 @@ const Footer = () => {
                 Subscribe to our newsletter to get our news & discounts
                 delivered to you.
               </p>
-              <form action="#!">
+              <form onSubmit={handleSubmit}>
                 <div className="row gy-4">
                   <div className="col-12">
                     <div className="input-group">
@@ -119,7 +131,8 @@ const Footer = () => {
                         type="email"
                         className="form-control"
                         id="email-newsletter"
-                        value=""
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email Address"
                         aria-label="email-newsletter"
                         aria-describedby="email-newsletter-addon"
