@@ -40,7 +40,7 @@ const Register = () => {
     }
     try {
       const response = await fetch(
-        "https://e8c1-2a09-bac5-3a02-18be-00-277-1.ngrok-free.app/users/register",
+        "https://a76e-2a09-bac5-3a04-1d05-00-2e4-15.ngrok-free.app/users/register",
         {
           method: "POST",
           body: JSON.stringify({ username, email, password, phone }),
@@ -49,7 +49,7 @@ const Register = () => {
       );
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Register gagal");
+        throw new Error(errorData.message || "Akun sudah terdaftar");
       }
       navigate("/");
     } catch (error) {

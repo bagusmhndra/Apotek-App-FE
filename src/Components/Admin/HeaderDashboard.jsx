@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Navbar,
   Container,
@@ -11,57 +11,43 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../assets/css/Header.css";
 
 const HeaderDashboard = () => {
-  const [userRole, setUserRole] = useState("");
   const navigate = useNavigate();
+  /*
+  const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
-    const fetchUserRole = async () => {
-      try {
-        const response = await fetch("https://e8c1-2a09-bac5-3a02-18be-00-277-1.ngrok-free.app/users", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-        });
-        console.log("Response received");
-
-        if (response.ok) {
-          const data = await response.json();
-          setUserRole(data.role); // Assuming your API returns { role: "Admin" } or { role: "Superadmin" }
-        } else {
-          throw new Error("Failed to fetch user role");
-        }
-      } catch (error) {
-        console.error("Error fetching user role:", error);
-        navigate("/login");
-      }
-    };
-
-    fetchUserRole();
+    // Mengambil peran pengguna dari localStorage
+    const role = localStorage.getItem("role");
+    if (role) {
+      setUserRole(role);
+    } else {
+      navigate("/login");
+    }
   }, [navigate]);
-
-  // Function to handle logout
+*/
+  // Fungsi untuk menangani logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    console.log("Logout sukses!");
+    console.log("Logout successful!");
     navigate("/");
   };
+  
+  
 
   return (
-    <Navbar expand="lg" className="mb-3 navbar-container" sticky="top">
+    <Navbar expand="l" className="mb-3 navbar-container" sticky="top">
       <Container fluid className="left-container">
-        <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-lg`} />
+        <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-l`} />
         <Navbar.Offcanvas
-          id={`offcanvasNavbarLabel-expand-lg`}
-          aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+          id={`offcanvasNavbarLabel-expand-l`}
+          aria-labelledby={`offcanvasNavbarLabel-expand-l`}
           placement="start"
           className="offcanvas-animation"
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title
-              id={`offcanvasNavbarLabel-expand-lg`}
+              id={`offcanvasNavbarLabel-expand-l`}
               className="d-flex align-items-center"
             >
               <h3 className="fw-bold">
@@ -78,35 +64,19 @@ const HeaderDashboard = () => {
               <Nav.Link as={Link} to="/dashboard/my-profile">
                 Profile
               </Nav.Link>
-              {userRole === "Admin" && (
-                <>
-                  <Nav.Link as={Link} to="/dashboard/user-list">
-                    User List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/order-list">
-                    Order List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/product-list">
-                    Product List
-                  </Nav.Link>
-                </>
-              )}
-              {userRole === "Superadmin" && (
-                <>
-                  <Nav.Link as={Link} to="/dashboard/user-list">
-                    User List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/add-admin">
-                    Add Admin
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/order-list">
-                    Order List
-                  </Nav.Link>
-                  <Nav.Link as={Link} to="/dashboard/product-list">
-                    Product List
-                  </Nav.Link>
-                </>
-              )}
+              <Nav.Link as={Link} to="/dashboard/order-list">
+                Order List
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/product-list">
+                Product List
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/user-list">
+                User List
+              </Nav.Link>
+              <Nav.Link as={Link} to="/dashboard/add-admin">
+                Add Admin
+              </Nav.Link>
+
               <Nav.Link as={Link} to="/dashboard/settings">
                 Settings
               </Nav.Link>

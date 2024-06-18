@@ -7,26 +7,26 @@ import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 const staticUsers = [
   {
     id: 1,
-    username: "ani.puspita",
-    fullname: "Ani Puspita",
+    username: "bagaspras",
+    fullname: "Bagas Pradipa S.",
     phone: "0812-3456-7890",
-    email: "ani.puspita@example.co.id",
-    address: "Jl. Merdeka No. 123, Jakarta"
+    email: "bagaspras@gmail.com",
+    address: "Jl. Pucang Gading, Demak"
   },
   {
     id: 2,
-    username: "budi.jaya",
-    fullname: "Budi Jaya",
+    username: "ani.puspita",
+    fullname: "Ani Puspita",
     phone: "0877-9876-5432",
-    email: "budi.jaya@example.co.id",
-    address: "Jl. Pahlawan No. 45, Bandung"
+    email: "ani.puspita@gmail.com",
+    address: "Jl. Merdeka No. 123, Jakarta"
   },
   {
     id: 3,
     username: "citra.ramdhani",
     fullname: "Citra Ramdhani",
     phone: "0856-1234-5678",
-    email: "citra.ramdhani@example.co.id",
+    email: "citra.ramdhani@gmail.com",
     address: "Jl. Diponegoro No. 78, Yogyakarta"
   },
   {
@@ -34,7 +34,7 @@ const staticUsers = [
     username: "dewi.sari",
     fullname: "Dewi Sari",
     phone: "0813-8765-4321",
-    email: "dewi.sari@example.co.id",
+    email: "dewi.sari@gmail.com",
     address: "Jl. Kencana No. 9, Surabaya"
   },
   {
@@ -42,7 +42,7 @@ const staticUsers = [
     username: "erwin.putra",
     fullname: "Erwin Putra",
     phone: "0899-2345-6789",
-    email: "erwin.putra@example.co.id",
+    email: "erwin.putra@gmail.com",
     address: "Jl. Merah No. 12, Medan"
   }
 ];

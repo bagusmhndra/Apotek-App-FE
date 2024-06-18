@@ -8,7 +8,6 @@ const staticOrders = [
   {
     id: 1,
     customerName: "Budi Santoso",
-    email: "budi.santoso@example.co.id",
     phoneNumber: "0812-3456-7890",
     address: "Jl. Merdeka No. 123, Jakarta",
     totalPrice: "250000",
@@ -17,7 +16,6 @@ const staticOrders = [
   {
     id: 2,
     customerName: "Citra Ramadhani",
-    email: "citra.ramadhani@example.co.id",
     phoneNumber: "0877-9876-5432",
     address: "Jl. Pahlawan No. 45, Bandung",
     totalPrice: "350000",
@@ -26,7 +24,6 @@ const staticOrders = [
   {
     id: 3,
     customerName: "Dewi Sari",
-    email: "dewi.sari@example.co.id",
     phoneNumber: "0856-1234-5678",
     address: "Jl. Diponegoro No. 78, Yogyakarta",
     totalPrice: "150000",
@@ -35,7 +32,6 @@ const staticOrders = [
   {
     id: 4,
     customerName: "Eka Prasetyo",
-    email: "eka.prasetyo@example.co.id",
     phoneNumber: "0813-8765-4321",
     address: "Jl. Kencana No. 9, Surabaya",
     totalPrice: "500000",
@@ -44,7 +40,6 @@ const staticOrders = [
   {
     id: 5,
     customerName: "Fitriani Putri",
-    email: "fitriani.putri@example.co.id",
     phoneNumber: "0899-2345-6789",
     address: "Jl. Merah No. 12, Medan",
     totalPrice: "180000",
@@ -53,7 +48,6 @@ const staticOrders = [
   {
     id: 6,
     customerName: "Hendri Susanto",
-    email: "hendri.susanto@example.co.id",
     phoneNumber: "0812-3456-7890",
     address: "Jl. Cendana No. 7, Jakarta",
     totalPrice: "300000",
@@ -62,7 +56,6 @@ const staticOrders = [
   {
     id: 7,
     customerName: "Ines Amelia",
-    email: "ines.amelia@example.co.id",
     phoneNumber: "0877-9876-5432",
     address: "Jl. Kartini No. 15, Bandung",
     totalPrice: "280000",
@@ -71,7 +64,6 @@ const staticOrders = [
   {
     id: 8,
     customerName: "Joko Santoso",
-    email: "joko.santoso@example.co.id",
     phoneNumber: "0856-1234-5678",
     address: "Jl. Darmo No. 3, Surabaya",
     totalPrice: "200000",
@@ -80,7 +72,6 @@ const staticOrders = [
   {
     id: 9,
     customerName: "Kartika Putri",
-    email: "kartika.putri@example.co.id",
     phoneNumber: "0813-8765-4321",
     address: "Jl. Majapahit No. 21, Semarang",
     totalPrice: "150000",
@@ -141,7 +132,6 @@ function OrderListPage() {
                   <th>#</th>
                   <th>Order ID</th>
                   <th>Nama Pelanggan</th>
-                  <th>Email</th>
                   <th>No Handphone</th>
                   <th>Alamat</th>
                   <th>Total Harga</th>
@@ -155,7 +145,6 @@ function OrderListPage() {
                     <td>{index + 1}</td>
                     <td>{order.id}</td>
                     <td>{order.customerName}</td>
-                    <td>{order.email}</td>
                     <td>{order.phoneNumber}</td>
                     <td>{order.address}</td>
                     <td>{order.totalPrice}</td>

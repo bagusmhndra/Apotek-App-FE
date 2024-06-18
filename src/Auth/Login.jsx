@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "https://e8c1-2a09-bac5-3a02-18be-00-277-1.ngrok-free.app/users/login",
+        "https://a76e-2a09-bac5-3a04-1d05-00-2e4-15.ngrok-free.app/users/login",
         {
           method: "POST",
           body: JSON.stringify({ username, password }),
@@ -32,29 +32,29 @@ const Login = () => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Login failed:", errorData.message);
-        throw new Error(errorData.message || "Login gagal");
+        throw new Error(errorData.message || "Username atau Password salah");
       }
 
       const data = await response.json();
       console.log("Login successful:", data);
 
       // Pastikan respons mengandung properti "role"
-      if (!data.role) {
-        throw new Error("Role information missing in response.");
-      }
+      //if (!data.role) {
+      //  throw new Error("Role information missing in response.");
+      //}
 
       // Simpan token dan role di localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
 
       // Arahkan berdasarkan role pengguna
-      if (data.role === "User") {
+      //if (data.role === "User") {
         console.log("Navigating to /");
         navigate("/");
-      } else if (data.role === "Admin" || data.role === "Superadmin") {
-        console.log("Navigating to /dashboard");
-        navigate("/dashboard");
-      }
+      //} else if (data.role === "Admin" || data.role === "Superadmin") {
+      //  console.log("Navigating to /dashboard");
+      //  navigate("/dashboard");
+      //}
     } catch (error) {
       console.error("Error during login:", error);
       setError(error.message || "Login gagal");
