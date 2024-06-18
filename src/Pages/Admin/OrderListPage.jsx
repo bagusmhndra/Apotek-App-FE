@@ -105,7 +105,12 @@ function OrderListPage() {
 
       if (result.isConfirmed) {
         setOrders(orders.filter((order) => order.id !== orderId));
-        Swal.fire("Deleted!", "Order has been deleted.", "success");
+        Swal.fire({
+          title: "Deleted!",
+          text: "Order berhasil di hapus!",
+          icon: "success",
+          confirmButtonColor: "#3B71CA",
+        });
       }
     } catch (error) {
       Swal.fire({

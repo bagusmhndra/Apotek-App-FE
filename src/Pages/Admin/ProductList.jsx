@@ -157,7 +157,12 @@ function ProductList() {
           (product) => product.id !== productId
         );
         setProducts(updatedProducts);
-        Swal.fire("Deleted!", "Product has been deleted.", "success");
+        Swal.fire({
+          title: "Deleted!",
+          text: "Order berhasil di hapus!",
+          icon: "success",
+          confirmButtonColor: "#3B71CA",
+        });
       }
     });
   };

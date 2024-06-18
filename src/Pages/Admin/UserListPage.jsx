@@ -118,7 +118,12 @@ function UserList() {
     }).then((result) => {
       if (result.isConfirmed) {
         setUsers(users.filter((user) => user.id !== userId));
-        Swal.fire("Deleted!", "User has been deleted.", "success");
+        Swal.fire({
+          title: "Deleted!",
+          text: "Order berhasil di hapus!",
+          icon: "success",
+          confirmButtonColor: "#3B71CA",
+        });
       }
     });
   };
