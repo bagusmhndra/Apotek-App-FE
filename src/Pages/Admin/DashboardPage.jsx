@@ -6,19 +6,19 @@ import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 const users = [
   {
     id: 1,
-    username: "ani.puspita",
-    fullname: "Ani Puspita",
+    username: "bagaspras",
+    fullname: "Bagas Pradipa S.",
     phone: "0812-3456-7890",
-    email: "ani.puspita@example.co.id",
-    address: "Jl. Merdeka No. 123, Jakarta",
+    email: "bagaspras@gmail.com",
+    address: "Jl. Pucang Gading, Demak"
   },
   {
     id: 2,
-    username: "budi.jaya",
-    fullname: "Budi Jaya",
+    username: "ani.puspita",
+    fullname: "Ani Puspita",
     phone: "0877-9876-5432",
-    email: "budi.jaya@example.co.id",
-    address: "Jl. Pahlawan No. 45, Bandung",
+    email: "ani.puspita@gmail.com",
+    address: "Jl. Merdeka No. 123, Jakarta"
   },
   {
     id: 3,
