@@ -8,7 +8,7 @@ import Login from './Auth/Login';
 import Register from './Auth/Register';
 import ForgotPassword from './Auth/ForgotPassword';
 import Logout from './Auth/Logout';
-import AdminRoute from './Auth/AdminRoute';
+//import AdminRoute from './Auth/AdminRoute';
 
 // PAGES
 import Home from './Pages/User/Home';
@@ -51,12 +51,12 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />} />
 
           {/* DASHBOARD */}
-          <Route path="/dashboard" element={<AdminRoute element={<DashboardPage />} />} />
-          <Route path="/dashboard/my-profile" element={<AdminRoute element={<MyProfilePage />} />} />
-          <Route path="/dashboard/product-list" element={<AdminRoute element={<ProductList />} />} />
-          <Route path="/dashboard/user-list" element={<AdminRoute element={<UserListPage />} />} />
-          <Route path="/dashboard/category-list" element={<AdminRoute element={<CategoryListPage />} />} />
-          <Route path="/dashboard/order-list" element={<AdminRoute element={<OrderListPage />} />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/dashboard/my-profile" element={<MyProfilePage />} />
+          <Route path="/dashboard/product-list" element={<ProductList />} />
+          <Route path="/dashboard/user-list" element={<UserListPage />} />
+          <Route path="/dashboard/category-list" element={<CategoryListPage />} />
+          <Route path="/dashboard/order-list" element={<OrderListPage />} />
         </Routes>
       </div>
     </Router>

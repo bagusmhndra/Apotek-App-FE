@@ -90,9 +90,9 @@ function OrderListPage() {
             </Breadcrumb.Item>
             <Breadcrumb.Item active>Order List</Breadcrumb.Item>
           </Breadcrumb>
-          <h2 className="orderlist-title mt-4 mb-4">Order List</h2>
+          <h3 className="orderlist-title mt-4 mb-4">Order List</h3>
           <div className="table-responsive">
-            <Table striped bordered hover className="mt-3">
+            <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>#</th>

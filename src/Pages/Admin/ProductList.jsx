@@ -258,10 +258,10 @@ function ProductList() {
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>Produk List</Breadcrumb.Item>
+            <Breadcrumb.Item active>Product List</Breadcrumb.Item>
           </Breadcrumb>
-          <h2 className="productlist-title mt-4 mb-4">Product List</h2>
-          <Button variant="primary" onClick={() => handleShowModal(null)}>
+          <h3 className="productlist-title mt-4 mb-4">Product List</h3>
+          <Button className="mb-3" onClick={() => handleShowModal(null)}>
             Tambah Produk
           </Button>
           <div className="table-responsive">

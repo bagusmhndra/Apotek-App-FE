@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Card, Alert } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
-import api from '../api';
+import api from "../api";
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -16,14 +15,6 @@ const Register = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
 
   //PASSWORD ICON
   const [showPassword, setShowPassword] = useState(false);
@@ -41,14 +32,20 @@ const Register = () => {
       return;
     }
     try {
-      const response = await api.post('/users/register', { username, email, password, phone, address }); // Include address
+      const response = await api.post("/users/register", {
+        username,
+        email,
+        password,
+        phone,
+        address,
+      }); // Include address
       if (response.status === 201) {
-        navigate('/login');
+        navigate("/login");
       } else {
-        throw new Error('Registration failed');
+        throw new Error("Registration failed");
       }
     } catch (error) {
-      setError(error.response?.data?.message || 'Registration failed');
+      setError(error.response?.data?.message || "Registration failed");
     }
   };
 
@@ -88,7 +85,7 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group controlId="formBasicPhone">
-            <Form.Label>Phone</Form.Label>
+            <Form.Label>Phone Number</Form.Label>
             <Form.Control
               type="tel"
               placeholder="Enter phone number"
@@ -116,7 +113,7 @@ const Register = () => {
                 type={showPassword ? "string" : "password"}
                 placeholder="Enter password"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 className="mb-2"
                 required
               />
@@ -137,7 +134,7 @@ const Register = () => {
                 type={showConfirmPassword ? "string" : "password"}
                 placeholder="Enter confirm password"
                 value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               <Button
@@ -159,7 +156,6 @@ const Register = () => {
         <div className="mt-3 text-center">
           Sudah punya akun?
           <Button variant="link" as={Link} to="/login">
-            {" "}
             Login
           </Button>
         </div>

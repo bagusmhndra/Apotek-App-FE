@@ -21,7 +21,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-center text-lg-start text-light">
+    <footer className="bg-primary text-center text-lg-start text-light" /*fixed="bottom"*/ >
       <Container className="text-center text-md-start mt-5 ">
         <section className="d-flex justify-content-between align-items-center p-4 mb-0 border-bottom">
           <div className="me-5 d-none d-lg-block">

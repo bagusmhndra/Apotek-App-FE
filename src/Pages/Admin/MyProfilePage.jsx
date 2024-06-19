@@ -95,19 +95,9 @@ function MyProfilePage() {
             </Breadcrumb.Item>
             <Breadcrumb.Item active>My Profile</Breadcrumb.Item>
           </Breadcrumb>
-          <h2 className="title-profile fw-bold">My Profile</h2>
-          <Card className="shadow border-0">
+          <h3 className="myprofile-title mt-4 mb-4">My Profile</h3>
+          <Card className="border-0">
             <Card.Body>
-              <h2
-                className="title-profile"
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "bold",
-                  marginBottom: "30px",
-                }}
-              >
-                My Profile
-              </h2>
               <Form onSubmit={saveProfile}>
                 <Row className="mb-3">
                   <Col md={6} className="mb-3">

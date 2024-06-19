@@ -64,7 +64,7 @@ const Dashboard = () => {
       <HeaderDashboard />
       <Container>
         <Form className="p-5 flex-column gap-3 shadow">
-          <h2 className="orderlist-title mb-4">Dashboard</h2>
+          <h3 className="orderlist-title mb-4">Dashboard</h3>
 
           <Row>
             <Col md={4}>

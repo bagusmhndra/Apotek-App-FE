@@ -70,7 +70,7 @@ function UserList() {
             </Breadcrumb.Item>
             <Breadcrumb.Item active>User List</Breadcrumb.Item>
           </Breadcrumb>
-          <h2 className="userlist-title mt-4 mb-4">User List</h2>
+          <h3 className="userlist-title mt-4 mb-4">User List</h3>
           <div className="table-responsive">
             <Table striped bordered hover className="table-user shadow">
               <thead>
