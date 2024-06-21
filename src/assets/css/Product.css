@@ -1,0 +1,36 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-title {
+  margin: 10px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.product-price {
+  margin-bottom: auto; /* Ini akan mendorong tombol ke bawah */
+}
+
+.detail-button {
+  align-self: center;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+}

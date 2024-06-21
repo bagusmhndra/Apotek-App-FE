@@ -3,16 +3,16 @@ import { Carousel, Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
-import carousel01 from "../../assets/img/carousel01.png";
-import carousel02 from "../../assets/img/carousel02.png";
-import carousel03 from "../../assets/img/carousel03.png";
-import diagnosis01 from "../../assets/img/diagnosis01.png";
-import diagnosis02 from "../../assets/img/diagnosis02.png";
-import diagnosis03 from "../../assets/img/diagnosis03.png";
-import diagnosis04 from "../../assets/img/diagnosis04.png";
-import diagnosis05 from "../../assets/img/diagnosis05.png";
-import diagnosis06 from "../../assets/img/diagnosis06.png";
-import "../../assets/css/Home.css";
+import carousel01 from "../../Assets/img/carousel01.png";
+import carousel02 from "../../Assets/img/carousel02.png";
+import carousel03 from "../../Assets/img/carousel03.png";
+import diagnosis01 from "../../Assets/img/diagnosis01.png";
+import diagnosis02 from "../../Assets/img/diagnosis02.png";
+import diagnosis03 from "../../Assets/img/diagnosis03.png";
+import diagnosis04 from "../../Assets/img/diagnosis04.png";
+import diagnosis05 from "../../Assets/img/diagnosis05.png";
+import diagnosis06 from "../../Assets/img/diagnosis06.png";
+import "../../Assets/css/Home.css";
 import api from "../../api";
 
 const Home = () => {
@@ -24,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await api.get('/products');
+        const response = await api.get("/products");
         setProducts(response.data.products);
       } catch (error) {
         console.error("There was an error fetching the products!", error);
@@ -37,9 +37,9 @@ const Home = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await api.get('/category');
+        const response = await api.get("/category");
         setCategories(response.data.category);
-        console.log(setCategories)
+        console.log(setCategories);
       } catch (error) {
         console.error("There was an error fetching the categories!", error);
       }
@@ -102,16 +102,15 @@ const Home = () => {
     },
   ];
 
-  const formatRupiah = (number) => {
+  const handleProductClick = (product) => {
+    navigate(`/products/detail-product/${product._id}`); // Navigate to detail page with product ID
+  };
+
+  const formatIDR = (price) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
-      minimumFractionDigits: 0,
-    }).format(number);
-  };
-
-  const handleProductClick = (product) => {
-    navigate("/products/detail-product", { state: { product } });
+    }).format(price);
   };
 
   return (
@@ -170,7 +169,7 @@ const Home = () => {
                     >
                       <Card.Body className="d-flex flex-column align-items-center">
                         <div className="display-6 category-icon">
-                          {category.icon || "📦"} {/* Placeholder icon */}
+                          {category.icon || "💊"} {/* Placeholder icon */}
                         </div>
                         <Card.Title className="mt-3 category-name">
                           {category.name_category}
@@ -201,7 +200,7 @@ const Home = () => {
                   as={Link}
                   to="https://www.biofarma.co.id/id/artikel-kesehatan"
                 >
-                  See All
+                  Lihat Semua
                 </Button>
               </Col>
             </Row>
@@ -252,37 +251,40 @@ const Home = () => {
                   as={Link}
                   to="/products"
                 >
-                  See All
+                  Lihat Semua
                 </Button>
               </Col>
             </Row>
 
             <Row className="g-3 justify-content-center">
-              {products.slice(0, 6).map((product, index) => (
+              {products.map((item, index) => (
                 <Col
                   xs={12}
                   sm={6}
                   md={4}
                   lg={2}
-                  key={product.id}
+                  key={index}
                   className="d-flex justify-content-center"
                 >
                   <Card
-                    className="product-card h-100 border-0"
-                    onClick={() => handleProductClick(product)}
+                    className="product-card h-100 border-0 shadow"
+                    onClick={() => handleProductClick(item)}
                   >
                     <Card.Img
                       variant="top"
-                      src={`${product.image}`}
-                      className="product-card-img"
+                      src={item.image}
+                      className="product-card-img p-3"
                     />
-                    <Card.Body className="d-flex flex-column justify-content-between">
+                    <Card.Body>
                       <Card.Title className="product-name">
-                        {product.productName}
+                        {item.productName}
                       </Card.Title>
                       <Card.Text className="product-price">
-                        {formatRupiah(product.price)}
+                        {formatIDR(item.price)}
                       </Card.Text>
+                      <Button variant="outline-primary" className="pe-3 ps-3">
+                        Detail
+                      </Button>
                     </Card.Body>
                   </Card>
                 </Col>

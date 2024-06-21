@@ -1,51 +1,29 @@
-import React, { useState } from "react";
-import { Container, Form, Button, Card, Alert } from "react-bootstrap";
-import { Eye, EyeSlash } from "react-bootstrap-icons";
-import { Link, useNavigate } from "react-router-dom";
-import "../assets/css/Register.css";
-import api from "../api";
+import React, { useState } from 'react';
+import { Container, Form, Button, Alert, Card } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../api';  // Import the Axios instance
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [address, setAddress] = useState(''); // New state for address
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  //PASSWORD ICON
-  const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const toggleConfirmPasswordVisibility = () =>
-    setShowConfirmPassword(!showConfirmPassword);
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccessMessage("");
-    if (password !== confirmPassword) {
-      setError("Password confirmation does not match");
-      return;
-    }
+    setError('');
     try {
-      const response = await api.post("/users/register", {
-        username,
-        email,
-        password,
-        phone,
-        address,
-      }); // Include address
+      const response = await api.post('/users/register', { username, email, password, phone, address }); // Include address
       if (response.status === 201) {
-        navigate("/login");
+        navigate('/login');
       } else {
-        throw new Error("Registration failed");
+        throw new Error('Registration failed');
       }
     } catch (error) {
-      setError(error.response?.data?.message || "Registration failed");
+      setError(error.response?.data?.message || 'Registration failed');
     }
   };
 
@@ -60,9 +38,8 @@ const Register = () => {
       <Card className="p-4 border-0 shadow">
         <h3 className="pb-3">Register</h3>
         {error && <Alert variant="danger">{error}</Alert>}
-        {successMessage && <Alert variant="success">{successMessage}</Alert>}
         <Form onSubmit={handleRegister}>
-          <Form.Group controlId="formBasicUser">
+          <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
@@ -84,7 +61,18 @@ const Register = () => {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formBasicPhone">
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mb-2"
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPhoneNumber">
             <Form.Label>Phone Number</Form.Label>
             <Form.Control
               type="tel"
@@ -95,7 +83,7 @@ const Register = () => {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formBasicAddress">
+          <Form.Group controlId="formBasicAddress"> {/* New address field */}
             <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
@@ -106,55 +94,14 @@ const Register = () => {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <div className="input-group">
-              <Form.Control
-                type={showPassword ? "string" : "password"}
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mb-2"
-                required
-              />
-              <Button
-                variant="outline-primary"
-                className="mb-2"
-                onClick={togglePasswordVisibility}
-                aria-label={showPassword ? "Hide password" : "Show password"}
-              >
-                {showPassword ? <EyeSlash /> : <Eye />}
-              </Button>
-            </div>
-          </Form.Group>
-          <Form.Group controlId="formBasicConfirmPassword">
-            <Form.Label>Password Confirmation</Form.Label>
-            <div className="input-group">
-              <Form.Control
-                type={showConfirmPassword ? "string" : "password"}
-                placeholder="Enter confirm password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-              <Button
-                variant="outline-primary"
-                onClick={toggleConfirmPasswordVisibility}
-                aria-label={
-                  showConfirmPassword ? "Hide password" : "Show password"
-                }
-              >
-                {showConfirmPassword ? <EyeSlash /> : <Eye />}
-              </Button>
-            </div>
-          </Form.Group>
-
-          <Button variant="primary" type="submit" className="mt-3">
-            Daftar
-          </Button>
+          <div className="d-flex justify-content-between mt-3">
+            <Button variant="primary" type="submit">
+              Register
+            </Button>
+          </div>
         </Form>
         <div className="mt-3 text-center">
-          Sudah punya akun?
+          Already have an account?
           <Button variant="link" as={Link} to="/login">
             Login
           </Button>

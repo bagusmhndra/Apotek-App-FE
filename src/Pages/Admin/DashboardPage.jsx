@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import api from '../../api';
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Table,
+} from "react-bootstrap";
+import Swal from "sweetalert2";
+import api from "../../api";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
-  const navigate = useNavigate();
+  const [totalOrders, setTotalOrders] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);
 
   useEffect(() => {
     fetchUsers();
@@ -23,8 +26,8 @@ const Dashboard = () => {
       setUsers(response.data.slice(0, 3)); // Display first 3 users
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to fetch users',
+        icon: "error",
+        title: "Failed to fetch users",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -37,8 +40,8 @@ const Dashboard = () => {
       setProducts(response.data.products.slice(0, 3)); // Display first 3 products
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to fetch products',
+        icon: "error",
+        title: "Failed to fetch products",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -48,11 +51,21 @@ const Dashboard = () => {
   const fetchOrders = async () => {
     try {
       const response = await api.get("/order/all");
-      setOrders(response.data.slice(0, 3)); // Display first 3 orders
+      const ordersData = response.data.slice(0, 3); // Display first 3 orders
+      setOrders(ordersData);
+
+      // Calculate total orders and total revenue
+      const totalOrdersCount = response.data.length;
+      const totalRevenueAmount = response.data.reduce(
+        (acc, order) => acc + order.total,
+        0
+      );
+      setTotalOrders(totalOrdersCount);
+      setTotalRevenue(totalRevenueAmount);
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to fetch orders',
+        icon: "error",
+        title: "Failed to fetch orders",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -63,68 +76,93 @@ const Dashboard = () => {
     <>
       <HeaderDashboard />
       <Container>
-        <Form className="p-5 flex-column gap-3 shadow">
+        <div className="p-5 flex-column gap-3 shadow">
           <h3 className="orderlist-title mb-4">Dashboard</h3>
 
-          <Row>
-            <Col md={4}>
-              <Card>
-                <Card.Header>User List</Card.Header>
-                <Card.Body>
-                  {users.map((user) => (
-                    <div key={user._id}>
-                      <p>{user.username}</p>
-                    </div>
-                  ))}
-                  <Button
-                    variant="primary"
-                    onClick={() => navigate("/dashboard/user-list")}
-                  >
-                    Show More
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4}>
-              <Card>
-                <Card.Header>Product List</Card.Header>
-                <Card.Body>
-                  {products.map((product) => (
-                    <div key={product._id}>
-                      <p>{product.productName}</p>
-                      <p>{product.price}</p>
-                    </div>
-                  ))}
-                  <Button
-                    variant="primary"
-                    onClick={() => navigate("/dashboard/product-list")}
-                  >
-                    Show More
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4}>
-              <Card>
-                <Card.Header>Order List</Card.Header>
-                <Card.Body>
-                  {orders.map((order) => (
-                    <div key={order._id}>
-                      <p>{order.createdAt}</p>
-                      <p>{order.total}</p>
-                    </div>
-                  ))}
-                  <Button
-                    variant="primary"
-                    onClick={() => navigate("/dashboard/order-list")}
-                  >
-                    Show More
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Form>
+          <Table striped bordered hover className="table-order">
+            <thead>
+              <tr>
+                <th colSpan="2">Summary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Total Order</td>
+                <td>{totalOrders}</td>
+              </tr>
+              <tr>
+                <td>Total Penghasilan</td>
+                <td>Rp{totalRevenue},00</td>
+              </tr>
+            </tbody>
+          </Table>
+
+          <Table striped bordered hover className="mt-4">
+            <thead>
+              <tr>
+                <th colSpan="2">Produk List</th>
+              </tr>
+              <tr>
+                <th>Nama</th>
+                <th>Harga</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr>
+                  <td>{product.productName}</td>
+                  <td>Rp{product.price},00</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+
+          <div className="table-responsive">
+            <Table striped bordered hover className="mt-3">
+              <thead>
+                <tr>
+                  <th colSpan="6">User List</th>
+                </tr>
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>No Handphone</th>
+                  <th>Alamat</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr>
+                    <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td>{user.phone}</td>
+                    <td>{user.address}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+
+          <Table striped bordered hover className="mt-3">
+            <thead>
+              <tr>
+                <th colSpan="2">Order List</th>
+              </tr>
+              <tr>
+                <th>Tanggal</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id}>
+                  <td>{order.createdAt}</td>
+                  <td>Rp{order.total},00</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </Container>
     </>
   );

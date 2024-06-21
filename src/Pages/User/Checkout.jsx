@@ -1,32 +1,67 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Button, Form, ListGroup, Breadcrumb } from 'react-bootstrap';
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
+import api from '../../api'; // Import the API instance
 
 const Cart = () => {
   const [address, setAddress] = useState('');
-  
-  const products = [
-    {
-      id: 1,
-      name: "DegiroI 0,25 mg 10 Tablet",
-      price: 10000,
-      quantity: 1,
-      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp"
-    },
-    {
-        id: 1,
-        name: "DegiroI 0,25 mg 10 Tablet",
-        price: 10000,
-        quantity: 1,
-        image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp"
-      },
-  ];
+  const [products, setProducts] = useState([]);
+  const [totalOrder, setTotalOrder] = useState(0);
+  const navigate = useNavigate();
+  const crispScriptRef = useRef(null);
 
-  const totalOrder = products.reduce((acc, product) => acc + product.price * product.quantity, 0);
-  const shippingCost = 10000;
-  const totalPayment = totalOrder + shippingCost;
+  useEffect(() => {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
+    crispScriptRef.current = document.createElement("script");
+    crispScriptRef.current.src = "https://client.crisp.chat/l.js";
+    crispScriptRef.current.async = 1;
+    document
+      .getElementsByTagName("head")[0]
+      .appendChild(crispScriptRef.current);
+
+    return () => {
+      if (crispScriptRef.current) {
+        document
+          .getElementsByTagName("head")[0]
+          .removeChild(crispScriptRef.current);
+        delete window.$crisp;
+        delete window.CRISP_WEBSITE_ID;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // Fetch cart items from the backend
+    const fetchCartItems = async () => {
+      try {
+        const response = await api.get('/cart'); // Fetching the cart from the backend
+        setProducts(response.data.items);
+        const total = response.data.items.reduce((acc, product) => acc + product.product.price * product.quantity, 0);
+        setTotalOrder(total);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  const totalPayment = totalOrder;
+
+  const handleCheckout = async () => {
+    try {
+      const response = await api.post('/order/checkout', { address });
+      console.log(response)
+      if (response.status === 201) {
+        navigate('/order-success', { state: { order: response.data.order } });
+      }
+    } catch (error) {
+      console.error('Error during checkout:', error);
+    }
+  };
 
   return (
     <>
@@ -34,7 +69,7 @@ const Cart = () => {
       <Container className="mt-5">
         <Row>
           <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/category" }}>Kembali</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/products" }}>Kembali</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
         <Row className="mt-3">
@@ -47,6 +82,7 @@ const Cart = () => {
                     <Form.Label className="mt-3">Alamat Pengiriman</Form.Label>
                     <Form.Control 
                       type="text" 
+                      required
                       placeholder="Tambahkan Alamat" 
                       value={address} 
                       onChange={(e) => setAddress(e.target.value)} 
@@ -58,13 +94,13 @@ const Cart = () => {
                     <Card.Title>Produk</Card.Title>
                     <ListGroup variant="flush">
                       {products.map(product => (
-                        <ListGroup.Item key={product.id}>
+                        <ListGroup.Item key={product.product._id}>
                           <Row>
                             <Col md={2}>
-                              <img src={product.image} className="img-fluid" alt={product.name} />
+                              <img src={product.product.image} className="img-fluid" alt={product.product.name} />
                             </Col>
-                            <Col md={6}>{product.name}</Col>
-                            <Col md={2}>Rp {product.price.toLocaleString()}</Col>
+                            <Col md={6}>{product.product.productName}</Col>
+                            <Col md={2}>Rp {product.product.price.toLocaleString()}</Col>
                             <Col md={2}>x {product.quantity}</Col>
                           </Row>
                         </ListGroup.Item>
@@ -87,10 +123,6 @@ const Cart = () => {
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <Row>
-                      <Col>Ongkos Kirim</Col>
-                      <Col>Rp {shippingCost.toLocaleString()}</Col>
-                    </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
@@ -99,7 +131,7 @@ const Cart = () => {
                     </Row>
                   </ListGroup.Item>
                 </ListGroup>
-                <Button variant="primary" className="w-100 mt-3" block>
+                <Button variant="primary" className="w-100 mt-3" onClick={handleCheckout}>
                   Lanjutkan Pembayaran
                 </Button>
               </Card.Body>

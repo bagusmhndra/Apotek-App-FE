@@ -4,7 +4,7 @@ import { CapsulePill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
-import "../../assets/css/NotFoundPage.css";
+import "../../Assets/css/NotFoundPage.css";
 
 const NotFoundPage = () => {
   return (

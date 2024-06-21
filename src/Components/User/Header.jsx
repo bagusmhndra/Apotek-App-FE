@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Container,
@@ -6,17 +6,25 @@ import {
   Button,
   ButtonGroup,
   Offcanvas,
+  Dropdown,
 } from "react-bootstrap";
+import { PersonFill } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/img/logo.png";
-import "../../assets/css/Header.css";
+import logo from "../../Assets/img/logo.png";
+import "../../Assets/css/Header.css";
 
-const Header = ({
-  isAuthenticated
-}) => {
+const Header = () => {
+  const [authToken, setAuthToken] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    setAuthToken(token);
+  }, []);
+
   const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setAuthToken(null);
     navigate('/logout');
   };
 
@@ -74,19 +82,25 @@ const Header = ({
                 </Nav.Link>
               </Nav>
               <hr />
-              {isAuthenticated ? (
-                <ButtonGroup>
-                  <Button variant="outline-danger" onClick={handleLogout}>
-                    Logout
-                  </Button>
-                </ButtonGroup>
+              {authToken ? (
+                <Dropdown align="end">
+                <Dropdown.Toggle as={Button} variant="outline-light" id="dropdown-basic" className="profile-btn d-flex align-items-center border-0">
+                  <PersonFill size={30} />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={Link} to="/user-profile">Profil Saya</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/my-order">Data Order</Dropdown.Item> {/* Tambahkan link ke Order List */}
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
               ) : (
                 <>
                   <ButtonGroup as={Link} to="/login" className="me-2">
-                    <Button variant="primary" className="ps-3 pe-3">Masuk</Button>
+                    <Button variant="primary">Masuk</Button>
                   </ButtonGroup>
                   <ButtonGroup as={Link} to="/register">
-                    <Button variant="outline-primary" className="ps-3 pe-3">Daftar</Button>
+                    <Button variant="outline-primary">Daftar</Button>
                   </ButtonGroup>
                 </>
               )}

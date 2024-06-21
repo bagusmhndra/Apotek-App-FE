@@ -1,13 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Image, Card } from "react-bootstrap";
 import { StarFill, Star } from "react-bootstrap-icons";
-import about01 from "../../assets/img/about01.png";
-import about02 from "../../assets/img/about02.png";
-import testimonials01 from "../../assets/img/testimonial-img-1.png";
-import testimonials02 from "../../assets/img/testimonial-img-2.png";
-import testimonials03 from "../../assets/img/testimonial-img-3.png";
-import testimonials04 from "../../assets/img/testimonial-img-4.png";
-import "../../assets/css/About.css";
+import about01 from "../../Assets/img/about01.png";
+import about02 from "../../Assets/img/about02.png";
+import testimonials01 from "../../Assets/img/testimonial-img-1.png";
+import testimonials02 from "../../Assets/img/testimonial-img-2.png";
+import testimonials03 from "../../Assets/img/testimonial-img-3.png";
+import testimonials04 from "../../Assets/img/testimonial-img-4.png";
+import "../../Assets/css/About.css";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 
@@ -171,7 +171,7 @@ const About = () => {
           <Row>
             <Col xs={12} md={10} lg={8}>
               <h3 className="fs-4 mb-3 text-secondary text-uppercase">
-                Testimonials
+                Testimonial
               </h3>
             </Col>
           </Row>
@@ -198,7 +198,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Luna John</h4>
+                      <h4 className="mb-1 h5">Salsabila</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pelanggan Setia
                       </h5>
@@ -225,7 +225,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Mark Smith</h4>
+                      <h4 className="mb-1 h5">Farel</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pengguna Pertama Kali
                       </h5>
@@ -251,7 +251,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Michael Wilson</h4>
+                      <h4 className="mb-1 h5">Orvala Putra</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pengguna Aktif
                       </h5>
@@ -277,7 +277,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Luke Reeves</h4>
+                      <h4 className="mb-1 h5">Novita</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pelanggan Aktif
                       </h5>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import {
   Facebook,
@@ -12,16 +12,8 @@ import {
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
-    window.location.href = gmailUrl;
-  };
-
   return (
-    <footer className="bg-primary text-center text-lg-start text-light" /*fixed="bottom"*/ >
+    <footer className="bg-primary text-center text-lg-start text-light">
       <Container className="text-center text-md-start mt-5 ">
         <section className="d-flex justify-content-between align-items-center p-4 mb-0 border-bottom">
           <div className="me-5 d-none d-lg-block">
@@ -79,23 +71,19 @@ const Footer = () => {
               </Link>
             </p>
             <p>
-              <Link as={Link} to="/products" className="text-reset">
+              <Link as={Link} to="/category" className="text-reset">
                 Produk
               </Link>
             </p>
             <p>
-              <Link
-                as={Link}
-                to="https://www.biofarma.co.id/id/artikel-kesehatan"
-                className="text-reset"
-              >
+              <Link as={Link} to="https://www.biofarma.co.id/id/artikel-kesehatan" className="text-reset">
                 Artikel
               </Link>
             </p>
           </Col>
 
           <Col md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
-            <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+            <h6 className="text-uppercase fw-bold mb-4">Kontak</h6>
             <p>
               <House color="white" className="me-3" />
               Jakarta, Indonesia
@@ -112,12 +100,11 @@ const Footer = () => {
 
           <Col md="3" lg="3" xl="4" className="mx-auto mb-md-0 mb-4">
             <div className="widget">
-              <h6 className="text-uppercase fw-bold mb-4">Our Newsletter</h6>
+              <h6 className="text-uppercase fw-bold mb-4">Berita Kami</h6>
               <p className="mb-4">
-                Subscribe to our newsletter to get our news & discounts
-                delivered to you.
+                Langganan dengan berita kami agar mendapatkan info diskon kami.
               </p>
-              <form onSubmit={handleSubmit}>
+              <form action="#!">
                 <div className="row gy-4">
                   <div className="col-12">
                     <div className="input-group">
@@ -131,9 +118,8 @@ const Footer = () => {
                         type="email"
                         className="form-control"
                         id="email-newsletter"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email Address"
+                        value=""
+                        placeholder="Email"
                         aria-label="email-newsletter"
                         aria-describedby="email-newsletter-addon"
                         required
@@ -147,7 +133,7 @@ const Footer = () => {
                         type="submit"
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
                       >
-                        Subscribe
+                        Langganan
                       </Button>
                     </div>
                   </div>
@@ -159,8 +145,8 @@ const Footer = () => {
       </Container>
 
       <div className="text-center p-4 border-top">
-        © {new Date().getFullYear()} Copyright:
-        <Link as={Link} to="/" className="text-reset fw-semibold ms-2">
+        © 2024 Copyright:
+        <Link as={Link} to="/" className="text-reset fw-bold ms-2">
           Pharmora.id
         </Link>
       </div>

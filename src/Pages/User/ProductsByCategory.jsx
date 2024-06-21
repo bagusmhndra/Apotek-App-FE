@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../../api";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
@@ -9,8 +9,31 @@ const ProductsByCategory = () => {
   const { id_category } = useParams();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState(null); // State to store category information
-  const [categories, setCategories] = useState([]); // State to store categories
+  const [category, setCategory] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const crispScriptRef = useRef(null);
+
+  //Chat
+  useEffect(() => {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
+    crispScriptRef.current = document.createElement("script");
+    crispScriptRef.current.src = "https://client.crisp.chat/l.js";
+    crispScriptRef.current.async = 1;
+    document
+      .getElementsByTagName("head")[0]
+      .appendChild(crispScriptRef.current);
+
+    return () => {
+      if (crispScriptRef.current) {
+        document
+          .getElementsByTagName("head")[0]
+          .removeChild(crispScriptRef.current);
+        delete window.$crisp;
+        delete window.CRISP_WEBSITE_ID;
+      }
+    };
+  }, []);
 
   // Fetch products based on category
   const fetchProductsByCategory = useCallback(async () => {

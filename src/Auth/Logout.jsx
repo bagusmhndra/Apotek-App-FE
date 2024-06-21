@@ -14,7 +14,7 @@ const Logout = () => {
     delete api.defaults.headers.common['Authorization'];
 
     // Redirect to the login page
-    navigate('/login');
+    navigate('/');
   }, [navigate]);
 
   return null;

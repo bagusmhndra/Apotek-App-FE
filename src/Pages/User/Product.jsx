@@ -1,19 +1,41 @@
-import React, { useEffect, useState } from "react";
-import api from '../../api';
+import React, { useEffect, useState, useRef } from "react";
+import api from "../../api";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
+//import "../../Assets/css/Product.css";
 
 const Product = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const crispScriptRef = useRef(null);
 
-  const fetchAllProduct = async (category) => {
+  useEffect(() => {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
+    crispScriptRef.current = document.createElement("script");
+    crispScriptRef.current.src = "https://client.crisp.chat/l.js";
+    crispScriptRef.current.async = 1;
+    document
+      .getElementsByTagName("head")[0]
+      .appendChild(crispScriptRef.current);
+
+    return () => {
+      if (crispScriptRef.current) {
+        document
+          .getElementsByTagName("head")[0]
+          .removeChild(crispScriptRef.current);
+        delete window.$crisp;
+        delete window.CRISP_WEBSITE_ID;
+      }
+    };
+  }, []);
+
+  const fetchAllProduct = async () => {
     try {
       const response = await api.get(`/products`);
       setProducts(response.data.products);
-      console.log(setProducts)
     } catch (error) {
       console.error("Error fetching products", error);
     }
@@ -24,13 +46,13 @@ const Product = () => {
   }, []);
 
   const handleProductClick = (product) => {
-    navigate("/products/detail-product", { state: { product } });
+    navigate(`/products/detail-product/${product._id}`); // Navigate to detail page with product ID
   };
 
   const formatIDR = (price) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
     }).format(price);
   };
 
@@ -62,21 +84,17 @@ const Product = () => {
                     <Card.Img
                       variant="top"
                       src={item.image}
-                      className="product-card-img"
+                      className="product-card-img p-3"
                     />
                     <Card.Body>
                       <Card.Title className="product-name">
                         {item.productName}
                       </Card.Title>
-                      {/* <Card.Text className="product-description">
-                        {item.desc}
-                      </Card.Text> */}
                       <Card.Text className="product-price">
                         {formatIDR(item.price)}
                       </Card.Text>
-
                       <Button variant="outline-primary" className="pe-3 ps-3">
-                        + Tambah
+                        Detail
                       </Button>
                     </Card.Body>
                   </Card>

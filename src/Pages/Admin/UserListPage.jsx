@@ -63,7 +63,7 @@ function UserList() {
     <>
       <HeaderDashboard />
       <Container>
-        <Form className="p-5 flex-column gap-3 shadow">
+        <div className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
@@ -110,7 +110,7 @@ function UserList() {
               </tbody>
             </Table>
           </div>
-        </Form>
+        </div>
       </Container>
 
       <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>

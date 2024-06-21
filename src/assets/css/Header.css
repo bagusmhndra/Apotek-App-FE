@@ -27,6 +27,18 @@
   color: #3B71CA;
 }
 
+.profile-btn {
+  font-size: 16px;
+  margin-right: 15px;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.profile-btn:hover {
+  color: #3B71CA;
+  background-color: transparent;
+}
+
 /* Misc */
 .offcanvas-animation {
   transition: transform 0.3s ease-in-out;

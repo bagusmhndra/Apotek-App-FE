@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Plus, Dash, Cart4 } from "react-bootstrap-icons";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Plus, Dash } from "react-bootstrap-icons";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 import {
@@ -11,34 +11,66 @@ import {
   Image,
   Button,
 } from "react-bootstrap";
-import "../../assets/css/DetailProduct.css";
+import "../../Assets/css/DetailProduct.css";
+import api from "../../api";
+import FloatingCart from "../../Components/User/FloatingCart";
+import { CartContext } from "../../Contexts/CartContext";
 
 const DetailProduct = () => {
-  const { state } = useLocation();
-  const { product } = state || {
-    product: {
-      image: "https://d2qjkwm11akmwu.cloudfront.net/products/862528_2-4-2019_10-31-18-1665793368.webp", // Placeholder image
-      title: "DegiroI 0,25 mg 10 Tablet",
-      price: "10000" 
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [itemCount, setItemCount] = useState(1);
+  const { addToCart } = useContext(CartContext);
+  const crispScriptRef = useRef(null);
+
+  useEffect(() => {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
+    crispScriptRef.current = document.createElement("script");
+    crispScriptRef.current.src = "https://client.crisp.chat/l.js";
+    crispScriptRef.current.async = 1;
+    document
+      .getElementsByTagName("head")[0]
+      .appendChild(crispScriptRef.current);
+
+    return () => {
+      if (crispScriptRef.current) {
+        document
+          .getElementsByTagName("head")[0]
+          .removeChild(crispScriptRef.current);
+        delete window.$crisp;
+        delete window.CRISP_WEBSITE_ID;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await api.get(`/products/${id}`);
+        setProduct(response.data.product);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  const formatIDR = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(price);
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      await addToCart(id, itemCount);
+      setItemCount(1); // Reset itemCount after adding to cart
+    } catch (error) {
+      console.error("Error adding to cart:", error);
     }
-  };
-
-  const [itemCount, setItemCount] = useState(0);
-  const [cartCount, setCartCount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  const formatRupiah = (number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
-    }).format(number);
-  };
-
-  const handleAddToCart = () => {
-    setCartCount(cartCount + itemCount);
-    setTotalPrice(totalPrice + (itemCount * parseFloat(product.price)));
-    setItemCount(0);  // Reset itemCount after adding to cart
   };
 
   const handleIncrement = () => {
@@ -46,107 +78,88 @@ const DetailProduct = () => {
   };
 
   const handleDecrement = () => {
-    if (itemCount > 0) {
+    if (itemCount > 1) {
       setItemCount(itemCount - 1);
     }
   };
 
   return (
     <>
-    <Header />
-    <Container className="detail-product-container">
-      <Breadcrumb className="breadcrumb">
-        <Breadcrumb.Item  linkAs={Link} linkProps={{ to: "/" }}>
-          Beranda
-        </Breadcrumb.Item>
-        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/category" }}>
-          Kategori
-        </Breadcrumb.Item>
-        <Breadcrumb.Item active>{product.title}</Breadcrumb.Item>
-      </Breadcrumb>
-      <Row className="detail-product">
-        <Col md={4} className="detail-product-image">
-          <Image src={product.image} alt={product.title} fluid />
-        </Col>
-        <Col md={8} className="product-details">
-          <h3>{product.title}</h3>
-          <h4 className="detail-product-price">
-            <span>{formatRupiah(product.price)}</span>
-          </h4>
-          <p className="per-strip">Per STRIP</p>
-          <div className="detail-product-actions">
-            <Button
-              variant="primary"
-              className="cart-button"
-              onClick={handleAddToCart}
-            >
-              + Tambah ke Keranjang
-            </Button>
-            <div className="d-flex justify-content-between align-items-center mt-2">
-              <Button
-                variant="outline-primary"
-                className="cart-button"
-                onClick={handleDecrement}
-              >
-                <Dash />
-              </Button>
-              <span>{itemCount}</span>
-              <Button
-                variant="primary"
-                className="cart-button"
-                onClick={handleIncrement}
-              >
-                <Plus />
-              </Button>
-            </div>
-          </div>
-          <hr />
-          <div className="product-deskripsi">
-            <h3>Deskripsi</h3>
-            <h4>Indikasi / Kegunaan</h4>
-            <p>Suplemen serat</p>
-            <h4>Kandungan / Komposisi</h4>
-            <p>Derivat Arabinoxylan 250 mg</p>
-            <h4>Dosis</h4>
-            <p>2-4 tablet per hari</p>
-            <h4>Cara Pemakaian</h4>
-            <p>-</p>
-            <h4>Kemasan</h4>
-            <p>Dus, 5 strip @ 4 tablet</p>
-            <h4>Golongan</h4>
-            <p>Suplemen & Vitamin</p>
-            <h4>Perlu Resep</h4>
-            <p>Tidak</p>
-            <h4>Kontraindikasi / Jangan digunakan oleh</h4>
-            <p>
-              Pasien dengan riwayat alergi atau hipersensitifitas terhadap
-              kandungan produk ini
-            </p>
-            <h4>Efek Samping</h4>
-            <p>-</p>
-            <h4>Perhatian Khusus</h4>
-            <p>
-              Simpan di tempat kering dan sejuk, serta terhindar dari panas
-              sinar matahari langsung
-            </p>
-            <h4>Principal</h4>
-            <p>PT. Ferron Par Pharmaceuticals</p>
-            <h4>Nomor Ijin Edar (NIE)</h4>
-            <p>SI054521661</p>
-          </div>
-        </Col>
-      </Row>
-      <div className="cart-icon">
-        <Cart4 size={50} />
-        {cartCount > 0 && (
-          <>
-            <span className="cart-count">{cartCount}</span>
-            <span className="cart-price">{formatRupiah(totalPrice)}</span>
-          </>
+      <Header />
+      <FloatingCart />
+      <Container className="detail-product-container">
+        <Breadcrumb className="breadcrumb">
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+            Beranda
+          </Breadcrumb.Item>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/products" }}>
+            Produk
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>{product?.productName}</Breadcrumb.Item>
+        </Breadcrumb>
+        {product ? (
+          <Row className="detail-product">
+            <Col md={4} className="detail-product-image">
+              <Image src={product.image} alt={product.productName} fluid />
+            </Col>
+            <Col md={8} className="product-details">
+              <h3>{product.productName}</h3>
+              <h4 className="detail-product-price">
+                <span>{formatIDR(product.price)}</span>
+              </h4>
+              <p className="per-strip">Per STRIP</p>
+              <div className="detail-product-actions">
+                <Button
+                  variant="primary"
+                  className="cart-button"
+                  onClick={handleAddToCart}
+                >
+                  + Tambah ke Keranjang
+                </Button>
+                <div className="d-flex justify-content-between align-items-center">
+                  <Button
+                    variant="outline-primary"
+                    className="cart-button me-3"
+                    onClick={handleDecrement}
+                  >
+                    <Dash />
+                  </Button>
+                  <span>{itemCount}</span>
+                  <Button
+                    variant="primary"
+                    className="cart-button ms-3"
+                    onClick={handleIncrement}
+                  >
+                    <Plus />
+                  </Button>
+                </div>
+              </div>
+              <hr />
+              <div className="product-deskripsi">
+                <h3>Deskripsi</h3>
+                <p>{product.desc}</p>
+                <h4>Indikasi / Kegunaan</h4>
+                <p>{product.indication}</p>
+                <h4>Kandungan / Komposisi</h4>
+                <p>{product.composition}</p>
+                <h4>Dosis</h4>
+                <p>{product.dose}</p>
+                <h4>Cara Pemakaian</h4>
+                <p>{product.howtouse}</p>
+                <h4>Golongan</h4>
+                <p>{product.group}</p>
+                <h4>Efek Samping</h4>
+                <p>{product.effect}</p>
+                <h4>Nomor Ijin Edar (NIE)</h4>
+                <p>{product.nie}</p>
+              </div>
+            </Col>
+          </Row>
+        ) : (
+          <p>Loading...</p>
         )}
-      </div>
-    </Container>
-    <Footer />
+      </Container>
+      <Footer />
     </>
   );
 };

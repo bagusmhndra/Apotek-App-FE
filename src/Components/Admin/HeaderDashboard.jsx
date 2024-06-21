@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import { PersonCircle } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
-import "../../assets/css/Header.css";
+import "../../Assets/css/Header.css";
 
 const HeaderDashboard = () => {
   const navigate = useNavigate();

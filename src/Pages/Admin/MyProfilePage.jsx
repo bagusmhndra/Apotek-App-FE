@@ -47,8 +47,8 @@ function MyProfilePage() {
         });
       } catch (error) {
         Swal.fire({
-          icon: 'error',
-          title: 'Failed to fetch user data',
+          icon: "error",
+          title: "Failed to fetch user data",
           text: error.message,
           confirmButtonColor: "#3B71CA",
         });
@@ -63,16 +63,16 @@ function MyProfilePage() {
     try {
       await api.put("/users/updateUser", formData);
       Swal.fire({
-        icon: 'success',
-        title: 'Profile updated successfully',
-        text: 'Your profile information has been updated.',
+        icon: "success",
+        title: "Profile updated successfully",
+        text: "Your profile information has been updated.",
         confirmButtonColor: "#3B71CA",
       });
       setEditMode(false);
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to update profile',
+        icon: "error",
+        title: "Failed to update profile",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -88,7 +88,7 @@ function MyProfilePage() {
     <>
       <HeaderDashboard />
       <Container>
-        <Form className="p-5 flex-column gap-3 shadow" onSubmit={saveProfile}>
+        <div className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
@@ -199,7 +199,7 @@ function MyProfilePage() {
               </Form>
             </Card.Body>
           </Card>
-        </Form>
+        </div>
       </Container>
     </>
   );
