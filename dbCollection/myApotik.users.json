@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "6670f3115a56c2c98bef34f8"
+  },
+  "username": "admin",
+  "email": "admin@gmail.com",
+  "password": "$2a$10$y4btP3b.2O.quVWVJmnjbOf33me1.eXryVlp3Do32jNME91p0rGq2",
+  "role": "Admin",
+  "phone": "0892171236",
+  "address": "Jakarta",
+  "createdAt": {
+    "$date": "2024-06-18T02:38:09.502Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-18T06:34:55.330Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670f34a5a56c2c98bef34fc"
+  },
+  "username": "superadmin",
+  "email": "superadmin@gmail.com",
+  "password": "$2a$10$AJZId3gOxtyCwJTa.zGbwuudP.sCJXhkP99YN8tsbsfi99BvpoQtq",
+  "role": "Superadmin",
+  "phone": "081234567",
+  "address": "Bogor",
+  "createdAt": {
+    "$date": "2024-06-18T02:39:07.183Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-18T02:39:07.183Z"
+  },
+  "__v": 0
+}]

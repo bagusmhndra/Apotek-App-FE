@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "666bb629fe402a1a705dbe63"
+  },
+  "id_category": "BTK",
+  "name_category": "Obat Batuk",
+  "createdAt": {
+    "$date": "2024-06-14T03:16:58.011Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T03:16:58.011Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666bb634fe402a1a705dbe65"
+  },
+  "id_category": "SPL",
+  "name_category": "Suplemen",
+  "createdAt": {
+    "$date": "2024-06-14T03:17:08.422Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T03:17:08.422Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666bb668fe402a1a705dbe67"
+  },
+  "id_category": "NTR",
+  "name_category": "Nutrisi",
+  "createdAt": {
+    "$date": "2024-06-14T03:18:00.188Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T03:18:00.188Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666bb692fe402a1a705dbe69"
+  },
+  "id_category": "PBY",
+  "name_category": "Produk Bayi",
+  "createdAt": {
+    "$date": "2024-06-14T03:18:42.215Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T03:18:42.215Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666bb6a9fe402a1a705dbe6b"
+  },
+  "id_category": "BTY",
+  "name_category": "Kecantikan",
+  "createdAt": {
+    "$date": "2024-06-14T03:19:05.368Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T03:19:05.368Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670682594fb4dd747441345"
+  },
+  "id_category": "VTC",
+  "name_category": "Vitamin C",
+  "createdAt": {
+    "$date": "2024-06-17T16:45:25.443Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-17T16:45:25.443Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670685f94fb4dd747441349"
+  },
+  "id_category": "DMM",
+  "name_category": "Obat Demam",
+  "createdAt": {
+    "$date": "2024-06-17T16:46:23.486Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-17T16:46:23.486Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670687194fb4dd74744134c"
+  },
+  "id_category": "VTA",
+  "name_category": "Vitamin Anak",
+  "createdAt": {
+    "$date": "2024-06-17T16:46:41.020Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-17T16:46:41.020Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6670688094fb4dd74744134f"
+  },
+  "id_category": "OBK",
+  "name_category": "Obat Kulit",
+  "createdAt": {
+    "$date": "2024-06-17T16:46:56.375Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-17T16:46:56.375Z"
+  },
+  "__v": 0
+}]
