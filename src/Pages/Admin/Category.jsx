@@ -148,7 +148,7 @@ const CategoryList = () => {
           <Button className="mb-3" onClick={() => handleShowModal(null)}>
             Add Category
           </Button>
-          <div className="table-responsive">
+          <div className="table-responsive p-2">
             <Table striped bordered hover className="table-user shadow">
               <thead>
                 <tr>
