@@ -12,7 +12,7 @@ const FloatingCart = ({ hideCartButton }) => {
   const navigate = useNavigate();
   const floatingCartRef = useRef(null);
 
-  const hideOnPaths = ['/dashboard', '/login', '/register', '/checkout', '/forgot-password', '/reset-password', '/about-us', '/contact', '/*'];
+  const hideOnPaths = ['/dashboard', '/login', '/register', '/checkout', '/forgot-password', '/reset-password', '/*', '/contact', '/about-us'];
   const shouldHide = hideOnPaths.some(path => location.pathname.startsWith(path));
 
   useEffect(() => {

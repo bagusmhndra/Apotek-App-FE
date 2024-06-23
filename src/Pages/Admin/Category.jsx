@@ -19,7 +19,6 @@ const CategoryList = () => {
   const [newCategory, setNewCategory] = useState({
     id_category: "",
     name_category: "",
-    icon: "💊", // Default icon
   });
 
   useEffect(() => {
@@ -46,7 +45,6 @@ const CategoryList = () => {
     setNewCategory({
       id_category: "",
       name_category: "",
-      icon: "💊", // Reset to default icon when closing modal
     });
   };
 
@@ -58,7 +56,6 @@ const CategoryList = () => {
       setNewCategory({
         id_category: "",
         name_category: "",
-        icon: "💊", // Default icon for new category
       });
     }
     setShowModal(true);
@@ -115,6 +112,7 @@ const CategoryList = () => {
         cancelButtonText: "No, cancel!",
         confirmButtonColor: "#3B71CA",
       });
+
       if (result.isConfirmed) {
         const response = await api.delete(`/category/${categoryId}`);
         Swal.fire({
@@ -123,7 +121,6 @@ const CategoryList = () => {
           text: response.data.message,
           confirmButtonColor: "#3B71CA",
         });
-
         fetchCategories();
       }
     } catch (error) {
@@ -140,7 +137,7 @@ const CategoryList = () => {
     <>
       <HeaderDashboard />
       <Container>
-        <div className="p-5 flex-column gap-3 shadow">
+        <Form className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
@@ -158,7 +155,6 @@ const CategoryList = () => {
                   <th>#</th>
                   <th>ID Category</th>
                   <th>Name Category</th>
-                  <th>Icon</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -168,7 +164,6 @@ const CategoryList = () => {
                     <td>{index + 1}</td>
                     <td>{category.id_category}</td>
                     <td>{category.name_category}</td>
-                    <td>{category.icon}</td>
                     <td>
                       <Button
                         variant="info"
@@ -190,7 +185,7 @@ const CategoryList = () => {
               </tbody>
             </Table>
           </div>
-        </div>
+        </Form>
       </Container>
 
       <Modal show={showModal} onHide={handleCloseModal}>
@@ -222,26 +217,6 @@ const CategoryList = () => {
                 onChange={handleInputChange}
                 required
               />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formIcon">
-              <Form.Label>Icon</Form.Label>
-              <Form.Control
-                as="select"
-                name="icon"
-                value={newCategory.icon}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="💊">💊</option>
-                <option value="💉">💉</option>
-                <option value="💪">💪</option>
-                <option value="🥛">🥛</option>
-                <option value="🩸">🩸</option>
-                <option value="🩹">🩹</option>
-                <option value="💄">💄</option>
-                <option value="👶">👶</option>
-                <option value="🧴">🧴</option>
-              </Form.Control>
             </Form.Group>
             <Button variant="secondary" onClick={handleCloseModal}>
               Close

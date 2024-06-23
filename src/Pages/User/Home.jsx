@@ -102,15 +102,15 @@ const Home = () => {
     },
   ];
 
-  const handleProductClick = (product) => {
-    navigate(`/products/detail-product/${product._id}`); // Navigate to detail page with product ID
-  };
-
   const formatIDR = (price) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
     }).format(price);
+  };
+
+  const handleProductClick = (product) => {
+    navigate(`/products/detail-product/${product._id}`); // Navigate to detail page with product ID
   };
 
   return (
@@ -169,7 +169,7 @@ const Home = () => {
                     >
                       <Card.Body className="d-flex flex-column align-items-center">
                         <div className="display-6 category-icon">
-                          {category.icon || "💊"} {/* Placeholder icon */}
+                          {category.icon || "📦"} {/* Placeholder icon */}
                         </div>
                         <Card.Title className="mt-3 category-name">
                           {category.name_category}

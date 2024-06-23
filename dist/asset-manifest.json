@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3765e2e9.css",
+    "main.js": "/static/js/main.682d8fdf.js",
+    "static/js/453.8c09d1b9.chunk.js": "/static/js/453.8c09d1b9.chunk.js",
+    "static/media/about01.png": "/static/media/about01.7cc925e9a9b18255ed37.png",
+    "static/media/carousel02.png": "/static/media/carousel02.8b7f7826cdb4757278a2.png",
+    "static/media/diagnosis04.png": "/static/media/diagnosis04.09707c4e62abcbcc1aeb.png",
+    "static/media/diagnosis05.png": "/static/media/diagnosis05.091da6a6131bc037d664.png",
+    "static/media/carousel01.png": "/static/media/carousel01.aedc884b193ca4012c03.png",
+    "static/media/diagnosis03.png": "/static/media/diagnosis03.0ebecf95efd87fe955c1.png",
+    "static/media/about02.png": "/static/media/about02.ec6904f4f3d04620f6d3.png",
+    "static/media/diagnosis01.png": "/static/media/diagnosis01.445627bf60336ccc4e90.png",
+    "static/media/carousel03.png": "/static/media/carousel03.f1cf3175d424be8fae6d.png",
+    "static/media/diagnosis06.png": "/static/media/diagnosis06.49d4f185e4109b0763e9.png",
+    "static/media/diagnosis02.png": "/static/media/diagnosis02.02af66b3c1b63a57c8d4.png",
+    "static/media/logo.png": "/static/media/logo.ecde7412031ebce0ca06.png",
+    "index.html": "/index.html",
+    "main.3765e2e9.css.map": "/static/css/main.3765e2e9.css.map",
+    "main.682d8fdf.js.map": "/static/js/main.682d8fdf.js.map",
+    "453.8c09d1b9.chunk.js.map": "/static/js/453.8c09d1b9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3765e2e9.css",
+    "static/js/main.682d8fdf.js"
+  ]
+}

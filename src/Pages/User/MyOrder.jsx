@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Card, ListGroup, Breadcrumb, Button, Badge } from 'react-bootstrap';
 import Header from "../../Components/User/Header";
@@ -7,6 +7,29 @@ import api from '../../api';
 
 const MyOrder = () => {
   const [orders, setOrders] = useState([]);
+  const crispScriptRef = useRef(null);
+
+  // Chat
+  useEffect(() => {
+    window.$crisp = [];
+    window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
+    crispScriptRef.current = document.createElement("script");
+    crispScriptRef.current.src = "https://client.crisp.chat/l.js";
+    crispScriptRef.current.async = 1;
+    document
+      .getElementsByTagName("head")[0]
+      .appendChild(crispScriptRef.current);
+
+    return () => {
+      if (crispScriptRef.current) {
+        document
+          .getElementsByTagName("head")[0]
+          .removeChild(crispScriptRef.current);
+        delete window.$crisp;
+        delete window.CRISP_WEBSITE_ID;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     // Mengambil daftar pesanan dari API

@@ -1,10 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Button, Container, Row, Col, Form, Card } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Container,
+  Breadcrumb,
+  Row,
+  Col,
+  Form,
+  Card,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import Header from "../../Components/User/Header";
 import api from "../../api";
+import Header from "../../Components/User/Header";
 
-function UserProfilePage() {
+function MyProfilePage() {
   const [initialValues, setInitialValues] = useState({
     fullName: "",
     username: "",
@@ -15,29 +24,6 @@ function UserProfilePage() {
 
   const [formData, setFormData] = useState({ ...initialValues });
   const [editMode, setEditMode] = useState(false);
-  const crispScriptRef = useRef(null);
-
-  //Chat
-  useEffect(() => {
-    window.$crisp = [];
-    window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
-    crispScriptRef.current = document.createElement("script");
-    crispScriptRef.current.src = "https://client.crisp.chat/l.js";
-    crispScriptRef.current.async = 1;
-    document
-      .getElementsByTagName("head")[0]
-      .appendChild(crispScriptRef.current);
-
-    return () => {
-      if (crispScriptRef.current) {
-        document
-          .getElementsByTagName("head")[0]
-          .removeChild(crispScriptRef.current);
-        delete window.$crisp;
-        delete window.CRISP_WEBSITE_ID;
-      }
-    };
-  }, []);
 
   useEffect(() => {
     // Fetch user data from the server
@@ -60,7 +46,12 @@ function UserProfilePage() {
           address: userData.address || "",
         });
       } catch (error) {
-        console.error("Failed to fetch user data:", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed to fetch user data',
+          text: error.message,
+          confirmButtonColor: "#3B71CA",
+        });
       }
     };
 
@@ -72,16 +63,16 @@ function UserProfilePage() {
     try {
       await api.put("/users/updateUser", formData);
       Swal.fire({
-        icon: "success",
-        title: "Profile updated successfully",
-        text: "Your profile information has been updated.",
+        icon: 'success',
+        title: 'Profile updated successfully',
+        text: 'Your profile information has been updated.',
         confirmButtonColor: "#3B71CA",
       });
       setEditMode(false);
     } catch (error) {
       Swal.fire({
-        icon: "error",
-        title: "Failed to update profile",
+        icon: 'error',
+        title: 'Failed to update profile',
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -98,18 +89,15 @@ function UserProfilePage() {
       <Header />
       <Container>
         <div className="p-5 flex-column gap-3 shadow">
+          <Breadcrumb>
+            <Breadcrumb.Item>
+              <Link to="/">Beranda</Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>My Profile</Breadcrumb.Item>
+          </Breadcrumb>
+          <h3 className="myprofile-title mt-4 mb-4">My Profile</h3>
           <Card className="border-0">
             <Card.Body>
-              <h2
-                className="title-profile"
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "bold",
-                  marginBottom: "30px",
-                }}
-              >
-                My Profile
-              </h2>
               <Form onSubmit={saveProfile}>
                 <Row className="mb-3">
                   <Col md={6} className="mb-3">
@@ -217,4 +205,4 @@ function UserProfilePage() {
   );
 }
 
-export default UserProfilePage;
+export default MyProfilePage;

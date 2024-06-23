@@ -253,7 +253,7 @@ function ProductList() {
     <>
       <HeaderDashboard />
       <Container>
-        <div className="p-5 flex-column gap-3 shadow">
+        <Form className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
@@ -286,11 +286,11 @@ function ProductList() {
                         {product.image ? (
                           <img
                             src={product.image}
-                            alt="{product.productName}"
+                            alt={product.productName}
                             style={{ maxWidth: "100px" }}
                           />
                         ) : (
-                          "-"
+                          "Nothing to display"
                         )}
                       </td>
                       <td>{product.productName}</td>
@@ -311,7 +311,7 @@ function ProductList() {
               </tbody>
             </Table>
           </div>
-        </div>
+        </Form>
       </Container>
 
       {/* Modal for viewing and editing product */}

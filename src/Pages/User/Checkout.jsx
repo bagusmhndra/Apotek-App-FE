@@ -12,6 +12,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const crispScriptRef = useRef(null);
 
+  // Chat
   useEffect(() => {
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";

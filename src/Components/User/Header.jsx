@@ -8,8 +8,8 @@ import {
   Offcanvas,
   Dropdown,
 } from "react-bootstrap";
-import { PersonFill } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { PersonFill, CartFill, BoxArrowRight } from "react-bootstrap-icons";
 import logo from "../../Assets/img/logo.png";
 import "../../Assets/css/Header.css";
 
@@ -18,14 +18,14 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
     setAuthToken(token);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem("authToken");
     setAuthToken(null);
-    navigate('/logout');
+    navigate("/logout");
   };
 
   return (
@@ -83,17 +83,40 @@ const Header = () => {
               </Nav>
               <hr />
               {authToken ? (
-                <Dropdown align="end">
-                <Dropdown.Toggle as={Button} variant="outline-light" id="dropdown-basic" className="profile-btn d-flex align-items-center border-0">
-                  <PersonFill size={30} />
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/user-profile">Profil Saya</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/my-order">Data Order</Dropdown.Item> {/* Tambahkan link ke Order List */}
-                  <Dropdown.Divider />
-                  <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+                <>
+                  <Dropdown align="center">
+                    <Dropdown.Toggle
+                      as={Button}
+                      variant="outline-light"
+                      id="dropdown-basic"
+                      className="profile-btn d-flex align-items-center border-0"
+                    >
+                      <PersonFill size={30} />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        as={Link}
+                        to="/user-profile"
+                        className="d-flex align-items-center"
+                      >
+                        <PersonFill className="me-2" /> Profil Saya
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        as={Link}
+                        to="/my-order"
+                        className="d-flex align-items-center"
+                      >
+                        <CartFill className="me-2" /> Data Order
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <BoxArrowRight
+                    size={30}
+                    className="ms-3 mt-2 me-3"
+                    onClick={handleLogout}
+                    style={{ cursor: "pointer", color: "red" }}
+                  />
+                </>
               ) : (
                 <>
                   <ButtonGroup as={Link} to="/login" className="me-2">

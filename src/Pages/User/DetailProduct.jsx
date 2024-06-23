@@ -1,20 +1,14 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Plus, Dash } from "react-bootstrap-icons";
-import Header from "../../Components/User/Header";
-import Footer from "../../Components/User/Footer";
-import {
-  Container,
-  Row,
-  Col,
-  Breadcrumb,
-  Image,
-  Button,
-} from "react-bootstrap";
-import "../../Assets/css/DetailProduct.css";
-import api from "../../api";
-import FloatingCart from "../../Components/User/FloatingCart";
-import { CartContext } from "../../Contexts/CartContext";
+// src/Pages/User/DetailProduct.js
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Plus, Dash } from 'react-bootstrap-icons';
+import Header from '../../Components/User/Header';
+import Footer from '../../Components/User/Footer';
+import { Container, Row, Col, Breadcrumb, Image, Button } from 'react-bootstrap';
+import '../../Assets/css/DetailProduct.css';
+import api from '../../api';
+import FloatingCart from '../../Components/User/FloatingCart';
+import { CartContext } from '../../Contexts/CartContext';
 
 const DetailProduct = () => {
   const { id } = useParams();
@@ -23,6 +17,7 @@ const DetailProduct = () => {
   const { addToCart } = useContext(CartContext);
   const crispScriptRef = useRef(null);
 
+  // Chat
   useEffect(() => {
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
@@ -50,7 +45,7 @@ const DetailProduct = () => {
         const response = await api.get(`/products/${id}`);
         setProduct(response.data.product);
       } catch (error) {
-        console.error("Error fetching product:", error);
+        console.error('Error fetching product:', error);
       }
     };
 
@@ -67,9 +62,9 @@ const DetailProduct = () => {
   const handleAddToCart = async () => {
     try {
       await addToCart(id, itemCount);
-      setItemCount(1); // Reset itemCount after adding to cart
+      setItemCount(1);
     } catch (error) {
-      console.error("Error adding to cart:", error);
+      console.error('Error adding to cart:', error);
     }
   };
 
@@ -89,11 +84,11 @@ const DetailProduct = () => {
       <FloatingCart />
       <Container className="detail-product-container">
         <Breadcrumb className="breadcrumb">
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>
             Beranda
           </Breadcrumb.Item>
-          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/products" }}>
-            Produk
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/products' }}>
+            Product
           </Breadcrumb.Item>
           <Breadcrumb.Item active>{product?.productName}</Breadcrumb.Item>
         </Breadcrumb>
@@ -109,27 +104,15 @@ const DetailProduct = () => {
               </h4>
               <p className="per-strip">Per STRIP</p>
               <div className="detail-product-actions">
-                <Button
-                  variant="primary"
-                  className="cart-button"
-                  onClick={handleAddToCart}
-                >
+                <Button variant="primary" className="cart-button" onClick={handleAddToCart}>
                   + Tambah ke Keranjang
                 </Button>
                 <div className="d-flex justify-content-between align-items-center">
-                  <Button
-                    variant="outline-primary"
-                    className="cart-button me-3"
-                    onClick={handleDecrement}
-                  >
+                  <Button variant="outline-primary" className="cart-button me-3" onClick={handleDecrement}>
                     <Dash />
                   </Button>
                   <span>{itemCount}</span>
-                  <Button
-                    variant="primary"
-                    className="cart-button ms-3"
-                    onClick={handleIncrement}
-                  >
+                  <Button variant="primary" className="cart-button ms-3" onClick={handleIncrement}>
                     <Plus />
                   </Button>
                 </div>

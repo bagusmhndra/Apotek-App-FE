@@ -4,6 +4,7 @@ import api from "../../api";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
+import "../../Assets/css/ProductsByCategory.css";
 
 const ProductsByCategory = () => {
   const { id_category } = useParams();
@@ -13,7 +14,7 @@ const ProductsByCategory = () => {
   const [categories, setCategories] = useState([]);
   const crispScriptRef = useRef(null);
 
-  //Chat
+  // Chat
   useEffect(() => {
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
@@ -58,7 +59,7 @@ const ProductsByCategory = () => {
   // Fetch all categories for the sidebar
   const fetchAllCategories = useCallback(async () => {
     try {
-      const response = await api.get('/category');
+      const response = await api.get("/category");
       setCategories(response.data.category);
     } catch (error) {
       console.error("Error fetching categories", error);
@@ -78,9 +79,9 @@ const ProductsByCategory = () => {
 
   // Format IDR currency
   const formatIDR = (price) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
     }).format(price);
   };
 
@@ -88,7 +89,6 @@ const ProductsByCategory = () => {
     <>
       <Header />
       <Container className="product-container">
-        
         {/* Sidebar with Categories */}
         <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 category-container">
           <Row className="justify-content-center category-box border-0">
@@ -130,45 +130,55 @@ const ProductsByCategory = () => {
           </Row>
         </Container>
 
-        {/* Category Header */}
-        <Row className="category-header justify-content-center mb-3">
-          <Col>
-            {category && <h5>Products in Category: {category.name_category}</h5>}
-          </Col>
-        </Row>
-
-
         {/* Product Cards */}
-        <Row className="g-3 justify-content-center">
-          {products.map((item, index) => (
-            <Col
-              key={index}
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              className="d-flex justify-content-center"
-            >
-              <Card
-                className="product-card h-100 border-0 shadow"
-                onClick={() => handleProductClick(item)}
-              >
-                <Card.Img
-                  variant="top"
-                  src={item.image}
-                  className="product-card-img"
-                />
-                <Card.Body>
-                  <Card.Title className="product-name">{item.productName}</Card.Title>
-                  <Card.Text className="product-price">{formatIDR(item.price)}</Card.Text>
-                  <Button variant="outline-primary" className="w-100 mt-auto">
-                    + Add
-                  </Button>
-                </Card.Body>
-              </Card>
+        <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 product-container">
+          <Row className="product-box justify-content-center">
+            <Col xs={12}>
+              <Row className="align-items-center justify-content-between">
+                <Col>
+                  {category && (
+                    <h5>Produk pada kategori: {category.name_category}</h5>
+                  )}
+                </Col>
+              </Row>
+
+              <Row className="g-3 justify-content-center">
+                {products.map((item, index) => (
+                  <Col
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    lg={2}
+                    key={index}
+                    className="d-flex justify-content-center"
+                  >
+                    <Card
+                      className="product-card h-100 border-0 shadow"
+                      onClick={() => handleProductClick(item)}
+                    >
+                      <Card.Img
+                        variant="top"
+                        src={item.image}
+                        className="product-card-img p-3"
+                      />
+                      <Card.Body>
+                        <Card.Title className="product-name">
+                          {item.productName}
+                        </Card.Title>
+                        <Card.Text className="product-price">
+                          {formatIDR(item.price)}
+                        </Card.Text>
+                        <Button variant="outline-primary" className="pe-3 ps-3">
+                          Detail
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
             </Col>
-          ))}
-        </Row>
+          </Row>
+        </Container>
       </Container>
       <Footer />
     </>

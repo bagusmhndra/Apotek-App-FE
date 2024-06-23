@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table, Button, Modal, Breadcrumb } from "react-bootstrap";
+import { Container, Table, Button, Modal, Form, Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import api from "../../api";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
@@ -83,7 +83,7 @@ function OrderListPage() {
     <>
       <HeaderDashboard />
       <Container>
-        <div className="p-5 flex-column gap-3 shadow">
+        <Form className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
@@ -136,7 +136,7 @@ function OrderListPage() {
               </tbody>
             </Table>
           </div>
-        </div>
+        </Form>
       </Container>
 
       {/* Modal for viewing order details */}

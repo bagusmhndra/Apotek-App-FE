@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
-//import "../../Assets/css/Product.css";
 
 const Product = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const crispScriptRef = useRef(null);
 
+  // Chat
   useEffect(() => {
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
@@ -32,10 +32,11 @@ const Product = () => {
     };
   }, []);
 
-  const fetchAllProduct = async () => {
+  const fetchAllProduct = async (category) => {
     try {
       const response = await api.get(`/products`);
       setProducts(response.data.products);
+      console.log(setProducts);
     } catch (error) {
       console.error("Error fetching products", error);
     }

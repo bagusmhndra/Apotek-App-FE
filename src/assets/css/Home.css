@@ -170,17 +170,3 @@ a:link {
   font-weight: bold;
   color: rgba(226,23,70,0.8);
 }
-
-.custom-btn {
-  background-color: #ffffff;
-  color: rgba(226,23,70,0.8);
-  border: 1px solid rgba(226,23,70,0.8);
-  border-radius: 5px;
-  padding: 5px 10px;
-}
-
-.custom-btn:hover {
-  background-color: rgba(226,23,70,0.8);
-  color: #ffffff;
-  border: 1px solid rgba(226,23,70,0.8);
-}

@@ -1,0 +1,99 @@
+h5 {
+  text-align: left;
+  padding: 10px;
+}
+
+/* CAROUSEL */
+.carousel-item img {
+  height: 800px;
+  object-fit: cover;
+}
+
+/* KATEGORI */
+.category-container {
+  text-align: center;
+  padding: 30px;
+}
+
+.category-box {
+  border-radius: 5px;
+  padding: 10px 5px;
+  display: inline-block;
+  background-color: #ffffff;
+}
+
+.category-card {
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+  width: 145px;
+}
+
+.category-card:hover {
+  transform: scale(1.15);
+}
+
+.category-icon {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.category-name {
+  font-size: 14px;
+  color: #333;
+}
+
+.see-all-button {
+  padding: 20px;
+  color: primary;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+/* PRODUCT */
+.product-container {
+  text-align: center;
+  padding: 30px;
+}
+
+.product-box {
+  border-radius: 5px;
+  padding: 10px 5px;
+  display: inline-block;
+  background-color: #ffffff;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+
+}
+
+.product-card {
+  text-decoration: none;
+  color: inherit;
+  width: 145px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.product-name {
+  font-size: 16px;
+  color: #333;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #333;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(226,23,70,0.8);
+}
