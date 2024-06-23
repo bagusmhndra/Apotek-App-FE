@@ -51,19 +51,19 @@ const MyOrder = () => {
     switch (status) {
       case 'Pending':
         variant = 'warning';
-        text = 'Pending';
+        text = 'Tertunda';
         break;
       case 'Successful':
         variant = 'success';
-        text = 'Paid';
+        text = 'Terbayar';
         break;
       case 'Cancelled':
         variant = 'danger';
-        text = 'Cancelled';
+        text = 'Dibatalkan';
         break;
       default:
         variant = 'secondary';
-        text = 'Unknown';
+        text = 'Tidak diketahui';
     }
 
     return <Badge bg={variant}>{text}</Badge>;
@@ -75,19 +75,19 @@ const MyOrder = () => {
       <Container className="mt-5">
         <Row>
           <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
-            <Breadcrumb.Item active>My Order</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Beranda</Breadcrumb.Item>
+            <Breadcrumb.Item active>Order Saya</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
         {orders.map(order => (
           <Row className="mt-3" key={order._id}>
             <Col md={12}>
-              <Card>
+              <Card className='border-0 shadow'>
                 <Card.Body>
-                  <Card.Title>Order ID: {order._id}</Card.Title>
+                  <Card.Title>ID Order: {order._id}</Card.Title>
                   <Breadcrumb>
                     <Breadcrumb.Item active>Status: {getPaymentStatusBadge(order.status)}</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Address: {order.address}</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Alamat: {order.address}</Breadcrumb.Item>
                   </Breadcrumb>
                   <ListGroup variant="flush">
                     {order.items.map(item => (
@@ -105,12 +105,12 @@ const MyOrder = () => {
                   </ListGroup>
                   <Card className="mt-4">
                     <Card.Body>
-                      <Card.Title>Total Payment</Card.Title>
+                      <Card.Title>Total Pembelian</Card.Title>
                       <ListGroup variant="flush">
                         <ListGroup.Item>
                           <Row>
                             <Col>Total</Col>
-                            <Col>Rp {order.total.toLocaleString()}</Col>
+                            <Col>Rp{order.total.toLocaleString()},00</Col>
                           </Row>
                         </ListGroup.Item>
                       </ListGroup>
@@ -122,7 +122,7 @@ const MyOrder = () => {
                           href={order.whatsappLink} 
                           target="_blank"
                         >
-                          Confirm Order on WhatsApp
+                          Konfirmasi Order di WhatsApp
                         </Button>
                       )}
                     </Card.Body>

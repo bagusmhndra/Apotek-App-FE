@@ -95,7 +95,7 @@ const Footer = () => {
           </Col>
 
           <Col md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
-            <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+            <h6 className="text-uppercase fw-bold mb-4">Hubungi Kami</h6>
             <p>
               <House color="white" className="me-3" />
               Jakarta, Indonesia
@@ -112,10 +112,9 @@ const Footer = () => {
 
           <Col md="3" lg="3" xl="4" className="mx-auto mb-md-0 mb-4">
             <div className="widget">
-              <h6 className="text-uppercase fw-bold mb-4">Our Newsletter</h6>
+              <h6 className="text-uppercase fw-bold mb-4">Berita kami</h6>
               <p className="mb-4">
-                Subscribe to our newsletter to get our news & discounts
-                delivered to you.
+                Berlangganan dengan berita kami untuk mendapatkan info terbaru.
               </p>
               <form onSubmit={handleSubmit}>
                 <div className="row gy-4">
@@ -133,7 +132,7 @@ const Footer = () => {
                         id="email-newsletter"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email Address"
+                        placeholder="Email"
                         aria-label="email-newsletter"
                         aria-describedby="email-newsletter-addon"
                         required
@@ -147,7 +146,7 @@ const Footer = () => {
                         type="submit"
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
                       >
-                        Subscribe
+                        Langganan
                       </Button>
                     </div>
                   </div>

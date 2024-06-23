@@ -9,22 +9,22 @@ const OrderSuccess = () => {
   const { order } = location.state || {};
 
   if (!order) {
-    return <p>No order details found</p>;
+    return <p>Tidak ditemukan detail order</p>;
   }
 
   return (
     <Container className="mt-5">
       <Alert variant="success">
-        <h4>Order Successful!</h4>
-        <p>Your order has been placed successfully. Your order ID is {order._id}.</p>
+        <h4>Order Sukses!</h4>
+        <p>Pesanan Anda telah berhasil dilakukan. ID pesanan Anda adalah: {order._id}.</p>
         <p>Total: {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(order.total)}</p>
         {order.whatsappLink && (
           <Button href={order.whatsappLink} target="_blank" className="me-3">
-            Confirm on WhatsApp
+            Konfirmasi di WhatsApp
           </Button>
         )}
         <Button variant="primary" onClick={() => navigate('/')}>
-          Back to Home
+          Kembali ke Beranda
         </Button>
       </Alert>
     </Container>

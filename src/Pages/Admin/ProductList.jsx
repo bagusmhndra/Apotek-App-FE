@@ -46,7 +46,7 @@ function ProductList() {
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Failed to fetch products',
+        title: 'Gagal mengambil produk',
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -60,7 +60,7 @@ function ProductList() {
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Failed to fetch categories',
+        title: 'Gagal mengambil kategori',
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -153,7 +153,7 @@ function ProductList() {
       });
       Swal.fire({
         icon: 'success',
-        title: 'New product added successfully',
+        title: 'Produk baru berhasil ditambahkan',
         text: response.data.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -162,7 +162,7 @@ function ProductList() {
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Failed to add new product',
+        title: 'Gagal menambahkan produk baru',
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -199,7 +199,7 @@ function ProductList() {
       );
       Swal.fire({
         icon: 'success',
-        title: 'Product updated successfully',
+        title: 'Produk berhasil diperbarui',
         text: response.data.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -208,7 +208,7 @@ function ProductList() {
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Failed to update product',
+        title: 'Gagal memperbarui produk',
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -219,12 +219,12 @@ function ProductList() {
   const handleDeleteProduct = async () => {
     try {
       const result = await Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Apakah kamu yakin?',
+        text: "Anda tidak akan dapat mengembalikan ini!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Tidak, batal!',
         confirmButtonColor: "#3B71CA",
       });
 
@@ -232,7 +232,7 @@ function ProductList() {
         const response = await api.delete(`/products/${selectedProduct._id}`);
         Swal.fire({
           icon: 'success',
-          title: 'Product deleted successfully',
+          title: 'Produk berhasil dihapus',
           text: response.data.message,
           confirmButtonColor: "#3B71CA",
         });
@@ -242,7 +242,7 @@ function ProductList() {
     } catch (error) {
       Swal.fire({
         icon: 'error',
-        title: 'Failed to delete product',
+        title: 'Gagal menghapus produk',
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -258,9 +258,9 @@ function ProductList() {
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>Product List</Breadcrumb.Item>
+            <Breadcrumb.Item active>List Produk</Breadcrumb.Item>
           </Breadcrumb>
-          <h3 className="productlist-title mt-4 mb-4">Product List</h3>
+          <h3 className="productlist-title mt-4 mb-4">List Produk</h3>
           <Button className="mb-3" onClick={() => handleShowModal(null)}>
             Tambah Produk
           </Button>

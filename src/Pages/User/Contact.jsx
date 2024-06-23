@@ -12,7 +12,7 @@ import Footer from "../../Components/User/Footer";
 const Contact = () => {
   return (
     <>
-    <Header/>
+      <Header />
       <section
         id="scrollspyContact"
         className="py-4 py-md-4 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1"
@@ -108,7 +108,7 @@ const Contact = () => {
                           <h4 className="mb-2">No. Telepon</h4>
                           <hr className="w-50 my-3 border-dark-subtle" />
                           <p className="mb-0 text-secondary">
-                            +62 1234 5678 9101
+                            +62 1234 5678 910
                           </p>
                         </div>
                       </div>
@@ -147,7 +147,7 @@ const Contact = () => {
           </Row>
         </Container>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -88,7 +88,7 @@ const DetailProduct = () => {
             Beranda
           </Breadcrumb.Item>
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/products' }}>
-            Product
+            Produk
           </Breadcrumb.Item>
           <Breadcrumb.Item active>{product?.productName}</Breadcrumb.Item>
         </Breadcrumb>
@@ -139,7 +139,7 @@ const DetailProduct = () => {
             </Col>
           </Row>
         ) : (
-          <p>Loading...</p>
+          <p>Memuat...</p>
         )}
       </Container>
       <Footer />

@@ -64,7 +64,7 @@ const Product = () => {
         <Row className="product-box justify-content-center mb-3">
           <Row className="align-items-center justify-content-between">
             <Col>
-              <h5>Product List</h5>
+              <h5>List Produk</h5>
             </Col>
           </Row>
           <Col xs={12}>

@@ -171,7 +171,7 @@ const About = () => {
           <Row>
             <Col xs={12} md={10} lg={8}>
               <h3 className="fs-4 mb-3 text-secondary text-uppercase">
-                Testimonials
+                Testimoni
               </h3>
             </Col>
           </Row>
@@ -198,7 +198,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Luna John</h4>
+                      <h4 className="mb-1 h5">Salsabila Putri</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pelanggan Setia
                       </h5>
@@ -225,7 +225,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Mark Smith</h4>
+                      <h4 className="mb-1 h5">Orvala Putra</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pengguna Pertama Kali
                       </h5>
@@ -251,7 +251,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Michael Wilson</h4>
+                      <h4 className="mb-1 h5">Restu Saputra</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pengguna Aktif
                       </h5>
@@ -277,7 +277,7 @@ const About = () => {
                       alt=""
                     />
                     <figcaption className="ms-3">
-                      <h4 className="mb-1 h5">Luke Reeves</h4>
+                      <h4 className="mb-1 h5">Novita</h4>
                       <h5 className="fs-6 text-secondary mb-0">
                         Pelanggan Aktif
                       </h5>

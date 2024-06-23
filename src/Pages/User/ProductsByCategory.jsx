@@ -88,7 +88,7 @@ const ProductsByCategory = () => {
   return (
     <>
       <Header />
-      <Container className="product-container">
+      <Container>
         {/* Sidebar with Categories */}
         <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 category-container">
           <Row className="justify-content-center category-box border-0">

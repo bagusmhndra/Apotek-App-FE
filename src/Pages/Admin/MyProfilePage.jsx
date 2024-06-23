@@ -91,11 +91,11 @@ function MyProfilePage() {
         <div className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/">Beranda</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>My Profile</Breadcrumb.Item>
+            <Breadcrumb.Item active>Profil Saya</Breadcrumb.Item>
           </Breadcrumb>
-          <h3 className="myprofile-title mt-4 mb-4">My Profile</h3>
+          <h3 className="myprofile-title mt-4 mb-4">Profil Saya</h3>
           <Card className="border-0">
             <Card.Body>
               <Form onSubmit={saveProfile}>
@@ -123,7 +123,7 @@ function MyProfilePage() {
                   <Col md={6} className="mb-3">
                     <Form.Group controlId="email">
                       <Form.Label className="fw-semibold">
-                        Email Address
+                        Email
                       </Form.Label>
                       {editMode ? (
                         <Form.Control
@@ -132,7 +132,7 @@ function MyProfilePage() {
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                           }
-                          placeholder="Enter email address"
+                          placeholder="Email..."
                         />
                       ) : (
                         <div>{formData.email}</div>
@@ -142,7 +142,7 @@ function MyProfilePage() {
                   <Col md={6} className="mb-3">
                     <Form.Group controlId="phoneNumber">
                       <Form.Label className="fw-semibold">
-                        Phone Number
+                        No. Telepon
                       </Form.Label>
                       {editMode ? (
                         <Form.Control
@@ -154,7 +154,7 @@ function MyProfilePage() {
                               phoneNumber: e.target.value,
                             })
                           }
-                          placeholder="Enter phone number"
+                          placeholder="No. Telepon..."
                         />
                       ) : (
                         <div>{formData.phoneNumber}</div>
@@ -163,7 +163,7 @@ function MyProfilePage() {
                   </Col>
                   <Col md={6} className="mb-3">
                     <Form.Group controlId="address">
-                      <Form.Label className="fw-semibold">Address</Form.Label>
+                      <Form.Label className="fw-semibold">Alamat</Form.Label>
                       {editMode ? (
                         <Form.Control
                           type="text"
@@ -174,7 +174,7 @@ function MyProfilePage() {
                               address: e.target.value,
                             })
                           }
-                          placeholder="Enter address"
+                          placeholder="Alamat..."
                         />
                       ) : (
                         <div>{formData.address}</div>
@@ -184,11 +184,11 @@ function MyProfilePage() {
                 </Row>
                 {editMode ? (
                   <div className="d-flex justify-content-left text-center">
-                    <Button type="submit" variant="primary" className="me-3">
-                      Update
+                    <Button type="submit" variant="primary" className="me-2">
+                      Perbarui
                     </Button>
                     <Button variant="secondary" onClick={cancelEdit}>
-                      Cancel
+                      Batal
                     </Button>
                   </div>
                 ) : (

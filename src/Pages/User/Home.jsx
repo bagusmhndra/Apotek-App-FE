@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Carousel, Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import Header from "../../Components/User/Header";
 import Footer from "../../Components/User/Footer";
 import carousel01 from "../../Assets/img/carousel01.png";
@@ -27,7 +28,12 @@ const Home = () => {
         const response = await api.get("/products");
         setProducts(response.data.products);
       } catch (error) {
-        console.error("There was an error fetching the products!", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed to fetch products',
+          text: error.message,
+          confirmButtonColor: "#3B71CA",
+        });
       }
     };
 
@@ -41,7 +47,12 @@ const Home = () => {
         setCategories(response.data.category);
         console.log(setCategories);
       } catch (error) {
-        console.error("There was an error fetching the categories!", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed to fetch categories',
+          text: error.message,
+          confirmButtonColor: "#3B71CA",
+        });
       }
     };
 

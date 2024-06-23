@@ -46,25 +46,25 @@ const HeaderDashboard = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-center flex-grow-1 pe-3 fs-5">
               <Nav.Link as={Link} to="/dashboard">
-                Dashboard
+                Halaman Utama
               </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/user-list">
-                User List
+                Daftar Pengguna
               </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/order-list">
-                Order List
+                Daftar Pesanan
               </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/product-list">
-                Product List
+                Daftar Produk
               </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/category-list">
-                Category List
+                Daftar Kategori
               </Nav.Link>
             </Nav>
             <hr />
             <ButtonGroup>
               <Button variant="outline-danger" onClick={handleLogout}>
-                Logout
+                Keluar
               </Button>
             </ButtonGroup>
           </Offcanvas.Body>
