@@ -59,9 +59,9 @@ const Footer = () => {
         </section>
         <Row className="mt-5 mb-5">
           <Col md="3" lg="4" xl="3" className="mx-auto mb-4 ">
-            <h6 className="text-uppercase fw-bold mb-4">PHARMORA.ID</h6>
+            <h6 className="text-uppercase fw-bold mb-4">PHARMORA</h6>
             <p>
-              Pharmora.id is an online pharmacy for modern and trusted health solutions.
+              Pharmora is an online pharmacy for modern and trusted health solutions.
             </p>
           </Col>
 
@@ -101,7 +101,7 @@ const Footer = () => {
             </p>
             <p>
               <Envelope color="white" className="me-3" />
-              pharmora.id@help.com
+              pharmora@help.com
             </p>
             <p>
               <Telephone color="white" className="me-3" />
@@ -159,7 +159,7 @@ const Footer = () => {
       <div className="text-center p-4 border-top">
         © {new Date().getFullYear()} Copyright:
         <Link as={Link} to="/" className="text-reset fw-semibold ms-2">
-          Pharmora.id
+          Pharmora
         </Link>
       </div>
     </footer>

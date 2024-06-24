@@ -51,7 +51,7 @@ const About = () => {
                     The Best Solution for Your Health Needs
                   </h1>
                   <h4 className="mb-3">
-                    Pharmora.id is an online pharmacy for modern and trusted health solutions.
+                    Pharmora is an online pharmacy for modern and trusted health solutions.
                   </h4>
                 </Col>
               </Row>
@@ -72,7 +72,7 @@ const About = () => {
                     About Us
                   </h3>
                   <p className="lead fs-4 mb-3">
-                    Pharmora.id is an online pharmacy for modern and trusted health solutions, offering a wide range of high-quality pharmaceutical products and user-friendly services.
+                    Pharmora is an online pharmacy for modern and trusted health solutions, offering a wide range of high-quality pharmaceutical products and user-friendly services.
                   </p>
                   <p className="mb-5">
                     We are a rapidly growing company, but we never forget our core values. We believe in collaboration, innovation, and customer satisfaction. We are always looking for new ways to improve our products and services.

@@ -40,7 +40,7 @@ const Header = () => {
               className="d-inline-block align-center me-3"
             />
             <h1 className="fw-bold">
-              Pharmora<span>.id</span>
+              Phar<span>mora</span>
             </h1>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbarLabel-expand-lg`} />
@@ -62,7 +62,7 @@ const Header = () => {
                   className="d-inline-block align-top me-3"
                 />
                 <h3 className="fw-bold">
-                  Pharmora<span>.id</span>
+                  Phar<span>mora</span>
                 </h3>
               </Offcanvas.Title>
             </Offcanvas.Header>

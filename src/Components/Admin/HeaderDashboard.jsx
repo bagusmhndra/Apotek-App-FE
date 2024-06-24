@@ -38,8 +38,8 @@ const HeaderDashboard = () => {
               className="d-flex align-items-center"
             >
               <h3 className="fw-bold">
-                Pharmora
-                <span style={{ color: "rgba(226,23,70,0.8)" }}>.id</span>
+                Phar
+                <span style={{ color: "rgba(226,23,70,0.8)" }}>mora</span>
               </h3>
             </Offcanvas.Title>
           </Offcanvas.Header>
@@ -73,7 +73,7 @@ const HeaderDashboard = () => {
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           
           <h1 className="fw-bold">
-            Pharmora<span>.id</span>
+            Phar<span>mora</span>
           </h1>
         </Navbar.Brand>
         <PersonCircle size={30} className="ms-3" onClick={handleProfileClick}
