@@ -91,7 +91,7 @@ function MyProfilePage() {
         <div className="p-5 flex-column gap-3 shadow">
           <Breadcrumb>
             <Breadcrumb.Item>
-              <Link to="/">Beranda</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item active>Profil Saya</Breadcrumb.Item>
           </Breadcrumb>

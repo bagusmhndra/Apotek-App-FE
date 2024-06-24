@@ -258,7 +258,7 @@ function ProductList() {
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>List Produk</Breadcrumb.Item>
+            <Breadcrumb.Item active>Daftar Produk</Breadcrumb.Item>
           </Breadcrumb>
           <h3 className="productlist-title mt-4 mb-4">List Produk</h3>
           <Button className="mb-3" onClick={() => handleShowModal(null)}>
@@ -269,12 +269,12 @@ function ProductList() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Price (IDR)</th>
+                  <th>Gambar</th>
+                  <th>Nama</th>
+                  <th>Kategori</th>
+                  <th>Harga (IDR)</th>
                   <th>Nomor Ijin Edar</th>
-                  <th>Actions</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -303,7 +303,7 @@ function ProductList() {
                           size="sm"
                           onClick={() => handleShowModal(product)}
                         >
-                          View Detail
+                          Detail
                         </Button>
                       </td>
                     </tr>
@@ -324,10 +324,10 @@ function ProductList() {
             <Row>
               <Col>
                 <Form.Group className="mb-3" controlId="formProductName">
-                  <Form.Label>Product Name</Form.Label>
+                  <Form.Label>Nama Produk</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter product name"
+                    placeholder="Masukkan nama produk"
                     name="productName"
                     value={newProduct.productName}
                     onChange={handleInputChange}
@@ -335,7 +335,7 @@ function ProductList() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formCategory">
-                  <Form.Label>Category</Form.Label>
+                  <Form.Label>Kategori</Form.Label>
                   <Form.Control
                     as="select"
                     name="id_category"
@@ -352,10 +352,10 @@ function ProductList() {
                   </Form.Control>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formPrice">
-                  <Form.Label>Price (IDR)</Form.Label>
+                  <Form.Label>Harga (IDR)</Form.Label>
                   <Form.Control
                     type="number"
-                    placeholder="Enter price"
+                    placeholder="Masukkan harga"
                     name="price"
                     value={newProduct.price}
                     onChange={handleInputChange}
@@ -365,7 +365,7 @@ function ProductList() {
               </Col>
               <Col>
                 <Form.Group className="mb-3" controlId="formImage">
-                  <Form.Label>Product Image</Form.Label>
+                  <Form.Label>Gambar Produk</Form.Label>
                   {newProduct.image && newProduct.image instanceof File ? (
                     <div>
                       <img src={URL.createObjectURL(newProduct.image)} alt="Product" style={{ maxWidth: '200px' }} />
@@ -375,7 +375,7 @@ function ProductList() {
                       <img src={newProduct.image} alt="Product" style={{ maxWidth: '200px' }} />
                     </div>
                   ) : (
-                    <div>No Image</div>
+                    <div>Tanpa gambar</div>
                   )}
                   <Form.Control
                     type="file"
@@ -385,33 +385,33 @@ function ProductList() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formIndication">
-                  <Form.Label>Indication</Form.Label>
+                  <Form.Label>Indikasi</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Enter indication"
+                    placeholder="Masukkan indikasi"
                     name="indication"
                     value={newProduct.indication}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formComposition">
-                  <Form.Label>Composition</Form.Label>
+                  <Form.Label>Komposisi</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Enter composition"
+                    placeholder="Masukkan komposisi"
                     name="composition"
                     value={newProduct.composition}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formDose">
-                  <Form.Label>Dose</Form.Label>
+                  <Form.Label>Dosis</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Enter dose"
+                    placeholder="Masukkan dosis"
                     name="dose"
                     value={newProduct.dose}
                     onChange={handleInputChange}
@@ -422,22 +422,22 @@ function ProductList() {
             <Row>
               <Col>
                 <Form.Group className="mb-3" controlId="formHowToUse">
-                  <Form.Label>How to Use</Form.Label>
+                  <Form.Label>Cara Penggunaan</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Enter how to use"
+                    placeholder="Masukkan cara penggunaan"
                     name="howtouse"
                     value={newProduct.howtouse}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formEffect">
-                  <Form.Label>Effect</Form.Label>
+                  <Form.Label>Efek</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Enter effect"
+                    placeholder="Masukkan efek"
                     name="effect"
                     value={newProduct.effect}
                     onChange={handleInputChange}

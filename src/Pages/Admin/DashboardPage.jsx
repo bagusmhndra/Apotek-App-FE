@@ -74,7 +74,7 @@ const Dashboard = () => {
       <HeaderDashboard />
       <Container>
         <Form className="p-5 flex-column gap-3 shadow">
-          <h2 className="orderlist-title mb-4">Halaman Utama</h2>
+          <h2 className="dashboardlist-title mb-4">Dashboard</h2>
 
           <Table striped bordered hover className="table-order shadow">
             <thead>
