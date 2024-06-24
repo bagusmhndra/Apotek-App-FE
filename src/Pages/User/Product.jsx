@@ -32,11 +32,10 @@ const Product = () => {
     };
   }, []);
 
-  const fetchAllProduct = async (category) => {
+  const fetchAllProduct = async () => {
     try {
       const response = await api.get(`/products`);
-      setProducts(response.data.products);
-      console.log(setProducts);
+      setProducts(response.data.products); // Store fetched products in state
     } catch (error) {
       console.error("Error fetching products", error);
     }
@@ -44,7 +43,7 @@ const Product = () => {
 
   useEffect(() => {
     fetchAllProduct();
-  }, []);
+  }, []); // Fetch products on component mount
 
   const handleProductClick = (product) => {
     navigate(`/products/detail-product/${product._id}`); // Navigate to detail page with product ID
@@ -62,20 +61,21 @@ const Product = () => {
       <Header />
       <Container className="product-container">
         <Row className="product-box justify-content-center mb-3">
-          <Row className="align-items-center justify-content-between">
-            <Col>
-              <h5>List Produk</h5>
-            </Col>
-          </Row>
           <Col xs={12}>
+            <Row className="align-items-center justify-content-between">
+              <Col>
+                <h5>Product List</h5>
+              </Col>
+            </Row>
             <Row className="g-3 justify-content-center">
+              {/* Map through products array and render each product as a Card */}
               {products.map((item, index) => (
                 <Col
+                  key={index}
                   xs={12}
                   sm={6}
                   md={4}
                   lg={2}
-                  key={index}
                   className="d-flex justify-content-center"
                 >
                   <Card

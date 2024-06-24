@@ -21,12 +21,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-center text-lg-start text-light" /*fixed="bottom"*/ >
-      <Container className="text-center text-md-start mt-5 ">
+    <footer className="bg-primary text-center text-lg-start text-light">
+      <Container className="text-center text-md-start mt-5">
         <section className="d-flex justify-content-between align-items-center p-4 mb-0 border-bottom">
           <div className="me-5 d-none d-lg-block">
             <span>
-              <h6>Terhubung dengan kami di sosial media:</h6>
+              <h6>Connect with us on social media:</h6>
             </span>
           </div>
 
@@ -61,26 +61,25 @@ const Footer = () => {
           <Col md="3" lg="4" xl="3" className="mx-auto mb-4 ">
             <h6 className="text-uppercase fw-bold mb-4">PHARMORA.ID</h6>
             <p>
-              Pharmora.id adalah apotek online untuk solusi kesehatan yang
-              modern dan terpercaya.
+              Pharmora.id is an online pharmacy for modern and trusted health solutions.
             </p>
           </Col>
 
           <Col md="2" lg="2" xl="2" className="mx-auto mb-4">
-            <h6 className="text-uppercase fw-bold mb-4">Lainnya</h6>
+            <h6 className="text-uppercase fw-bold mb-4">Other</h6>
             <p>
               <Link as={Link} to="/about-us" className="text-reset">
-                Tentang Kami
+                About Us
               </Link>
             </p>
             <p>
               <Link as={Link} to="/contact" className="text-reset">
-                Kontak Kami
+                Contact Us
               </Link>
             </p>
             <p>
               <Link as={Link} to="/products" className="text-reset">
-                Produk
+                Products
               </Link>
             </p>
             <p>
@@ -89,13 +88,13 @@ const Footer = () => {
                 to="https://www.biofarma.co.id/id/artikel-kesehatan"
                 className="text-reset"
               >
-                Artikel
+                Articles
               </Link>
             </p>
           </Col>
 
           <Col md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
-            <h6 className="text-uppercase fw-bold mb-4">Hubungi Kami</h6>
+            <h6 className="text-uppercase fw-bold mb-4">Our Contact</h6>
             <p>
               <House color="white" className="me-3" />
               Jakarta, Indonesia
@@ -112,9 +111,9 @@ const Footer = () => {
 
           <Col md="3" lg="3" xl="4" className="mx-auto mb-md-0 mb-4">
             <div className="widget">
-              <h6 className="text-uppercase fw-bold mb-4">Berita kami</h6>
+              <h6 className="text-uppercase fw-bold mb-4">Our News</h6>
               <p className="mb-4">
-                Berlangganan dengan berita kami untuk mendapatkan info terbaru.
+                Subscribe to our newsletter to get the latest updates.
               </p>
               <form onSubmit={handleSubmit}>
                 <div className="row gy-4">
@@ -146,7 +145,7 @@ const Footer = () => {
                         type="submit"
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }}
                       >
-                        Langganan
+                        Subscribe
                       </Button>
                     </div>
                   </div>

@@ -3,6 +3,7 @@ import { Container, Table, Button, Modal, Form, Breadcrumb } from "react-bootstr
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import api from "../../api";
+import "../../Assets/css/Dashboard.css";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 function UserList() {
@@ -95,13 +96,14 @@ function UserList() {
                     <td>{user.address}</td>
                     <td>
                       <Button
-                        variant="info"
+                        variant="orange"
                         size="sm"
+                        className="m-1 btn-orange"
                         onClick={() => handleEdit(user)}
                       >
-                        Edit Role
+                        Update
                       </Button>{" "}
-                      <Button variant="danger" size="sm">
+                      <Button variant="danger" className="m-1" size="sm">
                         Delete
                       </Button>
                     </td>

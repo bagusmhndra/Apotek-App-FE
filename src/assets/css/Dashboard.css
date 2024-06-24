@@ -1,0 +1,20 @@
+.btn-orange {
+  background-color: rgb(233, 151, 0);
+  border-color: rgb(233, 151, 0);
+  color: white;
+}
+
+.btn-orange:hover {
+  background-color: darkorange;
+  border-color: darkorange;
+  color: white;
+}
+
+.btn-orange:focus,
+.btn-orange.focus,
+.btn-orange:not(:disabled):not(.disabled):active,
+.btn-orange:not(:disabled):not(.disabled).active {
+  background-color: rgb(233, 151, 0);
+  border-color: rgb(233, 151, 0);
+  color: white;
+}

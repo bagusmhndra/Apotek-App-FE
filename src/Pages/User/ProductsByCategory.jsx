@@ -14,7 +14,7 @@ const ProductsByCategory = () => {
   const [categories, setCategories] = useState([]);
   const crispScriptRef = useRef(null);
 
-  // Chat
+  // Chat integration
   useEffect(() => {
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "0efccc7d-d3ae-4a9c-94f7-3f59742ed30e";
@@ -95,7 +95,7 @@ const ProductsByCategory = () => {
             <Col xs={12}>
               <Row className="align-items-center justify-content-between">
                 <Col>
-                  <h5>Kategori</h5>
+                  <h5>Categories</h5>
                 </Col>
               </Row>
               <Row className="g-3 justify-content-center">
@@ -137,7 +137,7 @@ const ProductsByCategory = () => {
               <Row className="align-items-center justify-content-between">
                 <Col>
                   {category && (
-                    <h5>Produk pada kategori: {category.name_category}</h5>
+                    <h5>Products in {category.name_category}: </h5>
                   )}
                 </Col>
               </Row>

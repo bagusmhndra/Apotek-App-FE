@@ -150,11 +150,11 @@ const Register = () => {
           </Form.Group>
 
           <Button variant="primary" type="submit" className="mt-3">
-            Daftar
+            Register
           </Button>
         </Form>
         <div className="mt-3 text-center">
-          Sudah punya akun?
+          Already have an account?
           <Button variant="link" as={Link} to="/login">
             Login
           </Button>

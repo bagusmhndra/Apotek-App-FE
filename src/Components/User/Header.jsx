@@ -9,7 +9,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { PersonFill, CartFill, BoxArrowRight } from "react-bootstrap-icons";
+import { PersonFill, CartFill, BoxArrowRight, Person } from "react-bootstrap-icons";
 import logo from "../../Assets/img/logo.png";
 import "../../Assets/css/Header.css";
 
@@ -69,16 +69,16 @@ const Header = () => {
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1 pe-3">
                 <Nav.Link as={Link} to="/">
-                  Beranda
+                  Home
                 </Nav.Link>
                 <Nav.Link as={Link} to="/products">
-                  Produk
+                  Products
                 </Nav.Link>
                 <Nav.Link as={Link} to="/contact">
-                  Kontak Kami
+                  Contact Us
                 </Nav.Link>
                 <Nav.Link as={Link} to="/about-us">
-                  Tentang Kami
+                  About Us
                 </Nav.Link>
               </Nav>
               <hr />
@@ -91,7 +91,7 @@ const Header = () => {
                       id="dropdown-basic"
                       className="profile-btn d-flex align-items-center border-0"
                     >
-                      <PersonFill size={30} />
+                      <Person size={30} />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item
@@ -99,14 +99,14 @@ const Header = () => {
                         to="/user-profile"
                         className="d-flex align-items-center"
                       >
-                        <PersonFill className="me-2" /> Profil Saya
+                        <PersonFill className="me-2" /> My Profile
                       </Dropdown.Item>
                       <Dropdown.Item
                         as={Link}
                         to="/my-order"
                         className="d-flex align-items-center"
                       >
-                        <CartFill className="me-2" /> Data Order
+                        <CartFill className="me-2" /> Order Data
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -120,10 +120,10 @@ const Header = () => {
               ) : (
                 <>
                   <ButtonGroup as={Link} to="/login" className="me-2">
-                    <Button variant="primary">Masuk</Button>
+                    <Button variant="primary">Login</Button>
                   </ButtonGroup>
                   <ButtonGroup as={Link} to="/register">
-                    <Button variant="outline-primary">Daftar</Button>
+                    <Button variant="outline-primary">Register</Button>
                   </ButtonGroup>
                 </>
               )}

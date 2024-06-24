@@ -45,7 +45,6 @@ const Home = () => {
       try {
         const response = await api.get("/category");
         setCategories(response.data.category);
-        console.log(setCategories);
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -83,7 +82,7 @@ const Home = () => {
   const diagnosis = [
     {
       image: diagnosis01,
-      name: "TBC",
+      name: "Tuberculosis (TB)",
       path: "https://www.biofarma.co.id/id/announcement/detail/tuberkulosis-tbc-gejala-penyebab-dan-pengobatan",
     },
     {
@@ -93,12 +92,12 @@ const Home = () => {
     },
     {
       image: diagnosis03,
-      name: "Kanker",
+      name: "Cancer",
       path: "https://www.biofarma.co.id/id/announcement/detail/ciri-kanker-pada-anak",
     },
     {
       image: diagnosis04,
-      name: "Jantung",
+      name: "Heart Disease",
       path: "https://www.biofarma.co.id/id/announcement/detail/penyakit-jantung-ciri-penyebab-dan-pencegahan",
     },
     {
@@ -108,7 +107,7 @@ const Home = () => {
     },
     {
       image: diagnosis06,
-      name: "Batuk & Flu",
+      name: "Cough & Flu",
       path: "https://www.biofarma.co.id/id/announcement/detail/bagaimana-menangani-flu-pada-anak-yuk-simak-artikel-berikut",
     },
   ];
@@ -154,13 +153,13 @@ const Home = () => {
         </Carousel>
       </div>
 
-      {/* KATEGORI */}
+      {/* CATEGORIES */}
       <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 category-container">
         <Row className="justify-content-center category-box border-0">
           <Col xs={12}>
             <Row className="align-items-center justify-content-between">
               <Col>
-                <h5>Kategori</h5>
+                <h5>Categories</h5>
               </Col>
             </Row>
             <Row className="g-3 justify-content-center">
@@ -201,17 +200,16 @@ const Home = () => {
           <Col xs={12}>
             <Row className="align-items-center justify-content-between">
               <Col>
-                <h5>Artikel Populer</h5>
+                <h5>Popular Articles</h5>
               </Col>
               <Col xs="auto">
                 <Button
                   variant="link"
                   className="see-all-button"
-                  Link
                   as={Link}
                   to="https://www.biofarma.co.id/id/artikel-kesehatan"
                 >
-                  Lihat Semua
+                  See All
                 </Button>
               </Col>
             </Row>
@@ -223,6 +221,7 @@ const Home = () => {
                   sm={6}
                   md={4}
                   lg={2}
+                  key={index}
                   className="d-flex justify-content-center"
                 >
                   <Card key={index} className="diagnosis-card h-100 border-0">
@@ -246,23 +245,22 @@ const Home = () => {
         </Row>
       </Container>
 
-      {/* PRODUK */}
+      {/* PRODUCTS */}
       <Container className="py-3 py-md-5 py-xl-8 pb-xxl-0 bsb-section-pt-xxl-1 product-container">
         <Row className="product-box justify-content-center">
           <Col xs={12}>
             <Row className="align-items-center justify-content-between">
               <Col>
-                <h5>Produk Populer</h5>
+                <h5>Popular Products</h5>
               </Col>
               <Col xs="auto">
                 <Button
                   variant="link"
                   className="see-all-button"
-                  Link
                   as={Link}
                   to="/products"
                 >
-                  Lihat Semua
+                  See All
                 </Button>
               </Col>
             </Row>

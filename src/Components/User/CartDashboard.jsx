@@ -47,20 +47,20 @@ const Cart = () => {
       <Container className="mt-5">
         <Row>
           <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/category" }}>Kembali</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/category" }}>Back</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
         <Row className="mt-3">
           <Col md={8}>
             <Card>
               <Card.Body>
-                <Card.Title>Keranjang</Card.Title>
+                <Card.Title>Cart</Card.Title>
                 <Form>
                   <Form.Group controlId="formAddress">
-                    <Form.Label className="mt-3">Alamat Pengiriman</Form.Label>
+                    <Form.Label className="mt-3">Shipping Address</Form.Label>
                     <Form.Control 
                       type="text" 
-                      placeholder="Tambahkan Alamat" 
+                      placeholder="Enter Address" 
                       value={address} 
                       onChange={(e) => setAddress(e.target.value)} 
                     />
@@ -68,7 +68,7 @@ const Cart = () => {
                 </Form>
                 <Card className="mt-4">
                   <Card.Body>
-                    <Card.Title>Produk</Card.Title>
+                    <Card.Title>Products</Card.Title>
                     <ListGroup variant="flush">
                       {products.map(product => (
                         <ListGroup.Item key={product.product._id}>
@@ -91,29 +91,29 @@ const Cart = () => {
           <Col md={4}>
             <Card>
               <Card.Body>
-                <Card.Title>Ringkasan Pembelian</Card.Title>
+                <Card.Title>Order Summary</Card.Title>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <Row>
-                      <Col>Total Pesanan</Col>
+                      <Col>Total Order</Col>
                       <Col>Rp {totalOrder.toLocaleString()}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Ongkos Kirim</Col>
+                      <Col>Shipping Cost</Col>
                       <Col>Rp {shippingCost.toLocaleString()}</Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Total Bayar</Col>
+                      <Col>Total Payment</Col>
                       <Col>Rp {totalPayment.toLocaleString()}</Col>
                     </Row>
                   </ListGroup.Item>
                 </ListGroup>
                 <Button variant="primary" className="w-100 mt-3" onClick={handleCheckout}>
-                  Lanjutkan Pembayaran
+                  Proceed to Checkout
                 </Button>
               </Card.Body>
             </Card>

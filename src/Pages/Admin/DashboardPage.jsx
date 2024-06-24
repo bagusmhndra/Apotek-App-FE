@@ -79,45 +79,45 @@ const Dashboard = () => {
           <Table striped bordered hover className="table-order shadow">
             <thead>
               <tr>
-                <th colSpan="2">Ringkasan Pesanan</th>
+                <th colSpan="2">Order Summary</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Total Pesanan</td>
+                <td>Total Orders</td>
                 <td>{totalOrders}</td>
               </tr>
               <tr>
-                <td>Total Penghasilan</td>
+                <td>Total Revenue</td>
                 <td>Rp{totalRevenue},00</td>
               </tr>
             </tbody>
           </Table>
 
-          <h4 className="mt-4">Daftar Pengguna</h4>
+          <h4 className="mt-4">User List</h4>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
                 <th>Username</th>
-                <th>Nama Lengkap</th>
+                <th>Email</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user) => (
                 <tr key={user._id}>
                   <td>{user.username}</td>
-                  <td>{user.fullname}</td>
+                  <td>{user.email}</td>
                 </tr>
               ))}
             </tbody>
           </Table>
 
-          <h4 className="mt-4">Daftar Produk</h4>
+          <h4 className="mt-4">Product List</h4>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Nama Produk</th>
-                <th>Harga</th>
+                <th>Product Name</th>
+                <th>Price</th>
               </tr>
             </thead>
             <tbody>
@@ -130,11 +130,11 @@ const Dashboard = () => {
             </tbody>
           </Table>
 
-          <h4 className="mt-4">Daftar Pesanan</h4>
+          <h4 className="mt-4">Order List</h4>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Tanggal</th>
+                <th>Date</th>
                 <th>Total</th>
               </tr>
             </thead>

@@ -12,6 +12,7 @@ import {
 import api from "../../api";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import "../../Assets/css/Dashboard.css";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 function ProductList() {
@@ -45,8 +46,8 @@ function ProductList() {
       setProducts(response.data.products);
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Gagal mengambil produk',
+        icon: "error",
+        title: "Failed to fetch products",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -59,8 +60,8 @@ function ProductList() {
       setCategories(response.data.category);
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Gagal mengambil kategori',
+        icon: "error",
+        title: "Failed to fetch categories",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -152,8 +153,8 @@ function ProductList() {
         },
       });
       Swal.fire({
-        icon: 'success',
-        title: 'Produk baru berhasil ditambahkan',
+        icon: "success",
+        title: "New product added successfully",
         text: response.data.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -161,8 +162,8 @@ function ProductList() {
       handleCloseModal(); // Close the modal after successful submission
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Gagal menambahkan produk baru',
+        icon: "error",
+        title: "Failed to add new product",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -198,8 +199,8 @@ function ProductList() {
         }
       );
       Swal.fire({
-        icon: 'success',
-        title: 'Produk berhasil diperbarui',
+        icon: "success",
+        title: "Product updated successfully",
         text: response.data.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -207,8 +208,8 @@ function ProductList() {
       handleCloseModal(); // Close the modal after successful update
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Gagal memperbarui produk',
+        icon: "error",
+        title: "Failed to update product",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -219,20 +220,20 @@ function ProductList() {
   const handleDeleteProduct = async () => {
     try {
       const result = await Swal.fire({
-        title: 'Apakah kamu yakin?',
-        text: "Anda tidak akan dapat mengembalikan ini!",
-        icon: 'warning',
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonText: 'Ya, hapus!',
-        cancelButtonText: 'Tidak, batal!',
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
         confirmButtonColor: "#3B71CA",
       });
 
       if (result.isConfirmed) {
         const response = await api.delete(`/products/${selectedProduct._id}`);
         Swal.fire({
-          icon: 'success',
-          title: 'Produk berhasil dihapus',
+          icon: "success",
+          title: "Product deleted successfully",
           text: response.data.message,
           confirmButtonColor: "#3B71CA",
         });
@@ -241,8 +242,8 @@ function ProductList() {
       }
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Gagal menghapus produk',
+        icon: "error",
+        title: "Failed to delete product",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -258,23 +259,23 @@ function ProductList() {
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>Daftar Produk</Breadcrumb.Item>
+            <Breadcrumb.Item active>Product List</Breadcrumb.Item>
           </Breadcrumb>
-          <h3 className="productlist-title mt-4 mb-4">List Produk</h3>
+          <h3 className="productlist-title mt-4 mb-4">Product List</h3>
           <Button className="mb-3" onClick={() => handleShowModal(null)}>
-            Tambah Produk
+            Add Product
           </Button>
           <div className="table-responsive">
             <Table striped bordered hover className="table-product shadow">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Gambar</th>
-                  <th>Nama</th>
-                  <th>Kategori</th>
-                  <th>Harga (IDR)</th>
-                  <th>Nomor Ijin Edar</th>
-                  <th>Aksi</th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price (IDR)</th>
+                  <th>Marketing Authorization Number (NIE)</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -299,11 +300,20 @@ function ProductList() {
                       <td>{product.nie || "N/A"}</td>
                       <td>
                         <Button
-                          variant="info"
+                          variant="orange"
                           size="sm"
+                          className="m-1 btn-orange"
                           onClick={() => handleShowModal(product)}
                         >
-                          Detail
+                          Update
+                        </Button>
+                        <Button
+                          variant="danger"
+                          className="m-1"
+                          size="sm"
+                          onClick={handleDeleteProduct}
+                        >
+                          Delete
                         </Button>
                       </td>
                     </tr>
@@ -317,17 +327,22 @@ function ProductList() {
       {/* Modal for viewing and editing product */}
       <Modal show={showModal} onHide={handleCloseModal} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>{selectedProduct ? 'Edit Product' : 'Add New Product'}</Modal.Title>
+          <Modal.Title>
+            {selectedProduct ? "Edit Product" : "Add New Product"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={selectedProduct ? handleEditProduct : handleSubmit}>
+          <Form
+            onSubmit={selectedProduct ? handleEditProduct : handleSubmit}
+            className="p-2"
+          >
             <Row>
               <Col>
                 <Form.Group className="mb-3" controlId="formProductName">
-                  <Form.Label>Nama Produk</Form.Label>
+                  <Form.Label>Product Name</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Masukkan nama produk"
+                    placeholder="Enter product name"
                     name="productName"
                     value={newProduct.productName}
                     onChange={handleInputChange}
@@ -335,7 +350,7 @@ function ProductList() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formCategory">
-                  <Form.Label>Kategori</Form.Label>
+                  <Form.Label>Category</Form.Label>
                   <Form.Control
                     as="select"
                     name="id_category"
@@ -345,106 +360,49 @@ function ProductList() {
                   >
                     <option value="">Select Category</option>
                     {categories.map((category) => (
-                      <option key={category.id_category} value={category.id_category}>
+                      <option
+                        key={category.id_category}
+                        value={category.id_category}
+                      >
                         {category.name_category}
                       </option>
                     ))}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formPrice">
-                  <Form.Label>Harga (IDR)</Form.Label>
+                  <Form.Label>Price (IDR)</Form.Label>
                   <Form.Control
                     type="number"
-                    placeholder="Masukkan harga"
+                    placeholder="Enter price"
                     name="price"
                     value={newProduct.price}
                     onChange={handleInputChange}
                     required
                   />
                 </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group className="mb-3" controlId="formImage">
-                  <Form.Label>Gambar Produk</Form.Label>
-                  {newProduct.image && newProduct.image instanceof File ? (
-                    <div>
-                      <img src={URL.createObjectURL(newProduct.image)} alt="Product" style={{ maxWidth: '200px' }} />
-                    </div>
-                  ) : newProduct.image ? (
-                    <div>
-                      <img src={newProduct.image} alt="Product" style={{ maxWidth: '200px' }} />
-                    </div>
-                  ) : (
-                    <div>Tanpa gambar</div>
-                  )}
-                  <Form.Control
-                    type="file"
-                    accept="image/jpeg, image/png"
-                    name="image"
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formIndication">
-                  <Form.Label>Indikasi</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    placeholder="Masukkan indikasi"
-                    name="indication"
-                    value={newProduct.indication}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formComposition">
-                  <Form.Label>Komposisi</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    placeholder="Masukkan komposisi"
-                    name="composition"
-                    value={newProduct.composition}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formDose">
-                  <Form.Label>Dosis</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    placeholder="Masukkan dosis"
-                    name="dose"
-                    value={newProduct.dose}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
                 <Form.Group className="mb-3" controlId="formHowToUse">
-                  <Form.Label>Cara Penggunaan</Form.Label>
+                  <Form.Label>How to Use</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Masukkan cara penggunaan"
+                    placeholder="Enter how to use"
                     name="howtouse"
                     value={newProduct.howtouse}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formEffect">
-                  <Form.Label>Efek</Form.Label>
+                  <Form.Label>Effect</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Masukkan efek"
+                    placeholder="Enter effect"
                     name="effect"
                     value={newProduct.effect}
                     onChange={handleInputChange}
                   />
                 </Form.Group>
-              </Col>
-              <Col>
                 <Form.Group className="mb-3" controlId="formGroup">
                   <Form.Label>Group</Form.Label>
                   <Form.Control
@@ -456,7 +414,7 @@ function ProductList() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formNie">
-                  <Form.Label>Nomor Ijin Edar (NIE)</Form.Label>
+                  <Form.Label>License Number (NIE)</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter NIE"
@@ -466,18 +424,80 @@ function ProductList() {
                   />
                 </Form.Group>
               </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formImage">
+                  <Form.Label>Product Image</Form.Label>
+                  {newProduct.image && newProduct.image instanceof File ? (
+                    <div>
+                      <img
+                        src={URL.createObjectURL(newProduct.image)}
+                        alt="Product"
+                        style={{ maxWidth: "200px" }}
+                      />
+                    </div>
+                  ) : newProduct.image ? (
+                    <div>
+                      <img
+                        src={newProduct.image}
+                        alt="Product"
+                        style={{ maxWidth: "200px" }}
+                      />
+                    </div>
+                  ) : (
+                    <div>No image</div>
+                  )}
+                  <Form.Control
+                    type="file"
+                    accept="image/jpeg, image/png"
+                    name="image"
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formIndication">
+                  <Form.Label>Indication</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter indication"
+                    name="indication"
+                    value={newProduct.indication}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formComposition">
+                  <Form.Label>Composition</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter composition"
+                    name="composition"
+                    value={newProduct.composition}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formDose">
+                  <Form.Label>Dosage</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter dosage"
+                    name="dose"
+                    value={newProduct.dose}
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+              </Col>
             </Row>
-            <Button variant="secondary" onClick={handleCloseModal}>
+            <Button
+              variant="secondary"
+              className="me-2"
+              onClick={handleCloseModal}
+            >
               Close
             </Button>
             <Button variant="primary" type="submit">
-              {selectedProduct ? 'Save Changes' : 'Add Product'}
+              {selectedProduct ? "Save Changes" : "Add Product"}
             </Button>
-            {selectedProduct && (
-              <Button variant="danger" onClick={handleDeleteProduct}>
-                Delete
-              </Button>
-            )}
           </Form>
         </Modal.Body>
       </Modal>

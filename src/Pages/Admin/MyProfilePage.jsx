@@ -93,9 +93,9 @@ function MyProfilePage() {
             <Breadcrumb.Item>
               <Link to="/dashboard">Dashboard</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item active>Profil Saya</Breadcrumb.Item>
+            <Breadcrumb.Item active>My Profile</Breadcrumb.Item>
           </Breadcrumb>
-          <h3 className="myprofile-title mt-4 mb-4">Profil Saya</h3>
+          <h3 className="myprofile-title mt-4 mb-4">My Profile</h3>
           <Card className="border-0">
             <Card.Body>
               <Form onSubmit={saveProfile}>
@@ -142,7 +142,7 @@ function MyProfilePage() {
                   <Col md={6} className="mb-3">
                     <Form.Group controlId="phoneNumber">
                       <Form.Label className="fw-semibold">
-                        No. Telepon
+                        Phone Number
                       </Form.Label>
                       {editMode ? (
                         <Form.Control
@@ -154,7 +154,7 @@ function MyProfilePage() {
                               phoneNumber: e.target.value,
                             })
                           }
-                          placeholder="No. Telepon..."
+                          placeholder="Phone Number..."
                         />
                       ) : (
                         <div>{formData.phoneNumber}</div>
@@ -163,7 +163,7 @@ function MyProfilePage() {
                   </Col>
                   <Col md={6} className="mb-3">
                     <Form.Group controlId="address">
-                      <Form.Label className="fw-semibold">Alamat</Form.Label>
+                      <Form.Label className="fw-semibold">Address</Form.Label>
                       {editMode ? (
                         <Form.Control
                           type="text"
@@ -174,7 +174,7 @@ function MyProfilePage() {
                               address: e.target.value,
                             })
                           }
-                          placeholder="Alamat..."
+                          placeholder="Address..."
                         />
                       ) : (
                         <div>{formData.address}</div>
@@ -185,10 +185,10 @@ function MyProfilePage() {
                 {editMode ? (
                   <div className="d-flex justify-content-left text-center">
                     <Button type="submit" variant="primary" className="me-2">
-                      Perbarui
+                      Update
                     </Button>
                     <Button variant="secondary" onClick={cancelEdit}>
-                      Batal
+                      Cancel
                     </Button>
                   </div>
                 ) : (

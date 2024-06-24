@@ -85,10 +85,10 @@ const DetailProduct = () => {
       <Container className="detail-product-container">
         <Breadcrumb className="breadcrumb">
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>
-            Beranda
+            Home
           </Breadcrumb.Item>
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/products' }}>
-            Produk
+            Products
           </Breadcrumb.Item>
           <Breadcrumb.Item active>{product?.productName}</Breadcrumb.Item>
         </Breadcrumb>
@@ -105,7 +105,7 @@ const DetailProduct = () => {
               <p className="per-strip">Per STRIP</p>
               <div className="detail-product-actions">
                 <Button variant="primary" className="cart-button" onClick={handleAddToCart}>
-                  + Tambah ke Keranjang
+                  + Add to Cart
                 </Button>
                 <div className="d-flex justify-content-between align-items-center">
                   <Button variant="outline-primary" className="cart-button me-3" onClick={handleDecrement}>
@@ -118,28 +118,28 @@ const DetailProduct = () => {
                 </div>
               </div>
               <hr />
-              <div className="product-deskripsi">
-                <h3>Deskripsi</h3>
+              <div className="product-description">
+                <h3>Description</h3>
                 <p>{product.desc}</p>
-                <h4>Indikasi / Kegunaan</h4>
+                <h4>Indications / Uses</h4>
                 <p>{product.indication}</p>
-                <h4>Kandungan / Komposisi</h4>
+                <h4>Contents / Composition</h4>
                 <p>{product.composition}</p>
-                <h4>Dosis</h4>
+                <h4>Dosage</h4>
                 <p>{product.dose}</p>
-                <h4>Cara Pemakaian</h4>
+                <h4>How to Use</h4>
                 <p>{product.howtouse}</p>
-                <h4>Golongan</h4>
+                <h4>Category</h4>
                 <p>{product.group}</p>
-                <h4>Efek Samping</h4>
+                <h4>Side Effects</h4>
                 <p>{product.effect}</p>
-                <h4>Nomor Ijin Edar (NIE)</h4>
+                <h4>Marketing Authorization Number (NIE)</h4>
                 <p>{product.nie}</p>
               </div>
             </Col>
           </Row>
         ) : (
-          <p>Memuat...</p>
+          <p>Loading...</p>
         )}
       </Container>
       <Footer />

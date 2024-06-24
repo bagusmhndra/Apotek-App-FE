@@ -32,11 +32,11 @@ const MyOrder = () => {
   }, []);
 
   useEffect(() => {
-    // Mengambil daftar pesanan dari API
+    // Fetching the list of orders from the API
     const fetchOrders = async () => {
       try {
         const response = await api.get('/order');
-        setOrders(response.data); // Simpan data pesanan ke state
+        setOrders(response.data); // Save order data to state
       } catch (error) {
         console.error('Error fetching orders:', error);
       }
@@ -45,25 +45,26 @@ const MyOrder = () => {
     fetchOrders();
   }, []);
 
+  // Function to get the payment status badge based on status
   const getPaymentStatusBadge = (status) => {
     let variant, text;
 
     switch (status) {
       case 'Pending':
         variant = 'warning';
-        text = 'Tertunda';
+        text = 'Pending';
         break;
       case 'Successful':
         variant = 'success';
-        text = 'Terbayar';
+        text = 'Successful';
         break;
       case 'Cancelled':
         variant = 'danger';
-        text = 'Dibatalkan';
+        text = 'Cancelled';
         break;
       default:
         variant = 'secondary';
-        text = 'Tidak diketahui';
+        text = 'Unknown';
     }
 
     return <Badge bg={variant}>{text}</Badge>;
@@ -75,8 +76,8 @@ const MyOrder = () => {
       <Container className="mt-5">
         <Row>
           <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Beranda</Breadcrumb.Item>
-            <Breadcrumb.Item active>Order Saya</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
+            <Breadcrumb.Item active>My Orders</Breadcrumb.Item>
           </Breadcrumb>
         </Row>
         {orders.map(order => (
@@ -84,10 +85,10 @@ const MyOrder = () => {
             <Col md={12}>
               <Card className='border-0 shadow'>
                 <Card.Body>
-                  <Card.Title>ID Order: {order._id}</Card.Title>
+                  <Card.Title>Order ID: {order._id}</Card.Title>
                   <Breadcrumb>
                     <Breadcrumb.Item active>Status: {getPaymentStatusBadge(order.status)}</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Alamat: {order.address}</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Address: {order.address}</Breadcrumb.Item>
                   </Breadcrumb>
                   <ListGroup variant="flush">
                     {order.items.map(item => (
@@ -105,7 +106,7 @@ const MyOrder = () => {
                   </ListGroup>
                   <Card className="mt-4">
                     <Card.Body>
-                      <Card.Title>Total Pembelian</Card.Title>
+                      <Card.Title>Total Purchase</Card.Title>
                       <ListGroup variant="flush">
                         <ListGroup.Item>
                           <Row>
@@ -122,7 +123,7 @@ const MyOrder = () => {
                           href={order.whatsappLink} 
                           target="_blank"
                         >
-                          Konfirmasi Order di WhatsApp
+                          Confirm Order on WhatsApp
                         </Button>
                       )}
                     </Card.Body>

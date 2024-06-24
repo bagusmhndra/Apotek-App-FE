@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import api from "../../api";
+import "../../Assets/css/Dashboard.css";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 
 const CategoryList = () => {
@@ -166,15 +167,17 @@ const CategoryList = () => {
                     <td>{category.name_category}</td>
                     <td>
                       <Button
-                        variant="info"
+                        variant="orange"
                         size="sm"
+                        className="m-1 btn-orange"
                         onClick={() => handleShowModal(category)}
                       >
-                        Edit
+                        Update
                       </Button>{" "}
                       <Button
                         variant="danger"
                         size="sm"
+                        className="m-1"
                         onClick={() => handleDeleteCategory(category._id)}
                       >
                         Delete
@@ -218,7 +221,7 @@ const CategoryList = () => {
                 required
               />
             </Form.Group>
-            <Button variant="secondary" onClick={handleCloseModal}>
+            <Button variant="secondary" className="me-2" onClick={handleCloseModal}>
               Close
             </Button>
             <Button variant="primary" type="submit">

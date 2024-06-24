@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table, Button, Modal, Form, Breadcrumb } from "react-bootstrap";
+import {
+  Container,
+  Table,
+  Button,
+  Modal,
+  Form,
+  Breadcrumb,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import api from "../../api";
+import "../../Assets/css/Dashboard.css";
 import HeaderDashboard from "../../Components/Admin/HeaderDashboard";
 import Swal from "sweetalert2";
 
@@ -20,8 +28,8 @@ function OrderListPage() {
       setOrders(response.data);
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to fetch orders',
+        icon: "error",
+        title: "Failed to fetch orders",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -42,8 +50,8 @@ function OrderListPage() {
     // Implement print logic here
     console.log("Printing order:", orderId);
     Swal.fire({
-      icon: 'success',
-      title: 'Order is being printed',
+      icon: "success",
+      title: "Order is being printed",
       text: `Order ID: ${orderId}`,
       confirmButtonColor: "#3B71CA",
     });
@@ -62,8 +70,8 @@ function OrderListPage() {
         }
       );
       Swal.fire({
-        icon: 'success',
-        title: 'Order status updated successfully',
+        icon: "success",
+        title: "Order status updated successfully",
         text: response.data.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -71,8 +79,8 @@ function OrderListPage() {
       handleCloseModal(); // Close the modal
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to update order status',
+        icon: "error",
+        title: "Failed to update order status",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -117,14 +125,16 @@ function OrderListPage() {
                       <td>{order.status}</td>
                       <td>
                         <Button
-                          variant="info"
+                          variant="orange"
                           size="sm"
+                          className="m-1 btn-orange"
                           onClick={() => handleShowModal(order)}
                         >
-                          View Order
+                          Update
                         </Button>{" "}
                         <Button
                           variant="success"
+                          className="m-1"
                           size="sm"
                           onClick={() => handlePrintOrder(order._id)}
                         >

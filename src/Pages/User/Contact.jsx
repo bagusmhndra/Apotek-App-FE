@@ -21,7 +21,7 @@ const Contact = () => {
           <Row>
             <Col xs={12} md={10} lg={8}>
               <h3 className="fs-4 mb-3 text-secondary text-uppercase">
-                Kontak Kami
+                Contact Us
               </h3>
             </Col>
           </Row>
@@ -36,7 +36,7 @@ const Contact = () => {
                     <Col xs={12}>
                       <Form.Group controlId="fullname">
                         <Form.Label>
-                          Nama Lengkap<span className="text-danger">*</span>
+                          Full Name<span className="text-danger">*</span>
                         </Form.Label>
                         <Form.Control type="text" required />
                       </Form.Group>
@@ -51,14 +51,14 @@ const Contact = () => {
                     </Col>
                     <Col xs={12} md={6}>
                       <Form.Group controlId="phone">
-                        <Form.Label>No. Telepon</Form.Label>
+                        <Form.Label>Phone Number</Form.Label>
                         <Form.Control type="tel" />
                       </Form.Group>
                     </Col>
                     <Col xs={12}>
                       <Form.Group controlId="subject">
                         <Form.Label>
-                          Judul <span className="text-danger">*</span>
+                          Subject <span className="text-danger">*</span>
                         </Form.Label>
                         <Form.Control type="text" required />
                       </Form.Group>
@@ -66,7 +66,7 @@ const Contact = () => {
                     <Col xs={12}>
                       <Form.Group controlId="message">
                         <Form.Label>
-                          Pesan <span className="text-danger">*</span>
+                          Message <span className="text-danger">*</span>
                         </Form.Label>
                         <Form.Control as="textarea" rows={3} required />
                       </Form.Group>
@@ -74,7 +74,7 @@ const Contact = () => {
                     <Col xs={12}>
                       <div className="d-grid">
                         <Button variant="primary" size="lg" type="submit">
-                          Kirim Pesan
+                          Send Message
                         </Button>
                       </div>
                     </Col>
@@ -91,7 +91,7 @@ const Contact = () => {
                       <Geo size={32} />
                     </div>
                     <div>
-                      <h4 className="mb-2">Kantor</h4>
+                      <h4 className="mb-2">Office</h4>
                       <hr className="w-50 mb-3 border-dark-subtle" />
                       <address className="m-0 text-secondary">
                         Jakarta, Indonesia
@@ -105,7 +105,7 @@ const Contact = () => {
                           <TelephoneOutbound size={32} />
                         </div>
                         <div>
-                          <h4 className="mb-2">No. Telepon</h4>
+                          <h4 className="mb-2">Phone Number</h4>
                           <hr className="w-50 my-3 border-dark-subtle" />
                           <p className="mb-0 text-secondary">
                             +62 1234 5678 910
@@ -133,12 +133,12 @@ const Contact = () => {
                       <ClockHistory size={32} />
                     </div>
                     <div>
-                      <h4 className="mb-2">Jam Kerja</h4>
+                      <h4 className="mb-2">Business Hours</h4>
                       <hr className="w-50 my-3 border-dark-subtle" />
                       <p className="mb-2 text-secondary">
-                        Sen - Jum: 9:00 - 17:00
+                        Mon - Fri: 9:00 AM - 5:00 PM
                       </p>
-                      <p className="m-0 text-secondary">Sab - Min: Tutup</p>
+                      <p className="m-0 text-secondary">Sat - Sun: Closed</p>
                     </div>
                   </div>
                 </Col>

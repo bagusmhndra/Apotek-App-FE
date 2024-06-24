@@ -14,12 +14,12 @@ const NotFoundPage = () => {
         <Row>
           <Col>
             <CapsulePill size={80} className="mb-4 text-primary" />
-            <h1 className="display-4">404 - Halaman Tidak Ditemukan</h1>
+            <h1 className="display-4">404 - Page Not Found</h1>
             <p className="lead">
-              Maaf, halaman yang Anda cari tidak ditemukan.
+              Sorry, the page you are looking for could not be found.
             </p>
             <Button as={Link} to="/" variant="primary" className="mt-3">
-              Kembali ke Beranda
+              Back to Home
             </Button>
           </Col>
         </Row>

@@ -48,11 +48,10 @@ const About = () => {
               <Row className="d-flex justify-content-center align-items-center h-100">
                 <Col className="text-white">
                   <h1 className="mb-3">
-                    Solusi Terbaik Untuk Kebutuhan Kesehatan Anda
+                    The Best Solution for Your Health Needs
                   </h1>
                   <h4 className="mb-3">
-                    Pharmora.id adalah apotek online untuk solusi kesehatan yang
-                    modern dan terpercaya.
+                    Pharmora.id is an online pharmacy for modern and trusted health solutions.
                   </h4>
                 </Col>
               </Row>
@@ -70,30 +69,22 @@ const About = () => {
               <Row className="justify-content-xl-center">
                 <Col xs={12} xl={11}>
                   <h3 className="fs-4 mb-3 text-secondary text-uppercase">
-                    Tentang Kami
+                    About Us
                   </h3>
                   <p className="lead fs-4 mb-3">
-                    Pharmora.id adalah apotek online untuk solusi kesehatan yang
-                    modern dan terpercaya, menawarkan beragam produk farmasi
-                    berkualitas tinggi dan layanan yang ramah pengguna.
+                    Pharmora.id is an online pharmacy for modern and trusted health solutions, offering a wide range of high-quality pharmaceutical products and user-friendly services.
                   </p>
                   <p className="mb-5">
-                    Kami adalah perusahaan yang berkembang pesat, namun kami
-                    tidak pernah melupakannya nilai-nilai inti kami. Kami
-                    percaya pada kolaborasi, inovasi, dan kepuasan pelanggan.
-                    Kami selalu mencari cara baru untuk melakukannya
-                    meningkatkan produk dan layanan kami.
+                    We are a rapidly growing company, but we never forget our core values. We believe in collaboration, innovation, and customer satisfaction. We are always looking for new ways to improve our products and services.
                   </p>
                   <Row className="gy-4 gy-md-0 gx-xxl-5X">
                     <Col xs={12} md={6}>
                       <Card className="border-0 shadow">
                         <Card.Body className="d-flex align-items-start">
                           <div>
-                            <h4 className="h4 mb-3">Visi</h4>
+                            <h4 className="h4 mb-3">Vision</h4>
                             <p className="text-secondary mb-0">
-                              Menjadi apotek online terdepan di Indonesia yang
-                              memberikan solusi kesehatan terbaik dengan
-                              pelayanan yang unggul, inovatif, dan terpercaya.
+                              To become the leading online pharmacy in Indonesia providing the best health solutions with excellent, innovative, and trusted services.
                             </p>
                           </div>
                         </Card.Body>
@@ -103,12 +94,9 @@ const About = () => {
                       <Card className="border-0 shadow">
                         <Card.Body className="d-flex align-items-start">
                           <div>
-                            <h4 className="h4 mb-3">Misi</h4>
+                            <h4 className="h4 mb-3">Mission</h4>
                             <p className="text-secondary mb-0">
-                              Memberikan layanan pelanggan yang ramah,
-                              responsif, dan profesional untuk memastikan
-                              pengalaman berbelanja yang menyenangkan dan
-                              memuaskan.
+                              To provide friendly, responsive, and professional customer service to ensure a pleasant and satisfying shopping experience.
                             </p>
                           </div>
                         </Card.Body>
@@ -126,28 +114,28 @@ const About = () => {
           <Row className="justify-content-md-center">
             <Col xs={12} md={10} lg={8} xl={7}>
               <h3 className="fs-4 m-4 text-secondary text-center text-uppercase">
-                Kesuksesan Kami
+                Our Success
               </h3>
             </Col>
           </Row>
           <Row className="gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
             <Col xs={12}>
-              <Container fluid className="bg-accent border-0 ">
+              <Container fluid className="bg-accent border-0">
                 <Row>
                   <Col xs={12} md={4} className="p-0">
                     <Card border="0" className="bg-transparent">
                       <Card.Body className="text-center p-4 p-xxl-5">
                         <h3 className="display-4 fw-bold mb-2 fs-1">60+</h3>
-                        <p className="fs-6 mb-0 text-secondary">Produk</p>
+                        <p className="fs-6 mb-0 text-secondary">Products</p>
                       </Card.Body>
                     </Card>
                   </Col>
                   <Col xs={12} md={4} className="p-0 border-start border-end">
                     <Card border="0" className="bg-transparent">
                       <Card.Body className="text-center p-4 p-xxl-5">
-                        <h3 className="display-4 fw-bold mb-2 fs-1">18rb+</h3>
+                        <h3 className="display-4 fw-bold mb-2 fs-1">18K+</h3>
                         <p className="fs-6 mb-0 text-secondary">
-                          Produk Terjual
+                          Products Sold
                         </p>
                       </Card.Body>
                     </Card>
@@ -155,8 +143,8 @@ const About = () => {
                   <Col xs={12} md={4} className="p-0">
                     <Card border="0" className="bg-transparent">
                       <Card.Body className="text-center p-4 p-xxl-5">
-                        <h3 className="display-4 fw-bold mb-2 fs-1">12rb+</h3>
-                        <p className="fs-6 mb-0 text-secondary">Pembeli</p>
+                        <h3 className="display-4 fw-bold mb-2 fs-1">12K+</h3>
+                        <p className="fs-6 mb-0 text-secondary">Buyers</p>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -171,7 +159,7 @@ const About = () => {
           <Row>
             <Col xs={12} md={10} lg={8}>
               <h3 className="fs-4 mb-3 text-secondary text-uppercase">
-                Testimoni
+                Testimonials
               </h3>
             </Col>
           </Row>
@@ -184,11 +172,7 @@ const About = () => {
                 <Card.Body className="p-4 p-xxl-5">
                   <StarRating stars={5} />
                   <blockquote className="bsb-blockquote-icon mb-3">
-                    Apotek ini menyediakan layanan yang luar biasa. Pesanan saya
-                    selalu tiba tepat waktu dan produk-produknya berkualitas
-                    tinggi. Saya sangat merekomendasikan apotek ini kepada siapa
-                    saja yang membutuhkan solusi kesehatan yang dapat
-                    diandalkan.
+                    This pharmacy provides excellent service. My orders always arrive on time and the products are of high quality. I highly recommend this pharmacy to anyone in need of reliable health solutions.
                   </blockquote>
                   <figure className="d-flex align-items-center m-0 p-0">
                     <Image
@@ -200,7 +184,7 @@ const About = () => {
                     <figcaption className="ms-3">
                       <h4 className="mb-1 h5">Salsabila Putri</h4>
                       <h5 className="fs-6 text-secondary mb-0">
-                        Pelanggan Setia
+                        Loyal Customer
                       </h5>
                     </figcaption>
                   </figure>
@@ -212,10 +196,7 @@ const About = () => {
                 <Card.Body className="p-4 p-xxl-5">
                   <StarRating stars={3} />
                   <blockquote className="bsb-blockquote-icon mb-3">
-                    Layanan pelanggan apotek ini sangat responsif dan membantu.
-                    Saya berhasil menemukan semua obat yang saya butuhkan dengan
-                    bantuan customer service, meskipun beberapa produk sering
-                    habis stok.
+                    The customer service of this pharmacy is very responsive and helpful. I managed to find all the medications I needed with the help of customer service, although some products are often out of stock.
                   </blockquote>
                   <figure className="d-flex align-items-center m-0 p-0">
                     <Image
@@ -227,7 +208,7 @@ const About = () => {
                     <figcaption className="ms-3">
                       <h4 className="mb-1 h5">Orvala Putra</h4>
                       <h5 className="fs-6 text-secondary mb-0">
-                        Pengguna Pertama Kali
+                        First-Time User
                       </h5>
                     </figcaption>
                   </figure>
@@ -239,9 +220,7 @@ const About = () => {
                 <Card.Body className="p-4 p-xxl-5">
                   <StarRating stars={4} />
                   <blockquote className="bsb-blockquote-icon mb-3">
-                    Apotek ini memiliki berbagai macam produk kesehatan dan
-                    harga yang kompetitif. Namun, terkadang pengirimannya agak
-                    lambat, tetapi secara keseluruhan saya cukup puas.
+                    This pharmacy has a wide variety of health products and competitive prices. However, sometimes the delivery is a bit slow, but overall I am quite satisfied.
                   </blockquote>
                   <figure className="d-flex align-items-center m-0 p-0">
                     <Image
@@ -253,7 +232,7 @@ const About = () => {
                     <figcaption className="ms-3">
                       <h4 className="mb-1 h5">Restu Saputra</h4>
                       <h5 className="fs-6 text-secondary mb-0">
-                        Pengguna Aktif
+                        Active User
                       </h5>
                     </figcaption>
                   </figure>
@@ -265,9 +244,7 @@ const About = () => {
                 <Card.Body className="p-4 p-xxl-5">
                   <StarRating stars={5} />
                   <blockquote className="bsb-blockquote-icon mb-3">
-                    Apotek ini membantu saya mendapatkan obat yang sulit
-                    ditemukan di tempat lain. Layanan pengirimannya sangat cepat
-                    dan terpercaya. Saya akan terus berbelanja di sini.
+                    This pharmacy helps me get medications that are hard to find elsewhere. The delivery service is very fast and reliable. I will continue to shop here.
                   </blockquote>
                   <figure className="d-flex align-items-center m-0 p-0">
                     <Image
@@ -279,7 +256,7 @@ const About = () => {
                     <figcaption className="ms-3">
                       <h4 className="mb-1 h5">Novita</h4>
                       <h5 className="fs-6 text-secondary mb-0">
-                        Pelanggan Aktif
+                        Active Customer
                       </h5>
                     </figcaption>
                   </figure>
