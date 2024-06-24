@@ -10,9 +10,23 @@ const Dashboard = () => {
   const [orders, setOrders] = useState([]);
   const [totalOrders, setTotalOrders] = useState(0);
   const [totalRevenue, setTotalRevenue] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false); // State to track if user is admin
 
   useEffect(() => {
-    fetchUsers();
+    const checkUserRole = async () => {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData && userData.role === "Admin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+          fetchUsers();
+        }
+      }
+    };
+
+    checkUserRole();
     fetchProducts();
     fetchOrders();
   }, []);
@@ -20,7 +34,7 @@ const Dashboard = () => {
   const fetchUsers = async () => {
     try {
       const response = await api.get("/users/all");
-      setUsers(response.data.slice(0, 3)); // Display first 3 users
+      setUsers(response.data.slice(0, 5)); // Display first 3 users
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -34,7 +48,7 @@ const Dashboard = () => {
   const fetchProducts = async () => {
     try {
       const response = await api.get("/products");
-      setProducts(response.data.products.slice(0, 3)); // Display first 3 products
+      setProducts(response.data.products.slice(0, 5)); // Display first 3 products
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -48,7 +62,7 @@ const Dashboard = () => {
   const fetchOrders = async () => {
     try {
       const response = await api.get("/order/all");
-      const ordersData = response.data.slice(0, 3); // Display first 3 orders
+      const ordersData = response.data.slice(0, 5); // Display first 3 orders
       setOrders(ordersData);
 
       // Calculate total orders and total revenue
@@ -94,23 +108,27 @@ const Dashboard = () => {
             </tbody>
           </Table>
 
-          <h4 className="mt-4">User List</h4>
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user._id}>
-                  <td>{user.username}</td>
-                  <td>{user.email}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          {!isAdmin && (
+            <>
+              <h4 className="mt-4">User List</h4>
+              <Table striped bordered hover responsive>
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr key={user._id}>
+                      <td>{user.username}</td>
+                      <td>{user.email}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </>
+          )}
 
           <h4 className="mt-4">Product List</h4>
           <Table striped bordered hover responsive>

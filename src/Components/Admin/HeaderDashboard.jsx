@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Container,
@@ -13,6 +13,23 @@ import "../../Assets/css/Header.css";
 
 const HeaderDashboard = () => {
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false); // State to track if user is admin
+
+  useEffect(() => {
+    const checkUserRole = () => {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData && userData.role === "Superadmin") {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+        }
+      }
+    };
+
+    checkUserRole();
+  }, []);
 
   const handleLogout = () => {
     navigate("/logout");
@@ -48,9 +65,6 @@ const HeaderDashboard = () => {
               <Nav.Link as={Link} to="/dashboard">
                 Dashboard
               </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/user-list">
-                User List
-              </Nav.Link>
               <Nav.Link as={Link} to="/dashboard/order-list">
                 Order List
               </Nav.Link>
@@ -60,6 +74,11 @@ const HeaderDashboard = () => {
               <Nav.Link as={Link} to="/dashboard/category-list">
                 Category List
               </Nav.Link>
+              {isAdmin && (
+                <Nav.Link as={Link} to="/dashboard/user-list">
+                  User List
+                </Nav.Link>
+              )}
             </Nav>
             <hr />
             <ButtonGroup>
@@ -76,8 +95,12 @@ const HeaderDashboard = () => {
             Phar<span>mora</span>
           </h1>
         </Navbar.Brand>
-        <PersonCircle size={30} className="ms-3" onClick={handleProfileClick}
-          style={{ cursor: "pointer" }}/>
+        <PersonCircle
+          size={30}
+          className="ms-3"
+          onClick={handleProfileClick}
+          style={{ cursor: "pointer" }}
+        />
       </Container>
     </Navbar>
   );
