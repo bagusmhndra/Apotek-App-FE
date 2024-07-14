@@ -27,6 +27,12 @@
   color: #3B71CA;
 }
 
+.navbar-container .nav-link.active {
+  color: #3B71CA; /* Warna link aktif */
+  font-weight: bold; /* Tambahan opsional untuk menebalkan teks */
+}
+
+
 /* BTN */
 .profile-btn {
   background-color: transparent;

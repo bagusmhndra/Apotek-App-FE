@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Container, Table, Button, Modal, Form, Breadcrumb } from "react-bootstrap";
+import {
+  Container,
+  Table,
+  Button,
+  Modal,
+  Form,
+  Breadcrumb,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import api from "../../api";
@@ -22,8 +29,8 @@ function UserList() {
       setUsers(response.data);
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to fetch users',
+        icon: "error",
+        title: "Failed to fetch users",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
@@ -43,8 +50,8 @@ function UserList() {
         role,
       });
       Swal.fire({
-        icon: 'success',
-        title: 'User role updated successfully',
+        icon: "success",
+        title: "User role updated successfully",
         text: `User role for ${selectedUser.username} has been updated.`,
         confirmButtonColor: "#3B71CA",
       });
@@ -52,13 +59,46 @@ function UserList() {
       fetchUsers();
     } catch (error) {
       Swal.fire({
-        icon: 'error',
-        title: 'Failed to update user',
+        icon: "error",
+        title: "Failed to update user",
         text: error.message,
         confirmButtonColor: "#3B71CA",
       });
     }
   };
+
+  const handleDeleteUser = async (userId) => {
+    try {
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            confirmButtonColor: "#3B71CA",
+        });
+
+        if (result.isConfirmed) {
+            const response = await api.delete(`/users/${userId}`);
+            Swal.fire({
+                icon: "success",
+                title: "User deleted successfully",
+                text: response.data.msg,
+                confirmButtonColor: "#3B71CA",
+            });
+            fetchUsers(); // Function to fetch and update the list of users
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Failed to delete user",
+            text: error.response?.data?.msg || error.message,
+            confirmButtonColor: "#3B71CA",
+        });
+    }
+};
+
 
   return (
     <>
@@ -102,8 +142,13 @@ function UserList() {
                         onClick={() => handleEdit(user)}
                       >
                         Update
-                      </Button>{" "}
-                      <Button variant="danger" className="m-1" size="sm">
+                      </Button>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        className="m-1"
+                        onClick={() => handleDeleteUser(user._id)}
+                      >
                         Delete
                       </Button>
                     </td>

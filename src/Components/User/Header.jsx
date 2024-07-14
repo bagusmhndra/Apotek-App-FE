@@ -8,7 +8,7 @@ import {
   Offcanvas,
   Dropdown,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   PersonFill,
   CartFill,
@@ -23,6 +23,7 @@ const Header = () => {
   const [authToken, setAuthToken] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -88,16 +89,16 @@ const Header = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1 pe-3">
-                <Nav.Link as={Link} to="/">
+                <Nav.Link as={Link} to="/" className={location.pathname === "/" ? "active" : ""}>
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/products">
+                <Nav.Link as={Link} to="/products" className={location.pathname === "/products" ? "active" : ""}>
                   Products
                 </Nav.Link>
-                <Nav.Link as={Link} to="/contact">
+                <Nav.Link as={Link} to="/contact" className={location.pathname === "/contact" ? "active" : ""}>
                   Contact Us
                 </Nav.Link>
-                <Nav.Link as={Link} to="/about-us">
+                <Nav.Link as={Link} to="/about-us" className={location.pathname === "/about-us" ? "active" : ""}>
                   About Us
                 </Nav.Link>
               </Nav>

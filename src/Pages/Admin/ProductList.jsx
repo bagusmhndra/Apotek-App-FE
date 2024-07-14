@@ -217,7 +217,7 @@ function ProductList() {
   };
 
   // Handle deletion of product
-  const handleDeleteProduct = async () => {
+  const handleDeleteProduct = async (productId) => {
     try {
       const result = await Swal.fire({
         title: "Are you sure?",
@@ -230,7 +230,7 @@ function ProductList() {
       });
 
       if (result.isConfirmed) {
-        const response = await api.delete(`/products/${selectedProduct._id}`);
+        const response = await api.delete(`/products/${productId}`);
         Swal.fire({
           icon: "success",
           title: "Product deleted successfully",
@@ -311,7 +311,7 @@ function ProductList() {
                           variant="danger"
                           className="m-1"
                           size="sm"
-                          onClick={handleDeleteProduct}
+                          onClick={() => handleDeleteProduct(product._id)}
                         >
                           Delete
                         </Button>

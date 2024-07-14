@@ -71,13 +71,15 @@ const HeaderDashboard = () => {
               <Nav.Link as={Link} to="/dashboard/product-list">
                 Product List
               </Nav.Link>
-              <Nav.Link as={Link} to="/dashboard/category-list">
-                Category List
-              </Nav.Link>
               {isAdmin && (
-                <Nav.Link as={Link} to="/dashboard/user-list">
-                  User List
-                </Nav.Link>
+                <>
+                  <Nav.Link as={Link} to="/dashboard/category-list">
+                    Category List
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/dashboard/user-list">
+                    User List
+                  </Nav.Link>
+                </>
               )}
             </Nav>
             <hr />
@@ -90,7 +92,6 @@ const HeaderDashboard = () => {
         </Navbar.Offcanvas>
 
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-          
           <h1 className="fw-bold">
             Phar<span>mora</span>
           </h1>
