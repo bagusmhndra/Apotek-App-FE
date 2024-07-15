@@ -53,7 +53,7 @@ const Register = () => {
     <Container className="register-container">
       <Container as={Link} to="/">
         <h1 className="fw-bold text-center fs-1">
-          Pharmora<span>.id</span>
+          Phar<span>mora</span>
         </h1>
       </Container>
 
